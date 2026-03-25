@@ -31,8 +31,10 @@
 		BF6BF2876A996492DA97B8D4 /* FocusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A36CE16D746D07C6C18 /* FocusService.swift */; };
 		C07F566ADDC4957211F8E460 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB244049E748E4E07F03FB11 /* LeaderboardView.swift */; };
 		C411DBBE95882F37AB19A20C /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A855007C4C872B40A6999994 /* EmptyStateView.swift */; };
+		CD725A8CB422AAE6091CA9BA /* FocusHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C7980B969F8161B46666B /* FocusHistoryView.swift */; };
 		CDA2835CA8B4D7809B545ABC /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE6D5572221722DDAD9C69 /* Challenge.swift */; };
 		D0196625CAF59E8B1385DDB9 /* MatchFoundSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095021B189952B26E14A784 /* MatchFoundSheet.swift */; };
+		DA189F865D0B707FF2EE1542 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */; };
 		E6F5D98EB3506E42BEC1A623 /* GlassTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */; };
 		E81C9767423FECC20D8C2C89 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F4D7573D17F9FD72B70FC /* TeamService.swift */; };
 		EF7D600B19E788C07A73ACAD /* LeaderboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524713FDAB7AA90B60CF5C1E /* LeaderboardViewModel.swift */; };
@@ -51,9 +53,11 @@
 		25114F977ECCC2FA78D13AC8 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		2747B5C0BD75EFECA1D2569B /* Cadence.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Cadence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28BDA70A9F1D94A5499A54A2 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		2E9C7980B969F8161B46666B /* FocusHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusHistoryView.swift; sourceTree = "<group>"; };
 		30897791A03E694FDF3957C6 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		32E8A99283BFDACB9706B773 /* BreathingOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingOrb.swift; sourceTree = "<group>"; };
 		357F0A8B0CBBE46F30B28767 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
+		4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		524713FDAB7AA90B60CF5C1E /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
 		5C7BDFC43E37BC31B7797443 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBadgeView.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 				25114F977ECCC2FA78D13AC8 /* AchievementsView.swift */,
 				88C412B9F287112D8AF9892E /* ChallengesView.swift */,
 				0E947B22D92237B927C9DE0E /* ContentView.swift */,
+				2E9C7980B969F8161B46666B /* FocusHistoryView.swift */,
 				9C24101AFF949184E310E897 /* FocusTimerView.swift */,
 				BB244049E748E4E07F03FB11 /* LeaderboardView.swift */,
 				67D9EDD2B4231A57E1A2FB48 /* PartnerRadarView.swift */,
@@ -169,6 +174,7 @@
 				928F1A36CE16D746D07C6C18 /* FocusService.swift */,
 				79F9CD103209F4F098ED75D0 /* MatchingService.swift */,
 				357F0A8B0CBBE46F30B28767 /* SoundService.swift */,
+				4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */,
 				AB7F4D7573D17F9FD72B70FC /* TeamService.swift */,
 			);
 			path = Services;
@@ -265,6 +271,7 @@
 				1CBCF49235138427F6B7F392 /* ContentView.swift in Sources */,
 				FA71A308E572C0C3CF4B4A45 /* DatabaseService.swift in Sources */,
 				C411DBBE95882F37AB19A20C /* EmptyStateView.swift in Sources */,
+				CD725A8CB422AAE6091CA9BA /* FocusHistoryView.swift in Sources */,
 				BF6BF2876A996492DA97B8D4 /* FocusService.swift in Sources */,
 				901FB8ACE24C40798A2EC712 /* FocusTimerView.swift in Sources */,
 				E6F5D98EB3506E42BEC1A623 /* GlassTabBar.swift in Sources */,
@@ -281,6 +288,7 @@
 				FA7430B54C99FB0A9BE95496 /* Sound.swift in Sources */,
 				9E442462AF8CA0BEE4292A51 /* SoundPickerView.swift in Sources */,
 				BDBD112585DBC411560D1689 /* SoundService.swift in Sources */,
+				DA189F865D0B707FF2EE1542 /* SubscriptionService.swift in Sources */,
 				590A1E1EF1FC17FB39FAE8D0 /* Team.swift in Sources */,
 				E81C9767423FECC20D8C2C89 /* TeamService.swift in Sources */,
 				71056E7658FBB916B14BA805 /* TeamView.swift in Sources */,
