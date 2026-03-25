@@ -300,8 +300,6 @@ struct InsightsView: View {
             sessions = await db.loadSessions()
             streak = await db.loadStreak()
             let soundCounts = await db.loadActiveSounds()
-            let soundCountsDouble = await db.loadActiveSounds()
-            let soundCounts = soundCountsDouble.mapValues { Int($0) }
             statisticsService.refresh(sessions: sessions, streak: streak, soundCounts: soundCounts)
         }
     }
