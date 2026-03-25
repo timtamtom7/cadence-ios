@@ -17,7 +17,7 @@ class StatisticsService {
 
     // MARK: - Weekly Stats
 
-    func computeWeeklyStats(sessions: [Session], streak: StreakData, soundCounts: [String: Int]) -> WeeklyStats {
+    func computeWeeklyStats(sessions: [Session], streak: StreakData, soundCounts: [String: Double]) -> WeeklyStats {
         let today = Date()
         guard let weekStart = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: today)) else {
             return WeeklyStats(weekStartDate: today)
@@ -35,7 +35,7 @@ class StatisticsService {
         var dailyMinutes = Array(repeating: 0, count: 7)
         var longestSession = 0
         var sessionsWithPartner = 0
-        var soundCounts: [String: Int] = [:]
+        var soundCounts: [String: Double] = [:]
 
         for session in weekSessions {
             let dayIndex = calendar.component(.weekday, from: session.completedAt) - 1
@@ -64,7 +64,7 @@ class StatisticsService {
         )
     }
 
-    func computeMonthlyStats(sessions: [Session], streak: StreakData, soundCounts: [String: Int]) -> MonthlyStats {
+    func computeMonthlyStats(sessions: [Session], streak: StreakData, soundCounts: [String: Double]) -> MonthlyStats {
         let today = Date()
         let monthStart = calendar.date(from: calendar.dateComponents([.year, .month], from: today)) ?? today
 
@@ -86,7 +86,7 @@ class StatisticsService {
         // Count unique active days
         let uniqueDays = Set(monthSessions.map { calendar.startOfDay(for: $0.completedAt) }).count
 
-        var soundCounts: [String: Int] = [:]
+        var soundCounts: [String: Double] = [:]
         for session in monthSessions {
             for soundId in session.soundIds {
                 soundCounts[soundId, default: 0] += 1
@@ -139,7 +139,7 @@ class StatisticsService {
         }
 
         // Sound preference
-        var soundCounts: [String: Int] = [:]
+        var soundCounts: [String: Double] = [:]
         for session in sessions {
             for soundId in session.soundIds {
                 soundCounts[soundId, default: 0] += 1
@@ -172,7 +172,7 @@ class StatisticsService {
 
     // MARK: - Refresh
 
-    func refresh(sessions: [Session], streak: StreakData, soundCounts: [String: Int]) {
+    func refresh(sessions: [Session], streak: StreakData, soundCounts: [String: Double]) {
         weeklyStats = computeWeeklyStats(sessions: sessions, streak: streak, soundCounts: soundCounts)
         monthlyStats = computeMonthlyStats(sessions: sessions, streak: streak, soundCounts: soundCounts)
         focusPattern = computeFocusPattern(sessions: sessions)

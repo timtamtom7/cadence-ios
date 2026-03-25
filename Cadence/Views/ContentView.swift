@@ -5,7 +5,7 @@ struct ContentView: View {
 
     enum Tab: String, CaseIterable {
         case focus = "Focus"
-        case leaderboard = "Board"
+        case insights = "Insights"
         case team = "Team"
         case achievements = "Badges"
         case settings = "Settings"
@@ -13,7 +13,7 @@ struct ContentView: View {
         var icon: String {
             switch self {
             case .focus: return "timer"
-            case .leaderboard: return "chart.bar.fill"
+            case .insights: return "chart.bar.fill"
             case .team: return "person.3.fill"
             case .achievements: return "medal.fill"
             case .settings: return "gearshape.fill"
@@ -28,8 +28,8 @@ struct ContentView: View {
                     .tag(Tab.focus)
                     .toolbar(.hidden, for: .tabBar)
 
-                LeaderboardView()
-                    .tag(Tab.leaderboard)
+                InsightsView()
+                    .tag(Tab.insights)
                     .toolbar(.hidden, for: .tabBar)
 
                 TeamView()
