@@ -3,10 +3,13 @@ import SwiftUI
 struct SessionCompleteView: View {
     let session: Session
     let streak: Int
+    let totalHours: Double
+    let totalSessions: Int
     let onDismiss: () -> Void
 
     @State private var animateScore = false
     @State private var animateStreak = false
+    @State private var animateStats = false
 
     var body: some View {
         ZStack {
@@ -38,7 +41,7 @@ struct SessionCompleteView: View {
                     .font(.appDisplay)
                     .foregroundStyle(Color.appTextPrimary)
 
-                // Stats
+                // Stats Grid
                 VStack(spacing: Spacing.md) {
                     HStack(spacing: Spacing.xl) {
                         statItem(value: "\(session.durationMinutes)", label: "Minutes", icon: "clock.fill")
@@ -57,6 +60,15 @@ struct SessionCompleteView: View {
                         .offset(y: animateStreak ? 0 : 20)
                         .animation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.3), value: animateStreak)
                     }
+
+                    // Personal stats
+                    HStack(spacing: Spacing.xl) {
+                        statItem(value: String(format: "%.1f", totalHours), label: "Total Hours", icon: "hourglass")
+                        statItem(value: "\(totalSessions)", label: "Sessions", icon: "checkmark.circle.fill")
+                    }
+                    .opacity(animateStats ? 1 : 0)
+                    .offset(y: animateStats ? 0 : 20)
+                    .animation(.spring(response: 0.5, dampingFraction: 0.8).delay(0.5), value: animateStats)
                 }
                 .padding(Spacing.lg)
                 .background(Color.appSurface)
@@ -79,7 +91,6 @@ struct SessionCompleteView: View {
                     }
 
                     Button {
-                        // Share functionality placeholder
                         onDismiss()
                     } label: {
                         HStack {
@@ -98,8 +109,9 @@ struct SessionCompleteView: View {
         .onAppear {
             animateScore = true
             animateStreak = true
+            animateStats = true
         }
-        .presentationDetents([.medium])
+        .presentationDetents([.large])
         .presentationDragIndicator(.visible)
     }
 
@@ -122,6 +134,8 @@ struct SessionCompleteView: View {
     SessionCompleteView(
         session: Session(duration: 25 * 60, focusScore: 85),
         streak: 5,
+        totalHours: 45.5,
+        totalSessions: 90,
         onDismiss: {}
     )
     .preferredColorScheme(.dark)

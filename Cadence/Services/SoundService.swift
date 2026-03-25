@@ -99,4 +99,12 @@ class SoundService {
     var activeSoundList: [Sound] {
         Array(activeSounds.values)
     }
+
+    func deactivateAll() {
+        for id in activeSounds.keys {
+            stopSound(id: id)
+        }
+        activeSounds.removeAll()
+        saveActiveSounds()
+    }
 }

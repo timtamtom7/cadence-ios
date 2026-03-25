@@ -2,6 +2,12 @@ import SwiftUI
 
 struct LeaderboardView: View {
     @State private var viewModel = LeaderboardViewModel()
+    @State private var selectedTab: LeaderboardTab = .weekly
+
+    enum LeaderboardTab: String, CaseIterable {
+        case weekly = "Weekly"
+        case global = "Global"
+    }
 
     var body: some View {
         ZStack {
@@ -18,7 +24,7 @@ struct LeaderboardView: View {
                         .tint(Color.appPrimary)
                     Spacer()
                 } else {
-                    leaderboardList
+                    leaderboardContent
                 }
             }
             .padding(.bottom, 100)
@@ -29,7 +35,7 @@ struct LeaderboardView: View {
     }
 
     private var header: some View {
-        VStack(spacing: Spacing.xs) {
+        VStack(spacing: Spacing.sm) {
             HStack {
                 Text("Leaderboard")
                     .font(.appDisplay)
@@ -37,31 +43,110 @@ struct LeaderboardView: View {
                 Spacer()
             }
 
+            // Tab selector
+            HStack(spacing: 0) {
+                ForEach(LeaderboardTab.allCases, id: \.self) { tab in
+                    Button {
+                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                            selectedTab = tab
+                        }
+                    } label: {
+                        Text(tab.rawValue)
+                            .font(.appCaption)
+                            .foregroundStyle(selectedTab == tab ? Color.appPrimary : Color.appTextSecondary)
+                            .padding(.vertical, Spacing.xs)
+                            .padding(.horizontal, Spacing.md)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .background(Color.appSurface)
+            .clipShape(Capsule())
+        }
+    }
+
+    private var leaderboardContent: some View {
+        ScrollView {
+            VStack(spacing: Spacing.lg) {
+                // Personal Stats Card
+                personalStatsCard
+                    .padding(.horizontal, Spacing.md)
+
+                // Top 3 Podium
+                if !viewModel.topThree.isEmpty {
+                    topThreePodium
+                        .padding(.horizontal, Spacing.md)
+                }
+
+                // Rest of leaderboard
+                LazyVStack(spacing: Spacing.sm) {
+                    ForEach(viewModel.entries.dropFirst(3)) { entry in
+                        LeaderboardRow(entry: entry, viewModel: viewModel)
+                    }
+                }
+                .padding(.horizontal, Spacing.md)
+            }
+            .padding(.top, Spacing.md)
+        }
+    }
+
+    private var personalStatsCard: some View {
+        VStack(spacing: Spacing.md) {
             HStack {
-                Text("This Week")
+                Text("Your Stats")
+                    .font(.appHeading2)
+                    .foregroundStyle(Color.appTextPrimary)
+                Spacer()
+                Image(systemName: "person.fill")
+                    .foregroundStyle(Color.appPrimary)
+            }
+
+            if let userEntry = viewModel.currentUserEntry {
+                HStack(spacing: Spacing.xl) {
+                    personalStatItem(value: "#\(userEntry.rank)", label: "Rank", icon: "medal.fill")
+                    personalStatItem(value: "\(userEntry.weeklyMinutes)m", label: "This Week", icon: "clock.fill")
+                    personalStatItem(value: String(format: "%.1fh", userEntry.totalHours), label: "Total", icon: "hourglass")
+                    personalStatItem(value: "\(userEntry.totalSessions)", label: "Sessions", icon: "checkmark.circle.fill")
+                }
+            } else {
+                Text("Complete your first session to appear on the leaderboard")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextSecondary)
+                    .multilineTextAlignment(.center)
+            }
+
+            // Streak bar
+            HStack(spacing: Spacing.sm) {
+                Image(systemName: "flame.fill")
+                    .foregroundStyle(Color.appWarning)
+                Text("\(viewModel.currentUserEntry?.streak ?? 0) day streak")
                     .font(.appCaption)
                     .foregroundStyle(Color.appTextSecondary)
                 Spacer()
             }
         }
+        .padding(Spacing.md)
+        .background(Color.appSurface)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.appPrimary.opacity(0.2), lineWidth: 1)
+        )
     }
 
-    private var leaderboardList: some View {
-        ScrollView {
-            LazyVStack(spacing: Spacing.sm) {
-                // Top 3 podium
-                if !viewModel.topThree.isEmpty {
-                    topThreePodium
-                        .padding(.top, Spacing.md)
-                }
-
-                // Rest of leaderboard
-                ForEach(viewModel.entries.dropFirst(3)) { entry in
-                    LeaderboardRow(entry: entry, viewModel: viewModel)
-                }
-            }
-            .padding(.horizontal, Spacing.md)
+    private func personalStatItem(value: String, label: String, icon: String) -> some View {
+        VStack(spacing: Spacing.xxs) {
+            Image(systemName: icon)
+                .font(.caption)
+                .foregroundStyle(Color.appPrimary)
+            Text(value)
+                .font(.appHeading2)
+                .foregroundStyle(Color.appTextPrimary)
+            Text(label)
+                .font(.system(size: 10))
+                .foregroundStyle(Color.appTextTertiary)
         }
+        .frame(maxWidth: .infinity)
     }
 
     private var topThreePodium: some View {

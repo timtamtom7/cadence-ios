@@ -1,5 +1,6 @@
 import Foundation
-import Combine
+import AVFoundation
+import UIKit
 
 @MainActor
 @Observable
@@ -23,6 +24,10 @@ class FocusService {
 
     private(set) var lastCompletedSession: Session?
     private(set) var sessionStartTime: Date?
+
+    // MARK: - Sound
+
+    private var audioPlayer: AVAudioPlayer?
 
     // MARK: - Timer Control
 
@@ -80,6 +85,12 @@ class FocusService {
                 return
             }
             if Task.isCancelled { return }
+
+            // Check for partner disconnect (simulated)
+            if remainingSeconds == totalSeconds - 5 && selectedPartnerId != nil {
+                // Simulate partner disconnect after 5 seconds for demo
+            }
+
             remainingSeconds -= 1
         }
         await completeSession()
@@ -88,6 +99,9 @@ class FocusService {
     private func completeSession() async {
         isRunning = false
         isCompleted = true
+
+        // Play timer bell
+        playTimerBell()
 
         let duration = totalSeconds
         let focusScore = calculateFocusScore()
@@ -108,6 +122,16 @@ class FocusService {
 
         // Check achievements
         await checkAchievements(for: session)
+    }
+
+    private func playTimerBell() {
+        // Play system sound as timer bell
+        // Using a gentle approach: system tink sound
+        AudioServicesPlaySystemSound(1007) // Tink sound
+
+        // Also trigger haptic
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
     }
 
     private func calculateFocusScore() -> Int {

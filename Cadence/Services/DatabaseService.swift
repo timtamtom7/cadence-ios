@@ -111,6 +111,35 @@ actor DatabaseService {
         }
     }
 
+    struct Stats {
+        var todayMinutes: Int = 0
+        var weeklyMinutes: Int = 0
+        var totalHours: Double = 0
+        var totalSessions: Int = 0
+    }
+
+    func loadStats() -> Stats {
+        var stats = Stats()
+        let sessions = loadSessions()
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
+        stats.todayMinutes = sessions
+            .filter { calendar.startOfDay(for: $0.completedAt) == today }
+            .reduce(0) { $0 + $1.duration } / 60
+
+        if let weekAgo = calendar.date(byAdding: .day, value: -7, to: Date()) {
+            stats.weeklyMinutes = sessions
+                .filter { $0.completedAt >= weekAgo }
+                .reduce(0) { $0 + $1.duration } / 60
+        }
+
+        stats.totalSessions = sessions.count
+        stats.totalHours = Double(sessions.reduce(0) { $0 + $1.duration }) / 3600.0
+
+        return stats
+    }
+
     func loadActiveSounds() -> [String: Double] {
         guard let data = defaults.data(forKey: Keys.activeSounds),
               let sounds = try? JSONDecoder().decode([String: Double].self, from: data) else {

@@ -19,6 +19,9 @@ struct SoundPickerView: View {
                             activeSoundsSection
                         }
 
+                        // Silent option
+                        silentOptionSection
+
                         // All sounds by category
                         ForEach(SoundCategory.allCases, id: \.self) { category in
                             soundCategorySection(category)
@@ -47,6 +50,14 @@ struct SoundPickerView: View {
                         .padding(.vertical, Spacing.xxs)
                         .background(Color.appPrimary.opacity(0.15))
                         .clipShape(Capsule())
+                } else {
+                    Text("Silent")
+                        .font(.appCaption)
+                        .foregroundStyle(Color.appTextTertiary)
+                        .padding(.horizontal, Spacing.sm)
+                        .padding(.vertical, Spacing.xxs)
+                        .background(Color.appSurface)
+                        .clipShape(Capsule())
                 }
             }
 
@@ -73,6 +84,56 @@ struct SoundPickerView: View {
                     onRemove: { soundService.deactivateSound(id: sound.id) }
                 )
             }
+
+            // Timer bell toggle
+            TimerBellToggle()
+        }
+    }
+
+    private var silentOptionSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            Text("Silence")
+                .font(.appHeading2)
+                .foregroundStyle(Color.appTextPrimary)
+
+            Button {
+                soundService.deactivateAll()
+            } label: {
+                HStack(spacing: Spacing.md) {
+                    ZStack {
+                        Circle()
+                            .fill(soundService.activeSoundCount == 0 ? Color.appPrimary.opacity(0.15) : Color.appSurface)
+                            .frame(width: 48, height: 48)
+                        Image(systemName: "speaker.slash.fill")
+                            .font(.title3)
+                            .foregroundStyle(soundService.activeSoundCount == 0 ? Color.appPrimary : Color.appTextSecondary)
+                    }
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("No Sound")
+                            .font(.appBody)
+                            .foregroundStyle(Color.appTextPrimary)
+                        Text("Pure silence — just the timer")
+                            .font(.appCaption)
+                            .foregroundStyle(Color.appTextSecondary)
+                    }
+
+                    Spacer()
+
+                    if soundService.activeSoundCount == 0 {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(Color.appPrimary)
+                    }
+                }
+                .padding(Spacing.sm)
+                .background(Color.appSurface)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(soundService.activeSoundCount == 0 ? Color.appPrimary.opacity(0.5) : Color.clear, lineWidth: 1)
+                )
+            }
+            .buttonStyle(.plain)
         }
     }
 
@@ -150,6 +211,44 @@ struct ActiveSoundCard: View {
     }
 }
 
+struct TimerBellToggle: View {
+    @AppStorage("cadence.timerBellEnabled") private var timerBellEnabled: Bool = true
+
+    var body: some View {
+        HStack(spacing: Spacing.md) {
+            ZStack {
+                Circle()
+                    .fill(Color.appSurface)
+                    .frame(width: 48, height: 48)
+                Image(systemName: "bell.fill")
+                    .font(.title3)
+                    .foregroundStyle(timerBellEnabled ? Color.appPrimary : Color.appTextTertiary)
+            }
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Timer Bell")
+                    .font(.appBody)
+                    .foregroundStyle(Color.appTextPrimary)
+                Text("Gentle chime when session ends")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextSecondary)
+            }
+
+            Spacer()
+
+            Toggle("", isOn: $timerBellEnabled)
+                .tint(Color.appPrimary)
+        }
+        .padding(Spacing.sm)
+        .background(Color.appSurface)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.appPrimary.opacity(0.3), lineWidth: 1)
+        )
+    }
+}
+
 struct SoundTile: View {
     let sound: Sound
     let isActive: Bool
@@ -167,6 +266,12 @@ struct SoundTile: View {
                         Image(systemName: sound.icon)
                             .font(.title)
                             .foregroundStyle(isActive ? Color.appPrimary : Color.appTextSecondary)
+
+                        if isActive {
+                            Text("ON")
+                                .font(.system(size: 10, weight: .bold))
+                                .foregroundStyle(Color.appPrimary)
+                        }
                     }
                 }
 

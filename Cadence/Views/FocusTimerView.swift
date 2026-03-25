@@ -18,12 +18,21 @@ struct FocusTimerView: View {
                 SessionCompleteView(
                     session: session,
                     streak: viewModel.currentStreak,
+                    totalHours: viewModel.totalHours,
+                    totalSessions: viewModel.totalSessions,
                     onDismiss: {
                         viewModel.showSessionComplete = false
                         viewModel.focusService.stop()
                     }
                 )
             }
+        }
+        .sheet(isPresented: $viewModel.showPartnerDisconnected) {
+            PartnerDisconnectedSheet(
+                partnerName: viewModel.matchingService.currentMatch?.partnerName ?? "Partner",
+                onReMatch: { viewModel.reMatchOrContinueSolo(rematch: true) },
+                onContinueSolo: { viewModel.reMatchOrContinueSolo(rematch: false) }
+            )
         }
         .alert("Cancel Session?", isPresented: $viewModel.showCancelConfirmation) {
             Button("Keep Going", role: .cancel) {}
@@ -42,11 +51,13 @@ struct FocusTimerView: View {
             VStack(spacing: Spacing.lg) {
                 headerSection
 
+                focusModeSection
+
                 durationPickerSection
 
                 soundPreviewSection
 
-                partnerRadarSection
+                partnerMatchingSection
 
                 startButton
             }
@@ -86,6 +97,31 @@ struct FocusTimerView: View {
         .clipShape(Capsule())
     }
 
+    // MARK: - Focus Mode
+
+    private var focusModeSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            Text("Focus Mode")
+                .font(.appHeading2)
+                .foregroundStyle(Color.appTextPrimary)
+
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: Spacing.sm) {
+                    ForEach(FocusMode.allCases) { mode in
+                        FocusModeCard(
+                            mode: mode,
+                            isSelected: viewModel.selectedFocusMode == mode,
+                            onTap: { viewModel.selectFocusMode(mode) }
+                        )
+                    }
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    // MARK: - Duration Picker
+
     private var durationPickerSection: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
             Text("Duration")
@@ -116,18 +152,37 @@ struct FocusTimerView: View {
         }
     }
 
+    // MARK: - Sound Preview
+
     private var soundPreviewSection: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
-            Text("Ambient Sounds")
-                .font(.appHeading2)
-                .foregroundStyle(Color.appTextPrimary)
+            HStack {
+                Text("Ambient Sounds")
+                    .font(.appHeading2)
+                    .foregroundStyle(Color.appTextPrimary)
 
-            Text("\(viewModel.selectedSounds.count) selected")
-                .font(.appCaption)
-                .foregroundStyle(Color.appTextSecondary)
+                Spacer()
+
+                if viewModel.selectedSounds.isEmpty {
+                    Text("Silent mode")
+                        .font(.appCaption)
+                        .foregroundStyle(Color.appTextTertiary)
+                } else {
+                    Text("\(viewModel.selectedSounds.count) selected")
+                        .font(.appCaption)
+                        .foregroundStyle(Color.appTextSecondary)
+                }
+            }
 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: Spacing.sm) {
+                    // Silent option
+                    SoundChip(
+                        sound: Sound(id: "silent", name: "Silent", icon: "speaker.slash.fill", category: .ambient),
+                        isSelected: viewModel.selectedSounds.isEmpty,
+                        onTap: { viewModel.selectedSounds.removeAll() }
+                    )
+
                     ForEach(Sound.allSounds) { sound in
                         SoundChip(
                             sound: sound,
@@ -141,26 +196,42 @@ struct FocusTimerView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private var partnerRadarSection: some View {
-        VStack(alignment: .leading, spacing: Spacing.sm) {
-            Text("Focus Partners")
-                .font(.appHeading2)
-                .foregroundStyle(Color.appTextPrimary)
+    // MARK: - Partner Matching
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: Spacing.sm) {
-                    ForEach(viewModel.partnerRadar) { partner in
-                        PartnerChip(
-                            partner: partner,
-                            isSelected: viewModel.selectedPartner?.id == partner.id,
-                            onTap: {
-                                if viewModel.selectedPartner?.id == partner.id {
-                                    viewModel.selectPartner(nil)
-                                } else {
-                                    viewModel.selectPartner(partner)
+    private var partnerMatchingSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            HStack {
+                Text("Focus Partners")
+                    .font(.appHeading2)
+                    .foregroundStyle(Color.appTextPrimary)
+
+                Spacer()
+
+                if viewModel.selectedPartner != nil {
+                    Text("Selected")
+                        .font(.appCaption)
+                        .foregroundStyle(Color.appPrimary)
+                }
+            }
+
+            if viewModel.matchingService.isSearching {
+                matchingProgressView
+            } else {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: Spacing.sm) {
+                        ForEach(viewModel.partnerRadar) { partner in
+                            PartnerChip(
+                                partner: partner,
+                                isSelected: viewModel.selectedPartner?.id == partner.id,
+                                onTap: {
+                                    if viewModel.selectedPartner?.id == partner.id {
+                                        viewModel.selectPartner(nil)
+                                    } else {
+                                        viewModel.selectPartner(partner)
+                                    }
                                 }
-                            }
-                        )
+                            )
+                        }
                     }
                 }
             }
@@ -168,20 +239,67 @@ struct FocusTimerView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private var startButton: some View {
-        Button {
-            viewModel.startSession()
-        } label: {
-            HStack {
-                Image(systemName: "play.fill")
-                Text("Start Focus")
+    private var matchingProgressView: some View {
+        HStack(spacing: Spacing.md) {
+            ProgressView()
+                .tint(Color.appPrimary)
+
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Finding a partner...")
+                    .font(.appBody)
+                    .foregroundStyle(Color.appTextPrimary)
+
+                Text("Matching by \(viewModel.selectedFocusMode.rawValue) mode")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextSecondary)
             }
-            .font(.appHeading2)
-            .foregroundStyle(Color.appBackground)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, Spacing.md)
-            .background(Color.appPrimary)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+
+            Spacer()
+
+            Button {
+                viewModel.matchingService.stopSearching()
+            } label: {
+                Text("Cancel")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appError)
+            }
+        }
+        .padding(Spacing.md)
+        .background(Color.appSurface)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    // MARK: - Start Button
+
+    private var startButton: some View {
+        VStack(spacing: Spacing.sm) {
+            Button {
+                Task {
+                    await viewModel.startMatchingSession()
+                }
+            } label: {
+                HStack {
+                    Image(systemName: "play.fill")
+                    Text("Start Focus")
+                }
+                .font(.appHeading2)
+                .foregroundStyle(Color.appBackground)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, Spacing.md)
+                .background(Color.appPrimary)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+            }
+            .disabled(viewModel.matchingService.isSearching)
+
+            if viewModel.selectedPartner != nil {
+                Text("You'll focus with \(viewModel.selectedPartner!.name)")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextSecondary)
+            } else if viewModel.selectedSounds.isEmpty {
+                Text("Silent session — no ambient sounds")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextSecondary)
+            }
         }
         .padding(.top, Spacing.md)
     }
@@ -191,6 +309,10 @@ struct FocusTimerView: View {
     private var activeSessionView: some View {
         VStack(spacing: Spacing.xl) {
             Spacer()
+
+            if let match = viewModel.matchingService.currentMatch {
+                partnerSessionBadge(name: match.partnerName, mode: match.focusMode)
+            }
 
             BreathingOrb(
                 progress: viewModel.focusService.progress,
@@ -246,6 +368,127 @@ struct FocusTimerView: View {
                 viewModel.completeSession()
             }
         }
+    }
+
+    private func partnerSessionBadge(name: String, mode: String) -> some View {
+        HStack(spacing: Spacing.xs) {
+            Image(systemName: "person.2.fill")
+                .font(.caption)
+            Text("Focusing with \(name)")
+                .font(.appCaption)
+            Text("·")
+            Text(mode)
+                .font(.appCaption)
+        }
+        .foregroundStyle(Color.appPrimary)
+        .padding(.horizontal, Spacing.md)
+        .padding(.vertical, Spacing.xs)
+        .background(Color.appPrimary.opacity(0.15))
+        .clipShape(Capsule())
+    }
+}
+
+// MARK: - Focus Mode Card
+
+struct FocusModeCard: View {
+    let mode: FocusMode
+    let isSelected: Bool
+    let onTap: () -> Void
+
+    var body: some View {
+        Button(action: onTap) {
+            VStack(alignment: .leading, spacing: Spacing.xs) {
+                Image(systemName: mode.icon)
+                    .font(.title2)
+                    .foregroundStyle(isSelected ? Color.appPrimary : Color.appTextSecondary)
+
+                Text(mode.rawValue)
+                    .font(.appBody)
+                    .foregroundStyle(isSelected ? Color.appTextPrimary : Color.appTextSecondary)
+
+                Text(mode.description)
+                    .font(.system(size: 11))
+                    .foregroundStyle(Color.appTextTertiary)
+            }
+            .frame(width: 100)
+            .padding(Spacing.sm)
+            .background(isSelected ? Color.appPrimary.opacity(0.1) : Color.appSurface)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(isSelected ? Color.appPrimary.opacity(0.5) : Color.clear, lineWidth: 1)
+            )
+        }
+    }
+}
+
+// MARK: - Partner Disconnected Sheet
+
+struct PartnerDisconnectedSheet: View {
+    let partnerName: String
+    let onReMatch: () -> Void
+    let onContinueSolo: () -> Void
+
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        VStack(spacing: Spacing.lg) {
+            Spacer()
+
+            ZStack {
+                Circle()
+                    .fill(Color.appError.opacity(0.15))
+                    .frame(width: 100, height: 100)
+                Image(systemName: "person.2.slash")
+                    .font(.system(size: 40))
+                    .foregroundStyle(Color.appError)
+            }
+
+            Text("\(partnerName) left the session")
+                .font(.appHeading2)
+                .foregroundStyle(Color.appTextPrimary)
+                .multilineTextAlignment(.center)
+
+            Text("Your partner disconnected. Would you like to find a new partner or continue solo?")
+                .font(.appCaption)
+                .foregroundStyle(Color.appTextSecondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, Spacing.lg)
+
+            Spacer()
+
+            VStack(spacing: Spacing.sm) {
+                Button {
+                    dismiss()
+                    onReMatch()
+                } label: {
+                    HStack {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                        Text("Find New Partner")
+                    }
+                    .font(.appHeading2)
+                    .foregroundStyle(Color.appBackground)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, Spacing.md)
+                    .background(Color.appPrimary)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                }
+
+                Button {
+                    dismiss()
+                    onContinueSolo()
+                } label: {
+                    Text("Continue Solo")
+                        .font(.appBody)
+                        .foregroundStyle(Color.appTextSecondary)
+                }
+            }
+            .padding(.horizontal, Spacing.md)
+            .padding(.bottom, Spacing.xl)
+        }
+        .background(Color.appBackground)
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
     }
 }
 

@@ -5,6 +5,7 @@ import Foundation
 class LeaderboardViewModel {
     var entries: [LeaderboardEntry] = LeaderboardEntry.mockLeaderboard
     var isLoading: Bool = false
+    var currentStreak: Int = 0
 
     var topThree: [LeaderboardEntry] {
         Array(entries.prefix(3))
@@ -20,8 +21,29 @@ class LeaderboardViewModel {
 
     func refresh() async {
         isLoading = true
-        // R1: Static mock data, no network
-        try? await Task.sleep(nanoseconds: 500_000_000)
+        // Load real stats
+        let streak = await DatabaseService.shared.loadStreak()
+        currentStreak = streak.currentStreak
+
+        let stats = await DatabaseService.shared.loadStats()
+
+        // Update current user entry with real stats
+        if let idx = entries.firstIndex(where: { $0.isCurrentUser }) {
+            let updatedEntry = LeaderboardEntry(
+                id: entries[idx].id,
+                rank: entries[idx].rank,
+                name: entries[idx].name,
+                weeklyMinutes: stats.weeklyMinutes,
+                streak: streak.currentStreak,
+                totalHours: stats.totalHours,
+                totalSessions: stats.totalSessions,
+                isCurrentUser: true
+            )
+            entries[idx] = updatedEntry
+            entries.sort { $0.rank < $1.rank }
+        }
+
+        try? await Task.sleep(nanoseconds: 300_000_000)
         isLoading = false
     }
 
