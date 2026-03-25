@@ -45,6 +45,18 @@ struct Partner: Identifiable, Equatable {
         self.streak = streak
         self.weeklyMinutes = weeklyMinutes
     }
+    
+    var avatarInitials: String {
+        let parts = name.split(separator: " ")
+        if parts.count >= 2 {
+            return "\(parts[0].prefix(1))\(parts[1].prefix(1))"
+        }
+        return String(name.prefix(2)).uppercased()
+    }
+    
+    var currentStreak: Int { streak }
+    
+    var totalSessions: Int { weeklyMinutes / 30 }
 
     // Mock data for R1
     static let mockPartners: [Partner] = [
