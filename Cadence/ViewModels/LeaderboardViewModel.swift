@@ -6,6 +6,8 @@ class LeaderboardViewModel {
     var entries: [LeaderboardEntry] = LeaderboardEntry.mockLeaderboard
     var isLoading: Bool = false
     var currentStreak: Int = 0
+    var weeklyMinutes: Int = 0
+    var weeklyGoalMinutes: Int = 600 // Default 10 hour weekly goal
 
     var topThree: [LeaderboardEntry] {
         Array(entries.prefix(3))
@@ -19,6 +21,11 @@ class LeaderboardViewModel {
         currentUserEntry?.rank ?? 0
     }
 
+    var weeklyProgress: Double {
+        guard weeklyGoalMinutes > 0 else { return 0 }
+        return Double(weeklyMinutes) / Double(weeklyGoalMinutes)
+    }
+
     func refresh() async {
         isLoading = true
         // Load real stats
@@ -26,6 +33,10 @@ class LeaderboardViewModel {
         currentStreak = streak.currentStreak
 
         let stats = await DatabaseService.shared.loadStats()
+        let profile = await DatabaseService.shared.loadUserProfile()
+
+        weeklyMinutes = stats.weeklyMinutes
+        weeklyGoalMinutes = profile.dailyGoalMinutes * 5 // Weekly = daily * 5 days
 
         // Update current user entry with real stats
         if let idx = entries.firstIndex(where: { $0.isCurrentUser }) {

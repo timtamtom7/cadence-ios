@@ -8,6 +8,7 @@ class SoundService {
 
     var activeSounds: [String: Sound] = [:]
     private var audioPlayers: [String: AVAudioPlayer] = [:]
+    private var audioErrors: [String: String] = [:] // Track errors per sound for debugging
 
     init() {
         setupAudioSession()
@@ -19,7 +20,7 @@ class SoundService {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
-            // Audio setup failed, sounds won't play
+            // Audio setup failed — sounds won't play but app continues
         }
     }
 
@@ -48,7 +49,7 @@ class SoundService {
         var mutableSound = sound
         mutableSound.volume = 0.5
         activeSounds[sound.id] = mutableSound
-        playSound(id: sound.id)
+        loadAndPlaySound(id: sound.id)
         saveActiveSounds()
     }
 
@@ -60,16 +61,41 @@ class SoundService {
 
     func setVolume(_ volume: Double, for soundId: String) {
         guard var sound = activeSounds[soundId] else { return }
-        sound.volume = volume
+        // Clamp volume to prevent distortion at extremes
+        sound.volume = max(0.05, min(1.0, volume))
         activeSounds[soundId] = sound
-        audioPlayers[soundId]?.volume = Float(volume)
+        audioPlayers[soundId]?.volume = Float(sound.volume)
         saveActiveSounds()
     }
 
-    private func playSound(id: String) {
-        // R1: No actual audio files bundled
-        // In production, load from bundle: Bundle.main.url(forResource: id, withExtension: "mp3")
-        // For now, we track state without actual playback
+    private func loadAndPlaySound(id: String) {
+        // Try multiple file extensions and formats
+        let extensions = ["mp3", "m4a", "wav", "aac", "aiff"]
+        var loaded = false
+
+        for ext in extensions {
+            if let url = Bundle.main.url(forResource: id, withExtension: ext) {
+                do {
+                    let player = try AVAudioPlayer(contentsOf: url)
+                    player.numberOfLoops = -1 // Loop indefinitely
+                    player.volume = Float(activeSounds[id]?.volume ?? 0.5)
+                    player.prepareToPlay()
+                    player.play()
+                    audioPlayers[id] = player
+                    audioErrors[id] = nil
+                    loaded = true
+                    break
+                } catch {
+                    audioErrors[id] = "Failed to load \(id).\(ext): \(error.localizedDescription)"
+                }
+            }
+        }
+
+        if !loaded {
+            // Sound file not bundled — track as silent placeholder
+            // App continues without crashing
+            audioErrors[id] = "Sound file not bundled for \(id)"
+        }
     }
 
     private func stopSound(id: String) {
@@ -106,5 +132,15 @@ class SoundService {
         }
         activeSounds.removeAll()
         saveActiveSounds()
+    }
+
+    /// Returns true if all active sounds loaded successfully
+    var allSoundsLoaded: Bool {
+        audioErrors.isEmpty
+    }
+
+    /// Check if a specific sound failed to load
+    func soundFailedToLoad(_ soundId: String) -> Bool {
+        audioErrors[soundId] != nil
     }
 }

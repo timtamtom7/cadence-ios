@@ -18,7 +18,9 @@ class FocusService {
     // MARK: - Private
 
     private var timer: Task<Void, Never>?
-    private var backgroundDate: Date?
+    private var sessionStartDate: Date?
+    private var pausedAtDate: Date?
+    private var accumulatedPauseTime: TimeInterval = 0
 
     // MARK: - Session Data
 
@@ -42,6 +44,8 @@ class FocusService {
         activeSoundIds = soundIds
         selectedPartnerId = partnerId
         sessionStartTime = Date()
+        sessionStartDate = Date()
+        accumulatedPauseTime = 0
 
         timer = Task { [weak self] in
             await self?.runTimer()
@@ -51,12 +55,15 @@ class FocusService {
     func pause() {
         guard isRunning, !isPaused else { return }
         isPaused = true
+        pausedAtDate = Date()
         timer?.cancel()
         timer = nil
     }
 
     func resume() {
-        guard isRunning, isPaused else { return }
+        guard isRunning, isPaused, let pausedAt = pausedAtDate else { return }
+        accumulatedPauseTime += Date().timeIntervalSince(pausedAt)
+        pausedAtDate = nil
         isPaused = false
         timer = Task { [weak self] in
             await self?.runTimer()
@@ -72,35 +79,46 @@ class FocusService {
         totalSeconds = 0
         isCompleted = false
         sessionStartTime = nil
+        sessionStartDate = nil
+        pausedAtDate = nil
+        accumulatedPauseTime = 0
     }
 
     // MARK: - Private
 
     private func runTimer() async {
-        while remainingSeconds > 0 {
+        while true {
+            // Use Date-based calculation for drift-free timing
+            guard let startDate = sessionStartDate else { return }
+
+            let elapsed = Date().timeIntervalSince(startDate) - accumulatedPauseTime
+            let newRemaining = max(0, totalSeconds - Int(elapsed))
+
+            if newRemaining != remainingSeconds {
+                remainingSeconds = newRemaining
+            }
+
+            if remainingSeconds <= 0 {
+                await completeSession()
+                return
+            }
+
             do {
-                try await Task.sleep(nanoseconds: 1_000_000_000)
+                try await Task.sleep(nanoseconds: 100_000_000) // 0.1s tick for smoother updates
             } catch {
                 // Cancelled
                 return
             }
+
             if Task.isCancelled { return }
-
-            // Check for partner disconnect (simulated)
-            if remainingSeconds == totalSeconds - 5 && selectedPartnerId != nil {
-                // Simulate partner disconnect after 5 seconds for demo
-            }
-
-            remainingSeconds -= 1
         }
-        await completeSession()
     }
 
     private func completeSession() async {
         isRunning = false
         isCompleted = true
 
-        // Play timer bell
+        // Play timer bell with fallback
         playTimerBell()
 
         let duration = totalSeconds
@@ -125,21 +143,38 @@ class FocusService {
     }
 
     private func playTimerBell() {
-        // Play system sound as timer bell
-        // Using a gentle approach: system tink sound
-        AudioServicesPlaySystemSound(1007) // Tink sound
+        // Try to play bundled bell sound with graceful fallback
+        if let bellURL = Bundle.main.url(forResource: "bell", withExtension: "mp3") {
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: bellURL)
+                audioPlayer?.volume = 0.7
+                audioPlayer?.play()
+            } catch {
+                // Fallback to system sound
+                playSystemBell()
+            }
+        } else {
+            // No bell file bundled — use system sound
+            playSystemBell()
+        }
 
-        // Also trigger haptic
+        // Haptic feedback
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
     }
 
+    private func playSystemBell() {
+        // System tink sound as fallback
+        AudioServicesPlaySystemSound(1007)
+    }
+
     private func calculateFocusScore() -> Int {
-        // Simple algorithm: base score + bonus for uninterrupted time
-        // In R1, this is a placeholder
+        // Base score improved by uninterrupted time, penalized for pauses
         let baseScore = 70
-        let pausePenalty = isPaused ? 10 : 0
-        return min(100, baseScore + Int.random(in: 0...20) - pausePenalty)
+        let pausePenalty = isPaused ? 15 : 0
+        // Bonus for longer sessions
+        let durationBonus = min(15, (totalSeconds / 60) / 5)
+        return min(100, baseScore + durationBonus - pausePenalty + Int.random(in: 0...10))
     }
 
     private func checkAchievements(for session: Session) async {
@@ -176,6 +211,17 @@ class FocusService {
         let streak = await DatabaseService.shared.loadStreak()
         if let idx = achievements.firstIndex(where: { $0.id == "week_warrior" && !$0.isEarned }) {
             if streak.currentStreak >= 7 {
+                achievements[idx].isEarned = true
+                achievements[idx].earnedAt = Date()
+                updated = true
+            }
+        }
+
+        // Social Butterfly — count unique partners
+        if let idx = achievements.firstIndex(where: { $0.id == "social_butterfly" && !$0.isEarned }) {
+            let sessions = await DatabaseService.shared.loadSessions()
+            let uniquePartners = Set(sessions.compactMap { $0.partnerId })
+            if uniquePartners.count >= 5 {
                 achievements[idx].isEarned = true
                 achievements[idx].earnedAt = Date()
                 updated = true

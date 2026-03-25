@@ -101,28 +101,34 @@ struct LeaderboardView: View {
                     .foregroundStyle(Color.appPrimary)
             }
 
-            if let userEntry = viewModel.currentUserEntry {
-                HStack(spacing: Spacing.xl) {
-                    personalStatItem(value: "#\(userEntry.rank)", label: "Rank", icon: "medal.fill")
-                    personalStatItem(value: "\(userEntry.weeklyMinutes)m", label: "This Week", icon: "clock.fill")
-                    personalStatItem(value: String(format: "%.1fh", userEntry.totalHours), label: "Total", icon: "hourglass")
-                    personalStatItem(value: "\(userEntry.totalSessions)", label: "Sessions", icon: "checkmark.circle.fill")
-                }
-            } else {
-                Text("Complete your first session to appear on the leaderboard")
-                    .font(.appCaption)
-                    .foregroundStyle(Color.appTextSecondary)
-                    .multilineTextAlignment(.center)
-            }
+            HStack(spacing: Spacing.lg) {
+                // Weekly Goal Ring
+                WeeklyGoalRing(
+                    progress: viewModel.weeklyProgress,
+                    currentMinutes: viewModel.weeklyMinutes,
+                    goalMinutes: viewModel.weeklyGoalMinutes,
+                    ringSize: 100,
+                    lineWidth: 8
+                )
 
-            // Streak bar
-            HStack(spacing: Spacing.sm) {
-                Image(systemName: "flame.fill")
-                    .foregroundStyle(Color.appWarning)
-                Text("\(viewModel.currentUserEntry?.streak ?? 0) day streak")
-                    .font(.appCaption)
-                    .foregroundStyle(Color.appTextSecondary)
-                Spacer()
+                VStack(alignment: .leading, spacing: Spacing.sm) {
+                    if let userEntry = viewModel.currentUserEntry {
+                        HStack(spacing: Spacing.md) {
+                            personalStatItem(value: "#\(userEntry.rank)", label: "Rank", icon: "medal.fill")
+                            personalStatItem(value: "\(userEntry.totalSessions)", label: "Sessions", icon: "checkmark.circle.fill")
+                        }
+
+                        HStack(spacing: Spacing.md) {
+                            personalStatItem(value: String(format: "%.1fh", userEntry.totalHours), label: "Total Hours", icon: "hourglass")
+                            personalStatItem(value: "\(userEntry.streak)", label: "Day Streak", icon: "flame.fill")
+                        }
+                    } else {
+                        Text("Complete your first session to appear on the leaderboard")
+                            .font(.appCaption)
+                            .foregroundStyle(Color.appTextSecondary)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
         .padding(Spacing.md)
