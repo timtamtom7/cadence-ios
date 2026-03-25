@@ -14,14 +14,9 @@ struct AchievementsView: View {
                     // Summary
                     summaryCard
 
-                    // Earned achievements
-                    if !earnedAchievements.isEmpty {
-                        earnedSection
-                    }
-
-                    // Locked achievements
-                    if !lockedAchievements.isEmpty {
-                        lockedSection
+                    // Badge showcase
+                    if !achievements.isEmpty {
+                        badgeShowcaseSection
                     }
 
                     // Achievement tiers
@@ -99,22 +94,31 @@ struct AchievementsView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 
-    private var earnedSection: some View {
+    private var badgeShowcaseSection: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
-            sectionHeader("Earned", count: earnedAchievements.count, color: Color.appPrimary)
+            sectionHeader("Your Badges", color: Color.appPrimary)
 
-            ForEach(earnedAchievements) { achievement in
-                AchievementCard(achievement: achievement, isEarned: true)
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: Spacing.md) {
+                    ForEach(achievements) { achievement in
+                        VStack(spacing: Spacing.xxs) {
+                            AchievementBadgeView(achievement: achievement, size: 64)
+                            Text(achievement.title)
+                                .font(.system(size: 10))
+                                .foregroundStyle(achievement.isEarned ? Color.appTextPrimary : Color.appTextTertiary)
+                                .lineLimit(1)
+                        }
+                        .frame(width: 80)
+                    }
+                }
             }
-        }
-    }
+            .padding(Spacing.md)
+            .background(Color.appSurface)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
 
-    private var lockedSection: some View {
-        VStack(alignment: .leading, spacing: Spacing.sm) {
-            sectionHeader("Locked", count: lockedAchievements.count, color: Color.appTextTertiary)
-
-            ForEach(lockedAchievements) { achievement in
-                AchievementCard(achievement: achievement, isEarned: false)
+            // Detail cards
+            ForEach(achievements) { achievement in
+                AchievementDetailCard(achievement: achievement)
             }
         }
     }
@@ -153,18 +157,11 @@ struct AchievementsView: View {
         }
     }
 
-    private func sectionHeader(_ title: String, count: Int, color: Color) -> some View {
+    private func sectionHeader(_ title: String, color: Color) -> some View {
         HStack {
             Text(title)
                 .font(.appHeading2)
                 .foregroundStyle(Color.appTextPrimary)
-            Text("\(count)")
-                .font(.appCaption)
-                .foregroundStyle(color)
-                .padding(.horizontal, Spacing.xs)
-                .padding(.vertical, 2)
-                .background(color.opacity(0.15))
-                .clipShape(Capsule())
             Spacer()
         }
     }
@@ -216,60 +213,6 @@ struct AchievementsView: View {
         totalSessions = sessions.count
         totalHours = Double(sessions.reduce(0) { $0 + $1.duration }) / 3600.0
         achievements = await DatabaseService.shared.loadAchievements()
-    }
-}
-
-struct AchievementCard: View {
-    let achievement: Achievement
-    let isEarned: Bool
-
-    var body: some View {
-        HStack(spacing: Spacing.md) {
-            ZStack {
-                Circle()
-                    .fill(isEarned ? Color.appPrimary.opacity(0.15) : Color.appSurface)
-                    .frame(width: 52, height: 52)
-                Image(systemName: achievement.icon)
-                    .font(.title2)
-                    .foregroundStyle(isEarned ? Color.appPrimary : Color.appTextTertiary)
-                    .opacity(isEarned ? 1 : 0.4)
-            }
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text(achievement.title)
-                    .font(.appBody)
-                    .foregroundStyle(isEarned ? Color.appTextPrimary : Color.appTextTertiary)
-
-                Text(achievement.description)
-                    .font(.appCaption)
-                    .foregroundStyle(Color.appTextSecondary)
-
-                if let earnedAt = achievement.earnedAt, isEarned {
-                    Text("Earned \(earnedAt.formatted(.relative(presentation: .named)))")
-                        .font(.system(size: 10))
-                        .foregroundStyle(Color.appPrimary)
-                }
-            }
-
-            Spacer()
-
-            if isEarned {
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.title2)
-                    .foregroundStyle(Color.appPrimary)
-            } else {
-                Image(systemName: "lock.fill")
-                    .font(.title3)
-                    .foregroundStyle(Color.appTextTertiary)
-            }
-        }
-        .padding(Spacing.md)
-        .background(isEarned ? Color.appPrimary.opacity(0.05) : Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(isEarned ? Color.appPrimary.opacity(0.2) : Color.clear, lineWidth: 1)
-        )
     }
 }
 

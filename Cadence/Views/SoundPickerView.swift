@@ -164,6 +164,7 @@ struct ActiveSoundCard: View {
     let sound: Sound
     @Binding var volume: Double
     let onRemove: () -> Void
+    @State private var waveformPhase: Double = 0
 
     var body: some View {
         HStack(spacing: Spacing.md) {
@@ -177,16 +178,24 @@ struct ActiveSoundCard: View {
             }
 
             VStack(alignment: .leading, spacing: Spacing.xs) {
-                Text(sound.name)
-                    .font(.appBody)
-                    .foregroundStyle(Color.appTextPrimary)
+                HStack {
+                    Text(sound.name)
+                        .font(.appBody)
+                        .foregroundStyle(Color.appTextPrimary)
+
+                    Spacer()
+
+                    // Waveform visualization
+                    WaveformView(intensity: volume, phase: waveformPhase)
+                        .frame(width: 40, height: 20)
+                }
 
                 HStack(spacing: Spacing.sm) {
                     Image(systemName: "speaker.fill")
                         .font(.system(size: 10))
                         .foregroundStyle(Color.appTextTertiary)
 
-                    Slider(value: $volume, in: 0...1)
+                    Slider(value: $volume, in: 0.05...1.0)
                         .tint(Color.appPrimary)
 
                     Image(systemName: "speaker.wave.3.fill")
@@ -208,6 +217,32 @@ struct ActiveSoundCard: View {
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color.appPrimary.opacity(0.3), lineWidth: 1)
         )
+        .onAppear {
+            withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                waveformPhase = 360
+            }
+        }
+    }
+}
+
+// MARK: - Waveform Visualization
+
+struct WaveformView: View {
+    let intensity: Double
+    let phase: Double
+
+    var body: some View {
+        HStack(spacing: 2) {
+            ForEach(0..<5, id: \.self) { index in
+                let barPhase = phase + Double(index) * 30
+                let normalizedHeight = (sin(barPhase * .pi / 180) + 1) / 2
+                let height = 4 + normalizedHeight * 12 * intensity
+
+                RoundedRectangle(cornerRadius: 1)
+                    .fill(Color.appPrimary.opacity(0.4 + normalizedHeight * 0.6))
+                    .frame(width: 3, height: height)
+            }
+        }
     }
 }
 

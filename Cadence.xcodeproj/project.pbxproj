@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04A43A9B3FA477C3DDB1D518 /* WeeklyGoalRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */; };
 		1CBCF49235138427F6B7F392 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E947B22D92237B927C9DE0E /* ContentView.swift */; };
+		21C2B619EFAD1E292B37B1E1 /* AchievementBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */; };
 		2531905D75109FA9AFFA6A3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDA70A9F1D94A5499A54A2 /* Session.swift */; };
 		2F4FBDE851D54B016CEF3F69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A749C288E5597F383050F5CC /* Assets.xcassets */; };
 		39A0E690B3832A0A05E29A5D /* SessionCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */; };
@@ -31,6 +32,7 @@
 		C07F566ADDC4957211F8E460 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB244049E748E4E07F03FB11 /* LeaderboardView.swift */; };
 		C411DBBE95882F37AB19A20C /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A855007C4C872B40A6999994 /* EmptyStateView.swift */; };
 		CDA2835CA8B4D7809B545ABC /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE6D5572221722DDAD9C69 /* Challenge.swift */; };
+		D0196625CAF59E8B1385DDB9 /* MatchFoundSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095021B189952B26E14A784 /* MatchFoundSheet.swift */; };
 		E6F5D98EB3506E42BEC1A623 /* GlassTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */; };
 		E81C9767423FECC20D8C2C89 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F4D7573D17F9FD72B70FC /* TeamService.swift */; };
 		EF7D600B19E788C07A73ACAD /* LeaderboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524713FDAB7AA90B60CF5C1E /* LeaderboardViewModel.swift */; };
@@ -54,6 +56,7 @@
 		357F0A8B0CBBE46F30B28767 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		524713FDAB7AA90B60CF5C1E /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
 		5C7BDFC43E37BC31B7797443 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBadgeView.swift; sourceTree = "<group>"; };
 		67D9EDD2B4231A57E1A2FB48 /* PartnerRadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerRadarView.swift; sourceTree = "<group>"; };
 		738321572C2A1E4AD9CCDDB7 /* SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPickerView.swift; sourceTree = "<group>"; };
 		79F9CD103209F4F098ED75D0 /* MatchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingService.swift; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 		BB244049E748E4E07F03FB11 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		C7C2C883C88ABF623FF04084 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CCD2468FAE7A89F2B18DEDAF /* CadenceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceApp.swift; sourceTree = "<group>"; };
+		D095021B189952B26E14A784 /* MatchFoundSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchFoundSheet.swift; sourceTree = "<group>"; };
 		F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCompleteView.swift; sourceTree = "<group>"; };
 		FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyGoalRing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,9 +126,11 @@
 		AE2F1C6C9DFB7E5BFCF6D60E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */,
 				32E8A99283BFDACB9706B773 /* BreathingOrb.swift */,
 				A855007C4C872B40A6999994 /* EmptyStateView.swift */,
 				1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */,
+				D095021B189952B26E14A784 /* MatchFoundSheet.swift */,
 				FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */,
 			);
 			path = Components;
@@ -250,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8260D565CB71FD9834EF7BDC /* Achievement.swift in Sources */,
+				21C2B619EFAD1E292B37B1E1 /* AchievementBadgeView.swift in Sources */,
 				5FA7800449463E49AB680A38 /* AchievementsView.swift in Sources */,
 				55B1A4D3609414BB0F9C452C /* BreathingOrb.swift in Sources */,
 				43A6653D967FC59ABC91624E /* CadenceApp.swift in Sources */,
@@ -263,6 +270,7 @@
 				E6F5D98EB3506E42BEC1A623 /* GlassTabBar.swift in Sources */,
 				C07F566ADDC4957211F8E460 /* LeaderboardView.swift in Sources */,
 				EF7D600B19E788C07A73ACAD /* LeaderboardViewModel.swift in Sources */,
+				D0196625CAF59E8B1385DDB9 /* MatchFoundSheet.swift in Sources */,
 				4345C269F3075A7544400356 /* MatchingService.swift in Sources */,
 				8516642D98476148868431F1 /* Partner.swift in Sources */,
 				61FE457E1D247EF024E7F614 /* PartnerRadarView.swift in Sources */,
