@@ -5,15 +5,17 @@ struct ContentView: View {
 
     enum Tab: String, CaseIterable {
         case focus = "Focus"
-        case leaderboard = "Leaderboard"
-        case sounds = "Sounds"
+        case leaderboard = "Board"
+        case team = "Team"
+        case achievements = "Badges"
         case settings = "Settings"
 
         var icon: String {
             switch self {
             case .focus: return "timer"
             case .leaderboard: return "chart.bar.fill"
-            case .sounds: return "waveform"
+            case .team: return "person.3.fill"
+            case .achievements: return "medal.fill"
             case .settings: return "gearshape.fill"
             }
         }
@@ -30,8 +32,12 @@ struct ContentView: View {
                     .tag(Tab.leaderboard)
                     .toolbar(.hidden, for: .tabBar)
 
-                SoundPickerView()
-                    .tag(Tab.sounds)
+                TeamView()
+                    .tag(Tab.team)
+                    .toolbar(.hidden, for: .tabBar)
+
+                AchievementsView()
+                    .tag(Tab.achievements)
                     .toolbar(.hidden, for: .tabBar)
 
                 SettingsView()
