@@ -53,6 +53,22 @@ extension Color {
 
 // MARK: - Font Extensions
 
+extension ShapeStyle where Self == Color {
+    static var appBackground: Color { Color.appBackground }
+    static var appSurface: Color { Color.appSurface }
+    static var appSurfaceElevated: Color { Color.appSurfaceElevated }
+    static var appPrimary: Color { Color.appPrimary }
+    static var appAccent: Color { Color.appAccent }
+    static var appTextPrimary: Color { Color.appTextPrimary }
+    static var appTextSecondary: Color { Color.appTextSecondary }
+    static var appTextTertiary: Color { Color.appTextTertiary }
+    static var appError: Color { Color.appError }
+    static var appSuccess: Color { Color.appSuccess }
+    static var appWarning: Color { Color.appWarning }
+}
+
+
+
 extension Font {
     static let appDisplay = Font.system(size: 34, weight: .bold, design: .default)
     static let appHeading1 = Font.system(size: 28, weight: .semibold, design: .default)

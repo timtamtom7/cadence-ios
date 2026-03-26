@@ -18,6 +18,7 @@
 		4345C269F3075A7544400356 /* MatchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F9CD103209F4F098ED75D0 /* MatchingService.swift */; };
 		43A6653D967FC59ABC91624E /* CadenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD2468FAE7A89F2B18DEDAF /* CadenceApp.swift */; };
 		4A91EFAE9BA7B330DEBA8173 /* UpgradeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C9F59EED4A440D8E182B4 /* UpgradeSheet.swift */; };
+		532FD20CEF843D4C29E46532 /* CadenceR11Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */; };
 		55B1A4D3609414BB0F9C452C /* BreathingOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E8A99283BFDACB9706B773 /* BreathingOrb.swift */; };
 		590A1E1EF1FC17FB39FAE8D0 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7BDFC43E37BC31B7797443 /* Team.swift */; };
 		5FA7800449463E49AB680A38 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25114F977ECCC2FA78D13AC8 /* AchievementsView.swift */; };
@@ -42,6 +43,7 @@
 		D0196625CAF59E8B1385DDB9 /* MatchFoundSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095021B189952B26E14A784 /* MatchFoundSheet.swift */; };
 		D8481EDD501245EDFCFB1079 /* CalendarExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC025F6F9E48A8570D46389B /* CalendarExportService.swift */; };
 		DA189F865D0B707FF2EE1542 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */; };
+		DFADA680A13DB9CC0E66FD40 /* CadenceR12Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5788B280667C7975DD5AD97B /* CadenceR12Service.swift */; };
 		E6F5D98EB3506E42BEC1A623 /* GlassTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */; };
 		E7642295774AEE2028A39983 /* AICoachService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C53B2C50C68ED43B334D44 /* AICoachService.swift */; };
 		E81C9767423FECC20D8C2C89 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F4D7573D17F9FD72B70FC /* TeamService.swift */; };
@@ -69,6 +71,7 @@
 		357F0A8B0CBBE46F30B28767 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		524713FDAB7AA90B60CF5C1E /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
+		5788B280667C7975DD5AD97B /* CadenceR12Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR12Service.swift; sourceTree = "<group>"; };
 		5C7BDFC43E37BC31B7797443 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBadgeView.swift; sourceTree = "<group>"; };
 		67D9EDD2B4231A57E1A2FB48 /* PartnerRadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerRadarView.swift; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		CF272DA402225DB5CC06CF0E /* FreemiumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreemiumService.swift; sourceTree = "<group>"; };
 		D095021B189952B26E14A784 /* MatchFoundSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchFoundSheet.swift; sourceTree = "<group>"; };
 		E2C27A4A486ED3067DF1769C /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
+		E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR11Service.swift; sourceTree = "<group>"; };
 		F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCompleteView.swift; sourceTree = "<group>"; };
 		FE3FD1926D9C8180108748D5 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyGoalRing.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 			children = (
 				8309BBA6DE3C3718E98D8DE8 /* AICoachingService.swift */,
 				A2C53B2C50C68ED43B334D44 /* AICoachService.swift */,
+				E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */,
+				5788B280667C7975DD5AD97B /* CadenceR12Service.swift */,
 				AC025F6F9E48A8570D46389B /* CalendarExportService.swift */,
 				7E9EC46DECF522B5AB09EC1C /* DatabaseService.swift */,
 				A493BC4DD0AB0E31197AA85F /* ExportService.swift */,
@@ -298,6 +304,8 @@
 				5FA7800449463E49AB680A38 /* AchievementsView.swift in Sources */,
 				55B1A4D3609414BB0F9C452C /* BreathingOrb.swift in Sources */,
 				43A6653D967FC59ABC91624E /* CadenceApp.swift in Sources */,
+				532FD20CEF843D4C29E46532 /* CadenceR11Service.swift in Sources */,
+				DFADA680A13DB9CC0E66FD40 /* CadenceR12Service.swift in Sources */,
 				D8481EDD501245EDFCFB1079 /* CalendarExportService.swift in Sources */,
 				CDA2835CA8B4D7809B545ABC /* Challenge.swift in Sources */,
 				BA92974BC1060FB3BD32D761 /* ChallengesView.swift in Sources */,

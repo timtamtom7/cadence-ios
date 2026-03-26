@@ -2,11 +2,13 @@ import SwiftUI
 
 struct TeamView: View {
     @State private var teamService = TeamService.shared
+    @State private var socialService = CadenceR12Service.shared
     @State private var showCreateTeam = false
     @State private var showJoinTeam = false
     @State private var newTeamName = ""
     @State private var joinTeamCode = ""
     @State private var showTeamSession = false
+    @State private var showChallenges = false
 
     var body: some View {
         ZStack {
@@ -134,6 +136,12 @@ struct TeamView: View {
 
                 // Team session
                 teamSessionSection(team)
+
+                // Focus Challenges (R12)
+                challengesSection
+
+                // Leaderboard (R12)
+                leaderboardSection
 
                 // Leave team
                 leaveTeamButton
@@ -286,6 +294,115 @@ struct TeamView: View {
             .padding(Spacing.lg)
             .background(Color.appSurface)
             .clipShape(RoundedRectangle(cornerRadius: 16))
+        }
+    }
+
+    // MARK: - Challenges Section (R12)
+
+
+    // MARK: - Challenges Section (R12)
+
+    private var challengesSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            HStack {
+                Text("Focus Challenges")
+                    .font(.appHeading2)
+                    .foregroundStyle(Color.appTextPrimary)
+
+                Spacer()
+
+                Button {
+                    showChallenges = true
+                } label: {
+                    Image(systemName: "plus.circle")
+                        .foregroundStyle(Color.appPrimary)
+                }
+            }
+
+            VStack(spacing: Spacing.sm) {
+                Image(systemName: "flame")
+                    .font(.system(size: 32))
+                    .foregroundStyle(Color.appPrimary.opacity(0.5))
+                Text("Open challenges from the team tab")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextSecondary)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(Spacing.lg)
+            .background(Color.appSurface)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+        .sheet(isPresented: $showChallenges) {
+            ChallengesView()
+        }
+        .onAppear {
+            socialService.loadDemoData()
+        }
+    }
+
+    // MARK: - Leaderboard Section (R12)
+
+    private var leaderboardSection: some View {
+        VStack(alignment: .leading, spacing: Spacing.sm) {
+            HStack {
+                Text("Weekly Leaderboard")
+                    .font(.appHeading2)
+                    .foregroundStyle(Color.appTextPrimary)
+
+                Spacer()
+
+                Toggle("", isOn: $socialService.isAnonymousMode)
+                    .labelsHidden()
+                    .tint(Color.appPrimary)
+                Text(socialService.isAnonymousMode ? "Anonymous" : "Public")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextSecondary)
+            }
+
+            ForEach(socialService.leaderboard.prefix(5)) { entry in
+                HStack(spacing: Spacing.md) {
+                    Text("\(entry.rank)")
+                        .font(.appCaption)
+                        .fontWeight(.bold)
+                        .foregroundStyle(Color.appTextTertiary)
+                        .frame(width: 24)
+
+                    Circle()
+                        .fill(Color.appPrimary.opacity(0.2))
+                        .frame(width: 32, height: 32)
+                        .overlay {
+                            Text(String(entry.displayName.prefix(1)))
+                                .font(.appCaption)
+                                .fontWeight(.bold)
+                                .foregroundStyle(Color.appPrimary)
+                        }
+
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(entry.displayName)
+                            .font(.appBody)
+                            .foregroundStyle(entry.userId == "local" ? Color.appAccent : Color.appTextPrimary)
+
+                        if entry.streak > 0 {
+                            HStack(spacing: 2) {
+                                Image(systemName: "flame.fill")
+                                    .font(.system(size: 10))
+                                Text("\(entry.streak) day streak")
+                                    .font(.system(size: 10))
+                            }
+                            .foregroundStyle(Color.appWarning)
+                        }
+                    }
+
+                    Spacer()
+
+                    Text("\(entry.focusMinutes)m")
+                        .font(.appHeading2)
+                        .foregroundStyle(Color.appTextPrimary)
+                }
+                .padding(Spacing.sm)
+                .background(entry.userId == "local" ? Color.appPrimary.opacity(0.1) : Color.appSurface)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
         }
     }
 
@@ -465,7 +582,6 @@ struct TeamSessionRoomView: View {
             Color.appBackground.ignoresSafeArea()
 
             VStack(spacing: Spacing.xl) {
-                // Header
                 HStack {
                     Button {
                         teamService.endTeamSession()
@@ -488,20 +604,16 @@ struct TeamSessionRoomView: View {
 
                 Spacer()
 
-                // Team orb visualization
                 teamOrbView
 
-                // Timer
                 Text(formattedTime)
                     .font(.system(size: 48, weight: .bold, design: .monospaced))
                     .foregroundStyle(Color.appTextPrimary)
 
-                // Participants
                 participantsView
 
                 Spacer()
 
-                // Sound indicator
                 HStack(spacing: Spacing.xs) {
                     Image(systemName: "waveform")
                     Text("Shared ambient: \(session.ambientSound.capitalized)")
