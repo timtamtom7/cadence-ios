@@ -39,9 +39,11 @@
 		879654BFBF2C3D928E2DEF00 /* R13-PlatformExpansion.md in Resources */ = {isa = PBXBuildFile; fileRef = 53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */; };
 		89E8617C43FFA6EEE2986132 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80531CF916E0193ACFBCDD7C /* Company.swift */; };
 		901FB8ACE24C40798A2EC712 /* FocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24101AFF949184E310E897 /* FocusTimerView.swift */; };
+		905F26F3A31FBD01C3E2D108 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D633C2E4B1DB7B270822CCD7 /* Mission.swift */; };
 		9E442462AF8CA0BEE4292A51 /* SoundPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738321572C2A1E4AD9CCDDB7 /* SoundPickerView.swift */; };
 		A8BC55F7D407CA6CB1311DC8 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0795D8736740466B086C019C /* SessionViewModel.swift */; };
 		ACE44B72C1621DB738186A84 /* R16-PlatformAPI.md in Resources */ = {isa = PBXBuildFile; fileRef = 001BF8924534C853AC1796EB /* R16-PlatformAPI.md */; };
+		B03C063D83E9D45BBE98222D /* R20-Legacy.md in Resources */ = {isa = PBXBuildFile; fileRef = 149651A051C25858CDD683B0 /* R20-Legacy.md */; };
 		B2FF3E0D966C96A0D5D31014 /* FreemiumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF272DA402225DB5CC06CF0E /* FreemiumService.swift */; };
 		B66191184DD7F7E38B37FE54 /* AICoachingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309BBA6DE3C3718E98D8DE8 /* AICoachingService.swift */; };
 		B943E5650BCB3982EBA683F4 /* FocusPredictionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */; };
@@ -77,6 +79,7 @@
 		0E947B22D92237B927C9DE0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0EB477ECF3777E8EE358944C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0FEBDF4E374322EFC76636B9 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		149651A051C25858CDD683B0 /* R20-Legacy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R20-Legacy.md"; sourceTree = "<group>"; };
 		1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassTabBar.swift; sourceTree = "<group>"; };
 		1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPredictionService.swift; sourceTree = "<group>"; };
 		23317AB3E4C7A5BCFFABB6BC /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 		CCD2468FAE7A89F2B18DEDAF /* CadenceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceApp.swift; sourceTree = "<group>"; };
 		CF272DA402225DB5CC06CF0E /* FreemiumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreemiumService.swift; sourceTree = "<group>"; };
 		D095021B189952B26E14A784 /* MatchFoundSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchFoundSheet.swift; sourceTree = "<group>"; };
+		D633C2E4B1DB7B270822CCD7 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		E2C27A4A486ED3067DF1769C /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
 		E6E8675E2CF325F9739D0160 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR11Service.swift; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 				F58E67D00C1A2A6A28B08A48 /* R17-TeamCompany.md */,
 				803DACA001826D29F9317C24 /* R18-Cadence3Vision.md */,
 				434E0678479ECD514DBABEE4 /* R19-TeamCompany2.md */,
+				149651A051C25858CDD683B0 /* R20-Legacy.md */,
 			);
 			path = Iterations;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 				E6E8675E2CF325F9739D0160 /* Brand.swift */,
 				80531CF916E0193ACFBCDD7C /* Company.swift */,
 				422BDC31B910E2025F25D72E /* InvestorPitch.swift */,
+				D633C2E4B1DB7B270822CCD7 /* Mission.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 				74931245AD1508086A920593 /* R17-TeamCompany.md in Resources */,
 				46E21F35E8100D960EFBED05 /* R18-Cadence3Vision.md in Resources */,
 				F88D8C1E4A0944A4BC0F1724 /* R19-TeamCompany2.md in Resources */,
+				B03C063D83E9D45BBE98222D /* R20-Legacy.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +393,7 @@
 				EF7D600B19E788C07A73ACAD /* LeaderboardViewModel.swift in Sources */,
 				D0196625CAF59E8B1385DDB9 /* MatchFoundSheet.swift in Sources */,
 				4345C269F3075A7544400356 /* MatchingService.swift in Sources */,
+				905F26F3A31FBD01C3E2D108 /* Mission.swift in Sources */,
 				8516642D98476148868431F1 /* Partner.swift in Sources */,
 				61FE457E1D247EF024E7F614 /* PartnerRadarView.swift in Sources */,
 				2531905D75109FA9AFFA6A3E /* Session.swift in Sources */,
