@@ -12,6 +12,7 @@
 		1CBCF49235138427F6B7F392 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E947B22D92237B927C9DE0E /* ContentView.swift */; };
 		21C2B619EFAD1E292B37B1E1 /* AchievementBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */; };
 		2531905D75109FA9AFFA6A3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDA70A9F1D94A5499A54A2 /* Session.swift */; };
+		2E9373E3977B08A6820B3A41 /* R14-Cadence2.md in Resources */ = {isa = PBXBuildFile; fileRef = 5EAE64F69CB0C0B0A6C325DD /* R14-Cadence2.md */; };
 		2F4FBDE851D54B016CEF3F69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A749C288E5597F383050F5CC /* Assets.xcassets */; };
 		39A0E690B3832A0A05E29A5D /* SessionCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */; };
 		3D1AFBC31D3B8FB5A2B94AE7 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18804812E1DAC9B4A7B9874 /* ShareSheet.swift */; };
@@ -35,6 +36,7 @@
 		A8BC55F7D407CA6CB1311DC8 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0795D8736740466B086C019C /* SessionViewModel.swift */; };
 		B2FF3E0D966C96A0D5D31014 /* FreemiumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF272DA402225DB5CC06CF0E /* FreemiumService.swift */; };
 		B66191184DD7F7E38B37FE54 /* AICoachingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309BBA6DE3C3718E98D8DE8 /* AICoachingService.swift */; };
+		B943E5650BCB3982EBA683F4 /* FocusPredictionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */; };
 		BA92974BC1060FB3BD32D761 /* ChallengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C412B9F287112D8AF9892E /* ChallengesView.swift */; };
 		BDBD112585DBC411560D1689 /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F0A8B0CBBE46F30B28767 /* SoundService.swift */; };
 		BF6BF2876A996492DA97B8D4 /* FocusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A36CE16D746D07C6C18 /* FocusService.swift */; };
@@ -64,6 +66,7 @@
 		0E947B22D92237B927C9DE0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0FEBDF4E374322EFC76636B9 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassTabBar.swift; sourceTree = "<group>"; };
+		1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPredictionService.swift; sourceTree = "<group>"; };
 		23317AB3E4C7A5BCFFABB6BC /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		25114F977ECCC2FA78D13AC8 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		2747B5C0BD75EFECA1D2569B /* Cadence.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Cadence.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +80,7 @@
 		53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R13-PlatformExpansion.md"; sourceTree = "<group>"; };
 		5788B280667C7975DD5AD97B /* CadenceR12Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR12Service.swift; sourceTree = "<group>"; };
 		5C7BDFC43E37BC31B7797443 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		5EAE64F69CB0C0B0A6C325DD /* R14-Cadence2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R14-Cadence2.md"; sourceTree = "<group>"; };
 		6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBadgeView.swift; sourceTree = "<group>"; };
 		67D9EDD2B4231A57E1A2FB48 /* PartnerRadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerRadarView.swift; sourceTree = "<group>"; };
 		6F2C9F59EED4A440D8E182B4 /* UpgradeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeSheet.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */,
+				5EAE64F69CB0C0B0A6C325DD /* R14-Cadence2.md */,
 			);
 			path = Iterations;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				AC025F6F9E48A8570D46389B /* CalendarExportService.swift */,
 				7E9EC46DECF522B5AB09EC1C /* DatabaseService.swift */,
 				A493BC4DD0AB0E31197AA85F /* ExportService.swift */,
+				1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */,
 				928F1A36CE16D746D07C6C18 /* FocusService.swift */,
 				CF272DA402225DB5CC06CF0E /* FreemiumService.swift */,
 				79F9CD103209F4F098ED75D0 /* MatchingService.swift */,
@@ -302,6 +308,7 @@
 			files = (
 				2F4FBDE851D54B016CEF3F69 /* Assets.xcassets in Resources */,
 				879654BFBF2C3D928E2DEF00 /* R13-PlatformExpansion.md in Resources */,
+				2E9373E3977B08A6820B3A41 /* R14-Cadence2.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +336,7 @@
 				C411DBBE95882F37AB19A20C /* EmptyStateView.swift in Sources */,
 				0513F9D8AFF926CF04577E2F /* ExportService.swift in Sources */,
 				CD725A8CB422AAE6091CA9BA /* FocusHistoryView.swift in Sources */,
+				B943E5650BCB3982EBA683F4 /* FocusPredictionService.swift in Sources */,
 				BF6BF2876A996492DA97B8D4 /* FocusService.swift in Sources */,
 				901FB8ACE24C40798A2EC712 /* FocusTimerView.swift in Sources */,
 				B2FF3E0D966C96A0D5D31014 /* FreemiumService.swift in Sources */,

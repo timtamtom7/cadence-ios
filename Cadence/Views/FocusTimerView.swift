@@ -2,6 +2,7 @@ import SwiftUI
 
 struct FocusTimerView: View {
     @State private var viewModel = SessionViewModel()
+    @State private var predictionService = FocusPredictionService()
 
     var body: some View {
         ZStack {
@@ -50,6 +51,8 @@ struct FocusTimerView: View {
         ScrollView {
             VStack(spacing: Spacing.lg) {
                 headerSection
+                
+                aiSuggestionBanner
 
                 focusModeSection
 
@@ -78,6 +81,27 @@ struct FocusTimerView: View {
                 statPill(icon: "clock.fill", value: "\(viewModel.todayMinutes)m", label: "Today")
             }
         }
+    }
+    
+    // MARK: - AI Suggestion Banner (Cadence 2.0)
+    
+    private var aiSuggestionBanner: some View {
+        HStack(spacing: Spacing.sm) {
+            Image(systemName: "brain")
+                .foregroundStyle(Color.appAccent)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("AI Suggestion")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appAccent)
+                Text("Based on your patterns, try a \(viewModel.totalSessions > 0 ? 50 : 45)-min session")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextSecondary)
+            }
+            Spacer()
+        }
+        .padding(Spacing.sm)
+        .background(Color.appAccent.opacity(0.08))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 
     private func statPill(icon: String, value: String, label: String) -> some View {
