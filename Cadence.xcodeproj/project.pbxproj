@@ -10,6 +10,7 @@
 		04A43A9B3FA477C3DDB1D518 /* WeeklyGoalRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */; };
 		0513F9D8AFF926CF04577E2F /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A493BC4DD0AB0E31197AA85F /* ExportService.swift */; };
 		0C8113642F7748D3B1935B14 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8675E2CF325F9739D0160 /* Brand.swift */; };
+		134C6922F42442B5253E1085 /* FlowStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1687A6046E9653C8578F80 /* FlowStateService.swift */; };
 		1CBCF49235138427F6B7F392 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E947B22D92237B927C9DE0E /* ContentView.swift */; };
 		21C2B619EFAD1E292B37B1E1 /* AchievementBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */; };
 		2531905D75109FA9AFFA6A3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDA70A9F1D94A5499A54A2 /* Session.swift */; };
@@ -19,6 +20,7 @@
 		3D1AFBC31D3B8FB5A2B94AE7 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18804812E1DAC9B4A7B9874 /* ShareSheet.swift */; };
 		4345C269F3075A7544400356 /* MatchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F9CD103209F4F098ED75D0 /* MatchingService.swift */; };
 		43A6653D967FC59ABC91624E /* CadenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD2468FAE7A89F2B18DEDAF /* CadenceApp.swift */; };
+		46E21F35E8100D960EFBED05 /* R18-Cadence3Vision.md in Resources */ = {isa = PBXBuildFile; fileRef = 803DACA001826D29F9317C24 /* R18-Cadence3Vision.md */; };
 		4A91EFAE9BA7B330DEBA8173 /* UpgradeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C9F59EED4A440D8E182B4 /* UpgradeSheet.swift */; };
 		532FD20CEF843D4C29E46532 /* CadenceR11Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */; };
 		55B1A4D3609414BB0F9C452C /* BreathingOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E8A99283BFDACB9706B773 /* BreathingOrb.swift */; };
@@ -84,6 +86,7 @@
 		32E8A99283BFDACB9706B773 /* BreathingOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingOrb.swift; sourceTree = "<group>"; };
 		357F0A8B0CBBE46F30B28767 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
+		4A1687A6046E9653C8578F80 /* FlowStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowStateService.swift; sourceTree = "<group>"; };
 		524713FDAB7AA90B60CF5C1E /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
 		53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R13-PlatformExpansion.md"; sourceTree = "<group>"; };
 		5788B280667C7975DD5AD97B /* CadenceR12Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR12Service.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		738321572C2A1E4AD9CCDDB7 /* SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPickerView.swift; sourceTree = "<group>"; };
 		79F9CD103209F4F098ED75D0 /* MatchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingService.swift; sourceTree = "<group>"; };
 		7E9EC46DECF522B5AB09EC1C /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		803DACA001826D29F9317C24 /* R18-Cadence3Vision.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R18-Cadence3Vision.md"; sourceTree = "<group>"; };
 		80531CF916E0193ACFBCDD7C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		8309BBA6DE3C3718E98D8DE8 /* AICoachingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICoachingService.swift; sourceTree = "<group>"; };
 		88C412B9F287112D8AF9892E /* ChallengesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesView.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 				639971444B6088AE6B77316E /* R15-AwardsBrand.md */,
 				001BF8924534C853AC1796EB /* R16-PlatformAPI.md */,
 				F58E67D00C1A2A6A28B08A48 /* R17-TeamCompany.md */,
+				803DACA001826D29F9317C24 /* R18-Cadence3Vision.md */,
 			);
 			path = Iterations;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 				AC025F6F9E48A8570D46389B /* CalendarExportService.swift */,
 				7E9EC46DECF522B5AB09EC1C /* DatabaseService.swift */,
 				A493BC4DD0AB0E31197AA85F /* ExportService.swift */,
+				4A1687A6046E9653C8578F80 /* FlowStateService.swift */,
 				1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */,
 				928F1A36CE16D746D07C6C18 /* FocusService.swift */,
 				CF272DA402225DB5CC06CF0E /* FreemiumService.swift */,
@@ -330,6 +336,7 @@
 				61A18B7E639B52BB6EDA19A3 /* R15-AwardsBrand.md in Resources */,
 				ACE44B72C1621DB738186A84 /* R16-PlatformAPI.md in Resources */,
 				74931245AD1508086A920593 /* R17-TeamCompany.md in Resources */,
+				46E21F35E8100D960EFBED05 /* R18-Cadence3Vision.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +366,7 @@
 				FA71A308E572C0C3CF4B4A45 /* DatabaseService.swift in Sources */,
 				C411DBBE95882F37AB19A20C /* EmptyStateView.swift in Sources */,
 				0513F9D8AFF926CF04577E2F /* ExportService.swift in Sources */,
+				134C6922F42442B5253E1085 /* FlowStateService.swift in Sources */,
 				CD725A8CB422AAE6091CA9BA /* FocusHistoryView.swift in Sources */,
 				B943E5650BCB3982EBA683F4 /* FocusPredictionService.swift in Sources */,
 				BF6BF2876A996492DA97B8D4 /* FocusService.swift in Sources */,
