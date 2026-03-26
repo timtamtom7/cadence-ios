@@ -115,10 +115,202 @@ struct SettingsView: View {
                         }
                 }
                 .padding(Spacing.md)
+
+                if profile.notificationsEnabled {
+                    Divider()
+                        .background(Color.appSurfaceElevated)
+
+                    weeklyDigestRow
+                }
             }
             .background(Color.appSurface)
             .clipShape(RoundedRectangle(cornerRadius: 16))
         }
+    }
+
+    // MARK: - Weekly Digest
+
+    @State private var notificationService = NotificationService.shared
+    @State private var showDigestTimePicker = false
+    @State private var showDigestDayPicker = false
+
+    private var weeklyDigestRow: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Image(systemName: "chart.bar.doc.horizontal")
+                    .foregroundStyle(Color.appPrimary)
+                Text("Weekly Digest")
+                    .font(.appBody)
+                    .foregroundStyle(Color.appTextPrimary)
+                Spacer()
+                Toggle("", isOn: Binding(
+                    get: { profile.weeklyDigestEnabled },
+                    set: { newValue in
+                        profile.weeklyDigestEnabled = newValue
+                        saveProfile()
+                    }
+                ))
+                .tint(Color.appPrimary)
+            }
+            .padding(Spacing.md)
+
+            if profile.weeklyDigestEnabled {
+                // Day selector
+                Button {
+                    showDigestDayPicker = true
+                } label: {
+                    HStack {
+                        Image(systemName: "calendar")
+                            .foregroundStyle(Color.appTextTertiary)
+                            .frame(width: 24)
+                        Text("Day")
+                            .font(.appCaption)
+                            .foregroundStyle(Color.appTextSecondary)
+                        Spacer()
+                        Text(profile.weeklyDigestWeekdayName)
+                            .font(.appCaption)
+                            .foregroundStyle(Color.appPrimary)
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 11))
+                            .foregroundStyle(Color.appTextTertiary)
+                    }
+                    .padding(.horizontal, Spacing.md)
+                    .padding(.vertical, Spacing.xs)
+                }
+                .buttonStyle(.plain)
+
+                // Time selector
+                Button {
+                    showDigestTimePicker = true
+                } label: {
+                    HStack {
+                        Image(systemName: "clock")
+                            .foregroundStyle(Color.appTextTertiary)
+                            .frame(width: 24)
+                        Text("Time")
+                            .font(.appCaption)
+                            .foregroundStyle(Color.appTextSecondary)
+                        Spacer()
+                        Text(profile.weeklyDigestTimeString)
+                            .font(.appCaption)
+                            .foregroundStyle(Color.appPrimary)
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 11))
+                            .foregroundStyle(Color.appTextTertiary)
+                    }
+                    .padding(.horizontal, Spacing.md)
+                    .padding(.vertical, Spacing.xs)
+                }
+                .buttonStyle(.plain)
+                .padding(.bottom, Spacing.xs)
+            }
+        }
+        .sheet(isPresented: $showDigestDayPicker) {
+            digestDayPickerSheet
+        }
+        .sheet(isPresented: $showDigestTimePicker) {
+            digestTimePickerSheet
+        }
+        .onAppear {
+            Task {
+                await notificationService.checkAuthorizationStatus()
+            }
+        }
+    }
+
+    private var digestDayPickerSheet: some View {
+        NavigationStack {
+            ZStack {
+                Color.appBackground.ignoresSafeArea()
+                VStack(spacing: Spacing.md) {
+                    ForEach(1...7, id: \.self) { day in
+                        let dayName = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][day]
+                        Button {
+                            profile.weeklyDigestWeekday = day
+                            saveProfile()
+                            showDigestDayPicker = false
+                        } label: {
+                            HStack {
+                                Text(dayName)
+                                    .font(.appBody)
+                                    .foregroundStyle(Color.appTextPrimary)
+                                Spacer()
+                                if profile.weeklyDigestWeekday == day {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .foregroundStyle(Color.appPrimary)
+                                }
+                            }
+                            .padding(Spacing.md)
+                            .background(Color.appSurface)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
+                        .buttonStyle(.plain)
+                    }
+                    Spacer()
+                }
+                .padding(Spacing.md)
+            }
+            .navigationTitle("Digest Day")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") { showDigestDayPicker = false }
+                        .foregroundStyle(Color.appPrimary)
+                }
+            }
+        }
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
+    }
+
+    private var digestTimePickerSheet: some View {
+        NavigationStack {
+            ZStack {
+                Color.appBackground.ignoresSafeArea()
+                VStack(spacing: Spacing.lg) {
+                    DatePicker(
+                        "Digest Time",
+                        selection: Binding(
+                            get: {
+                                var components = DateComponents()
+                                components.hour = profile.weeklyDigestHour
+                                components.minute = 0
+                                return Calendar.current.date(from: components) ?? Date()
+                            },
+                            set: { newDate in
+                                let hour = Calendar.current.component(.hour, from: newDate)
+                                profile.weeklyDigestHour = hour
+                                saveProfile()
+                            }
+                        ),
+                        displayedComponents: .hourAndMinute
+                    )
+                    .datePickerStyle(.wheel)
+                    .labelsHidden()
+                    .tint(Color.appPrimary)
+                    .padding(.horizontal, Spacing.md)
+
+                    Text("You'll receive your weekly focus digest every \(profile.weeklyDigestWeekdayName) at \(profile.weeklyDigestTimeString)")
+                        .font(.appCaption)
+                        .foregroundStyle(Color.appTextSecondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, Spacing.md)
+
+                    Spacer()
+                }
+                .padding(.top, Spacing.lg)
+            }
+            .navigationTitle("Digest Time")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") { showDigestTimePicker = false }
+                        .foregroundStyle(Color.appPrimary)
+                }
+            }
+        }
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
     }
 
     // MARK: - Achievements
@@ -201,6 +393,9 @@ struct SettingsView: View {
     private func saveProfile() {
         Task {
             await DatabaseService.shared.saveUserProfile(profile)
+            // Update notification schedule with new profile settings
+            let stats = await DatabaseService.shared.loadStats()
+            await notificationService.updateNotifications(profile: profile, stats: stats)
         }
     }
 }

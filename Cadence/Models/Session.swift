@@ -38,22 +38,92 @@ struct Session: Identifiable, Codable, Equatable {
     }
 }
 
+/// Optional metadata saved after a session completes
+struct SessionNote: Codable, Equatable {
+    let sessionId: UUID
+    var notes: String
+    var tags: [String]
+
+    init(sessionId: UUID, notes: String = "", tags: [String] = []) {
+        self.sessionId = sessionId
+        self.notes = notes
+        self.tags = tags
+    }
+}
+
+/// Predefined tags users can apply to sessions
+enum SessionTag: String, CaseIterable, Identifiable {
+    case deepWork = "Deep Work"
+    case creative = "Creative"
+    case study = "Study"
+    case planning = "Planning"
+    case review = "Review"
+    case writing = "Writing"
+    case coding = "Coding"
+    case reading = "Reading"
+
+    var id: String { rawValue }
+
+    var icon: String {
+        switch self {
+        case .deepWork: return "brain.head.profile"
+        case .creative: return "paintbrush.fill"
+        case .study: return "book.fill"
+        case .planning: return "map.fill"
+        case .review: return "checkmark.seal.fill"
+        case .writing: return "pencil.line"
+        case .coding: return "chevron.left.forwardslash.chevron.right"
+        case .reading: return "eyeglasses"
+        }
+    }
+}
+
 struct UserProfile: Codable {
     var username: String
     var dailyGoalMinutes: Int
     var notificationsEnabled: Bool
     var createdAt: Date
+    /// Hour of day (0-23) to send weekly digest notification
+    var weeklyDigestHour: Int
+    /// Weekday (1=Sun, 7=Sat) to send weekly digest
+    var weeklyDigestWeekday: Int
+    /// Whether weekly digest notifications are enabled
+    var weeklyDigestEnabled: Bool
 
     init(
         username: String = "Focus User",
         dailyGoalMinutes: Int = 120,
         notificationsEnabled: Bool = true,
-        createdAt: Date = Date()
+        createdAt: Date = Date(),
+        weeklyDigestHour: Int = 9,
+        weeklyDigestWeekday: Int = 7,
+        weeklyDigestEnabled: Bool = false
     ) {
         self.username = username
         self.dailyGoalMinutes = dailyGoalMinutes
         self.notificationsEnabled = notificationsEnabled
         self.createdAt = createdAt
+        self.weeklyDigestHour = weeklyDigestHour
+        self.weeklyDigestWeekday = weeklyDigestWeekday
+        self.weeklyDigestEnabled = weeklyDigestEnabled
+    }
+
+    /// Weekday name for weekly digest
+    var weeklyDigestWeekdayName: String {
+        let weekdays = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        return weekdays[weeklyDigestWeekday]
+    }
+
+    /// Formatted digest time string
+    var weeklyDigestTimeString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a"
+        var components = DateComponents()
+        components.hour = weeklyDigestHour
+        if let date = Calendar.current.date(from: components) {
+            return formatter.string(from: date)
+        }
+        return "\(weeklyDigestHour):00"
     }
 }
 

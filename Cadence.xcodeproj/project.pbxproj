@@ -18,6 +18,8 @@
 		2F4FBDE851D54B016CEF3F69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A749C288E5597F383050F5CC /* Assets.xcassets */; };
 		31619F94FD7B9CCA5316A011 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 388D30C32C6462DA9D934BD1 /* PrivacyInfo.xcprivacy */; };
 		39A0E690B3832A0A05E29A5D /* SessionCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */; };
+		N0T1F1C570B8E8D7E9F2A3B13 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = N0T1F1C570B8E8D7E9F2A3B12 /* NotificationService.swift */; };
+		N0T1F1C570B8E8D7E9F2A3B15 /* SessionNoteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = N0T1F1C570B8E8D7E9F2A3B14 /* SessionNoteSheet.swift */; };
 		3D1AFBC31D3B8FB5A2B94AE7 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18804812E1DAC9B4A7B9874 /* ShareSheet.swift */; };
 		4345C269F3075A7544400356 /* MatchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F9CD103209F4F098ED75D0 /* MatchingService.swift */; };
 		43A6653D967FC59ABC91624E /* CadenceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD2468FAE7A89F2B18DEDAF /* CadenceApp.swift */; };
@@ -108,6 +110,7 @@
 		6F2C9F59EED4A440D8E182B4 /* UpgradeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeSheet.swift; sourceTree = "<group>"; };
 		738321572C2A1E4AD9CCDDB7 /* SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPickerView.swift; sourceTree = "<group>"; };
 		79F9CD103209F4F098ED75D0 /* MatchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingService.swift; sourceTree = "<group>"; };
+		N0T1F1C570B8E8D7E9F2A3B12 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		7E9EC46DECF522B5AB09EC1C /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		803DACA001826D29F9317C24 /* R18-Cadence3Vision.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R18-Cadence3Vision.md"; sourceTree = "<group>"; };
 		80531CF916E0193ACFBCDD7C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 		E6E8675E2CF325F9739D0160 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR11Service.swift; sourceTree = "<group>"; };
 		F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCompleteView.swift; sourceTree = "<group>"; };
+		N0T1F1C570B8E8D7E9F2A3B14 /* SessionNoteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionNoteSheet.swift; sourceTree = "<group>"; };
 		F58E67D00C1A2A6A28B08A48 /* R17-TeamCompany.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R17-TeamCompany.md"; sourceTree = "<group>"; };
 		FE3FD1926D9C8180108748D5 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyGoalRing.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				A855007C4C872B40A6999994 /* EmptyStateView.swift */,
 				1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */,
 				D095021B189952B26E14A784 /* MatchFoundSheet.swift */,
+				N0T1F1C570B8E8D7E9F2A3B14 /* SessionNoteSheet.swift */,
 				B18804812E1DAC9B4A7B9874 /* ShareSheet.swift */,
 				FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */,
 			);
@@ -266,6 +271,7 @@
 				928F1A36CE16D746D07C6C18 /* FocusService.swift */,
 				CF272DA402225DB5CC06CF0E /* FreemiumService.swift */,
 				79F9CD103209F4F098ED75D0 /* MatchingService.swift */,
+				N0T1F1C570B8E8D7E9F2A3B12 /* NotificationService.swift */,
 				357F0A8B0CBBE46F30B28767 /* SoundService.swift */,
 				CBFB23D715C3E615B138960E /* StatisticsService.swift */,
 				4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */,
@@ -399,11 +405,13 @@
 				EF7D600B19E788C07A73ACAD /* LeaderboardViewModel.swift in Sources */,
 				D0196625CAF59E8B1385DDB9 /* MatchFoundSheet.swift in Sources */,
 				4345C269F3075A7544400356 /* MatchingService.swift in Sources */,
+				N0T1F1C570B8E8D7E9F2A3B13 /* NotificationService.swift in Sources */,
 				905F26F3A31FBD01C3E2D108 /* Mission.swift in Sources */,
 				8516642D98476148868431F1 /* Partner.swift in Sources */,
 				61FE457E1D247EF024E7F614 /* PartnerRadarView.swift in Sources */,
 				2531905D75109FA9AFFA6A3E /* Session.swift in Sources */,
 				39A0E690B3832A0A05E29A5D /* SessionCompleteView.swift in Sources */,
+				N0T1F1C570B8E8D7E9F2A3B15 /* SessionNoteSheet.swift in Sources */,
 				A8BC55F7D407CA6CB1311DC8 /* SessionViewModel.swift in Sources */,
 				71E98F985B9580BBB46A94D0 /* SettingsView.swift in Sources */,
 				3D1AFBC31D3B8FB5A2B94AE7 /* ShareSheet.swift in Sources */,

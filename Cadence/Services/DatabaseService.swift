@@ -11,6 +11,7 @@ actor DatabaseService {
         static let streak = "cadence.streak"
         static let achievements = "cadence.achievements"
         static let activeSounds = "cadence.activeSounds"
+        static let sessionNotes = "cadence.sessionNotes"
     }
 
     // MARK: - Sessions
@@ -148,6 +149,46 @@ actor DatabaseService {
         return sounds
     }
 
+    // MARK: - Session Notes
+
+    /// Save notes and tags for a specific session
+    func saveSessionNote(_ note: SessionNote) {
+        var notes = loadAllSessionNotes()
+        // Replace existing note for same session, or insert new
+        if let idx = notes.firstIndex(where: { $0.sessionId == note.sessionId }) {
+            notes[idx] = note
+        } else {
+            notes.append(note)
+        }
+        if let data = try? JSONEncoder().encode(notes) {
+            defaults.set(data, forKey: Keys.sessionNotes)
+        }
+    }
+
+    /// Load notes for a specific session
+    func loadSessionNote(for sessionId: UUID) -> SessionNote? {
+        let notes = loadAllSessionNotes()
+        return notes.first { $0.sessionId == sessionId }
+    }
+
+    /// Load all session notes
+    func loadAllSessionNotes() -> [SessionNote] {
+        guard let data = defaults.data(forKey: Keys.sessionNotes),
+              let notes = try? JSONDecoder().decode([SessionNote].self, from: data) else {
+            return []
+        }
+        return notes
+    }
+
+    /// Delete a session note
+    func deleteSessionNote(for sessionId: UUID) {
+        var notes = loadAllSessionNotes()
+        notes.removeAll { $0.sessionId == sessionId }
+        if let data = try? JSONEncoder().encode(notes) {
+            defaults.set(data, forKey: Keys.sessionNotes)
+        }
+    }
+
     // MARK: - Reset
 
     func resetAllData() {
@@ -156,5 +197,6 @@ actor DatabaseService {
         defaults.removeObject(forKey: Keys.streak)
         defaults.removeObject(forKey: Keys.achievements)
         defaults.removeObject(forKey: Keys.activeSounds)
+        defaults.removeObject(forKey: Keys.sessionNotes)
     }
 }

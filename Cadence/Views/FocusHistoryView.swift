@@ -7,10 +7,18 @@ struct DayTotal: Identifiable {
     let minutes: Int
 }
 
+/// Focus history view with real session data and filtering
 struct FocusHistoryView: View {
     @State private var sessions: [Session] = []
+    @State private var sessionNotes: [UUID: SessionNote] = [:]
     @State private var selectedPeriod: TimePeriod = .week
     @State private var isLoading = true
+    @State private var errorMessage: String?
+    @State private var showFilters = false
+    @State private var filterMinScore: Int = 0
+    @State private var filterSoundId: String? = nil
+    @State private var filterHasPartner: Bool? = nil
+    @State private var searchText: String = ""
 
     enum TimePeriod: String, CaseIterable {
         case week = "Week"
@@ -33,24 +41,65 @@ struct FocusHistoryView: View {
             if isLoading {
                 ProgressView()
                     .tint(Color.appPrimary)
+            } else if let error = errorMessage {
+                errorView(error)
             } else {
-                ScrollView {
-                    VStack(spacing: Spacing.lg) {
-                        periodPicker
-                        summaryCards
-                        weeklyChart
-                        sessionList
-                    }
-                    .padding(Spacing.md)
-                }
+                historyContent
             }
         }
         .navigationTitle("Focus History")
         .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showFilters.toggle()
+                } label: {
+                    Image(systemName: hasActiveFilters ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+                        .foregroundStyle(hasActiveFilters ? Color.appPrimary : Color.appTextSecondary)
+                }
+                .accessibilityLabel("Filter sessions")
+            }
+        }
+        .sheet(isPresented: $showFilters) {
+            filterSheet
+        }
         .task {
             await loadSessions()
         }
     }
+
+    // MARK: - Main Content
+
+    private var historyContent: some View {
+        ScrollView {
+            VStack(spacing: Spacing.lg) {
+                periodPicker
+                    .padding(.horizontal, Spacing.md)
+
+                if filteredSessions.isEmpty {
+                    emptyHistoryView
+                } else {
+                    summaryCards
+                        .padding(.horizontal, Spacing.md)
+
+                    weeklyChart
+                        .padding(.horizontal, Spacing.md)
+
+                    if hasActiveFilters {
+                        activeFiltersBar
+                            .padding(.horizontal, Spacing.md)
+                    }
+
+                    sessionList
+                        .padding(.horizontal, Spacing.md)
+                }
+            }
+            .padding(.top, Spacing.md)
+            .padding(.bottom, 120)
+        }
+    }
+
+    // MARK: - Period Picker
 
     private var periodPicker: some View {
         Picker("Period", selection: $selectedPeriod) {
@@ -60,6 +109,8 @@ struct FocusHistoryView: View {
         }
         .pickerStyle(.segmented)
     }
+
+    // MARK: - Summary Cards
 
     private var summaryCards: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: Spacing.md) {
@@ -82,8 +133,8 @@ struct FocusHistoryView: View {
                 color: Color.appSuccess
             )
             summaryCard(
-                title: "Best Day",
-                value: bestDay,
+                title: "Avg Score",
+                value: String(format: "%.0f", averageFocusScore),
                 icon: "star.fill",
                 color: Color.appWarning
             )
@@ -110,6 +161,8 @@ struct FocusHistoryView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
+    // MARK: - Weekly Chart
+
     private var weeklyChart: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
             Text("Daily Focus")
@@ -118,7 +171,7 @@ struct FocusHistoryView: View {
 
             if #available(iOS 26.0, *) {
                 Chart {
-                    ForEach(dailyTotals, id: \.date) { day in
+                    ForEach(dailyTotals) { day in
                         BarMark(
                             x: .value("Date", day.date, unit: .day),
                             y: .value("Minutes", day.minutes)
@@ -149,7 +202,7 @@ struct FocusHistoryView: View {
                     }
                 }
             } else {
-                // Fallback
+                // Fallback for older iOS
                 HStack(alignment: .bottom, spacing: 4) {
                     ForEach(dailyTotals.prefix(7)) { day in
                         VStack(spacing: 2) {
@@ -170,86 +223,478 @@ struct FocusHistoryView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
+    // MARK: - Active Filters Bar
+
+    private var activeFiltersBar: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: Spacing.xs) {
+                if filterMinScore > 0 {
+                    filterChip(label: "Score ≥ \(filterMinScore)", active: true) {
+                        filterMinScore = 0
+                    }
+                }
+                if let sound = filterSoundId {
+                    if let s = Sound.allSounds.first(where: { $0.id == sound }) {
+                        filterChip(label: s.name, active: true) {
+                            filterSoundId = nil
+                        }
+                    }
+                }
+                if filterHasPartner != nil {
+                    filterChip(label: "Partner", active: true) {
+                        filterHasPartner = nil
+                    }
+                }
+                Button {
+                    filterMinScore = 0
+                    filterSoundId = nil
+                    filterHasPartner = nil
+                    searchText = ""
+                } label: {
+                    Text("Clear All")
+                        .font(.system(size: 11))
+                        .foregroundStyle(Color.appError)
+                }
+            }
+        }
+    }
+
+    private func filterChip(label: String, active: Bool, onRemove: @escaping () -> Void) -> some View {
+        HStack(spacing: 4) {
+            Text(label)
+                .font(.system(size: 11))
+            Button(action: onRemove) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 8))
+            }
+        }
+        .foregroundStyle(Color.appPrimary)
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(Color.appPrimary.opacity(0.15))
+        .clipShape(Capsule())
+    }
+
+    // MARK: - Session List
+
     private var sessionList: some View {
         VStack(alignment: .leading, spacing: Spacing.sm) {
-            Text("Recent Sessions")
-                .font(.appHeading2)
-                .foregroundStyle(Color.appTextPrimary)
+            HStack {
+                Text("Recent Sessions")
+                    .font(.appHeading2)
+                    .foregroundStyle(Color.appTextPrimary)
+                Spacer()
+                Text("\(filteredSessions.count) sessions")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextSecondary)
+            }
 
-            if filteredSessions.isEmpty {
-                emptyState
-            } else {
-                ForEach(filteredSessions.prefix(10)) { session in
-                    sessionRow(session)
-                }
+            ForEach(filteredSessions.prefix(20)) { session in
+                sessionRow(session)
+            }
+
+            if filteredSessions.count > 20 {
+                Text("Showing 20 of \(filteredSessions.count) sessions")
+                    .font(.appCaption)
+                    .foregroundStyle(Color.appTextTertiary)
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, Spacing.sm)
             }
         }
     }
 
     private func sessionRow(_ session: Session) -> some View {
-        HStack(spacing: Spacing.md) {
-            // Duration indicator
-            ZStack {
-                Circle()
-                    .fill(Color.appPrimary.opacity(0.15))
-                    .frame(width: 44, height: 44)
+        let note = sessionNotes[session.id]
 
-                Image(systemName: "timer")
-                    .font(.body)
-                    .foregroundStyle(Color.appPrimary)
+        return VStack(alignment: .leading, spacing: Spacing.sm) {
+            HStack(spacing: Spacing.md) {
+                // Duration indicator
+                ZStack {
+                    Circle()
+                        .fill(scoreColor(for: session.focusScore).opacity(0.15))
+                        .frame(width: 44, height: 44)
+
+                    Image(systemName: "timer")
+                        .font(.body)
+                        .foregroundStyle(scoreColor(for: session.focusScore))
+                }
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(session.completedAt.formatted(date: .abbreviated, time: .shortened))
+                        .font(.appBody)
+                        .foregroundStyle(Color.appTextPrimary)
+
+                    HStack(spacing: Spacing.xs) {
+                        // Duration
+                        Text("\(session.durationMinutes)m")
+                            .font(.appCaption)
+                            .foregroundStyle(Color.appTextSecondary)
+
+                        // Sound
+                        if !session.soundIds.isEmpty {
+                            if let firstSound = session.soundIds.first,
+                               let sound = Sound.allSounds.first(where: { $0.id == firstSound }) {
+                                HStack(spacing: 2) {
+                                    Image(systemName: sound.icon)
+                                        .font(.system(size: 9))
+                                    Text(sound.name)
+                                        .font(.system(size: 10))
+                                }
+                                .foregroundStyle(Color.appTextTertiary)
+                            }
+                        }
+
+                        // Partner indicator
+                        if session.partnerId != nil {
+                            HStack(spacing: 2) {
+                                Image(systemName: "person.2.fill")
+                                    .font(.system(size: 9))
+                                Text("Partner")
+                                    .font(.system(size: 10))
+                            }
+                            .foregroundStyle(Color.appAccent)
+                        }
+                    }
+                }
+
+                Spacer()
+
+                VStack(alignment: .trailing, spacing: 2) {
+                    HStack(spacing: 2) {
+                        Image(systemName: "star.fill")
+                            .font(.system(size: 9))
+                        Text("\(session.focusScore)")
+                            .font(.appCaption)
+                            .fontWeight(.medium)
+                    }
+                    .foregroundStyle(scoreColor(for: session.focusScore))
+
+                    if note != nil || !session.soundIds.isEmpty {
+                        HStack(spacing: 2) {
+                            Image(systemName: "doc.text.fill")
+                                .font(.system(size: 9))
+                            if let text = noteText(note) {
+                                Text(text)
+                                    .font(.system(size: 9))
+                            }
+                        }
+                        .foregroundStyle(Color.appTextTertiary)
+                        .lineLimit(1)
+                    }
+                }
             }
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Focus Session")
-                    .font(.appBody)
-                    .foregroundStyle(Color.appTextPrimary)
+            // Tags row
+            if let note = note, !note.tags.isEmpty {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: Spacing.xxs) {
+                        ForEach(note.tags, id: \.self) { tag in
+                            if let sessionTag = SessionTag(rawValue: tag) {
+                                HStack(spacing: 2) {
+                                    Image(systemName: sessionTag.icon)
+                                        .font(.system(size: 8))
+                                    Text(tag)
+                                        .font(.system(size: 9))
+                                }
+                                .foregroundStyle(Color.appPrimary)
+                                .padding(.horizontal, 6)
+                                .padding(.vertical, 2)
+                                .background(Color.appPrimary.opacity(0.1))
+                                .clipShape(Capsule())
+                            }
+                        }
+                    }
+                }
+            }
 
-                Text(session.completedAt.formatted(date: .abbreviated, time: .shortened))
+            // Note preview
+            if let note = note, !note.notes.isEmpty {
+                Text(note.notes)
                     .font(.appCaption)
                     .foregroundStyle(Color.appTextSecondary)
-            }
-
-            Spacer()
-
-            VStack(alignment: .trailing, spacing: 2) {
-                Text("\(session.durationMinutes)m")
-                    .font(.appBody)
-                    .foregroundStyle(Color.appPrimary)
-
-                if session.partnerId != nil {
-                    HStack(spacing: 2) {
-                        Image(systemName: "person.2.fill")
-                            .font(.system(size: 8))
-                        Text("Partner")
-                            .font(.system(size: 8))
-                    }
-                    .foregroundStyle(Color.appAccent)
-                }
+                    .lineLimit(2)
             }
         }
         .padding(Spacing.sm)
         .background(Color.appSurface)
         .clipShape(RoundedRectangle(cornerRadius: 12))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(accessibilityLabel(for: session, note: note))
     }
 
-    private var emptyState: some View {
-        VStack(spacing: Spacing.sm) {
-            Image(systemName: "clock.badge.questionmark")
-                .font(.system(size: 36))
-                .foregroundStyle(Color.appTextTertiary)
-            Text("No sessions in this period")
-                .font(.appBody)
-                .foregroundStyle(Color.appTextSecondary)
+    private func noteText(_ note: SessionNote?) -> String? {
+        guard let note = note else { return nil }
+        if !note.notes.isEmpty { return "Note" }
+        if !note.tags.isEmpty { return "\(note.tags.count) tags" }
+        return nil
+    }
+
+    private func scoreColor(for score: Int) -> Color {
+        switch score {
+        case 80...100: return Color.appAccent
+        case 60..<80: return Color.appPrimary
+        case 40..<60: return Color.appWarning
+        default: return Color.appError
+        }
+    }
+
+    private func dayLabel(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E"
+        return formatter.string(from: date)
+    }
+
+    private func accessibilityLabel(for session: Session, note: SessionNote?) -> String {
+        var label = "\(session.durationMinutes) minute focus session, \(session.completedAt.formatted(date: .abbreviated, time: .shortened)), focus score \(session.focusScore)"
+        if session.partnerId != nil { label += ", with partner" }
+        if let note = note {
+            if !note.tags.isEmpty { label += ", tags: \(note.tags.joined(separator: ", "))" }
+            if !note.notes.isEmpty { label += ", notes: \(note.notes)" }
+        }
+        return label
+    }
+
+    // MARK: - Empty View
+
+    private var emptyHistoryView: some View {
+        VStack(spacing: Spacing.lg) {
+            Spacer()
+
+            ZStack {
+                Circle()
+                    .fill(Color.appPrimary.opacity(0.1))
+                    .frame(width: 100, height: 100)
+                Image(systemName: "clock.badge.questionmark")
+                    .font(.system(size: 40))
+                    .foregroundStyle(Color.appPrimary.opacity(0.8))
+            }
+
+            VStack(spacing: Spacing.xs) {
+                Text("No Sessions Found")
+                    .font(.appHeading1)
+                    .foregroundStyle(Color.appTextPrimary)
+
+                if hasActiveFilters {
+                    Text("Try adjusting your filters to see more sessions.")
+                        .font(.appCaption)
+                        .foregroundStyle(Color.appTextSecondary)
+                        .multilineTextAlignment(.center)
+
+                    Button {
+                        clearFilters()
+                    } label: {
+                        Text("Clear Filters")
+                            .font(.appHeading2)
+                            .foregroundStyle(Color.appBackground)
+                            .padding(.horizontal, Spacing.lg)
+                            .padding(.vertical, Spacing.sm)
+                            .background(Color.appPrimary)
+                            .clipShape(Capsule())
+                    }
+                } else {
+                    Text("Complete your first focus session to see your history here.")
+                        .font(.appCaption)
+                        .foregroundStyle(Color.appTextSecondary)
+                        .multilineTextAlignment(.center)
+                }
+            }
+            .padding(.horizontal, Spacing.lg)
+
+            Spacer()
         }
         .frame(maxWidth: .infinity)
-        .padding(Spacing.lg)
+    }
+
+    private func errorView(_ message: String) -> some View {
+        VStack(spacing: Spacing.lg) {
+            Spacer()
+            Image(systemName: "exclamationmark.triangle")
+                .font(.system(size: 40))
+                .foregroundStyle(Color.appError)
+            Text("Failed to Load History")
+                .font(.appHeading1)
+                .foregroundStyle(Color.appTextPrimary)
+            Text(message)
+                .font(.appCaption)
+                .foregroundStyle(Color.appTextSecondary)
+            Button {
+                Task { await loadSessions() }
+            } label: {
+                Text("Try Again")
+                    .font(.appHeading2)
+                    .foregroundStyle(Color.appBackground)
+                    .padding(.horizontal, Spacing.lg)
+                    .padding(.vertical, Spacing.sm)
+                    .background(Color.appPrimary)
+                    .clipShape(Capsule())
+            }
+            Spacer()
+        }
+    }
+
+    // MARK: - Filter Sheet
+
+    private var filterSheet: some View {
+        NavigationStack {
+            ZStack {
+                Color.appBackground.ignoresSafeArea()
+
+                ScrollView {
+                    VStack(spacing: Spacing.lg) {
+                        // Minimum score filter
+                        VStack(alignment: .leading, spacing: Spacing.sm) {
+                            Text("Minimum Focus Score")
+                                .font(.appHeading2)
+                                .foregroundStyle(Color.appTextPrimary)
+
+                            HStack(spacing: Spacing.sm) {
+                                ForEach([0, 50, 70, 85], id: \.self) { score in
+                                    Button {
+                                        filterMinScore = score
+                                    } label: {
+                                        Text(score == 0 ? "Any" : "\(score)+")
+                                            .font(.appCaption)
+                                            .foregroundStyle(filterMinScore == score ? Color.appBackground : Color.appTextSecondary)
+                                            .padding(.horizontal, Spacing.sm)
+                                            .padding(.vertical, Spacing.xs)
+                                            .background(filterMinScore == score ? Color.appPrimary : Color.appSurface)
+                                            .clipShape(Capsule())
+                                    }
+                                }
+                            }
+                        }
+                        .padding(Spacing.md)
+                        .background(Color.appSurface)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                        // Sound filter
+                        VStack(alignment: .leading, spacing: Spacing.sm) {
+                            Text("Sound")
+                                .font(.appHeading2)
+                                .foregroundStyle(Color.appTextPrimary)
+
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: Spacing.xs) {
+                                    soundFilterChip(sound: nil, label: "Any")
+                                    ForEach(Sound.allSounds) { sound in
+                                        soundFilterChip(sound: sound, label: sound.name)
+                                    }
+                                }
+                            }
+                        }
+                        .padding(Spacing.md)
+                        .background(Color.appSurface)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                        // Partner filter
+                        VStack(alignment: .leading, spacing: Spacing.sm) {
+                            Text("Partner Session")
+                                .font(.appHeading2)
+                                .foregroundStyle(Color.appTextPrimary)
+
+                            HStack(spacing: Spacing.sm) {
+                                partnerFilterChip(value: nil, label: "Any")
+                                partnerFilterChip(value: true, label: "Partner Only")
+                                partnerFilterChip(value: false, label: "Solo Only")
+                            }
+                        }
+                        .padding(Spacing.md)
+                        .background(Color.appSurface)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                        // Clear filters
+                        if hasActiveFilters {
+                            Button {
+                                clearFilters()
+                            } label: {
+                                Text("Clear All Filters")
+                                    .font(.appBody)
+                                    .foregroundStyle(Color.appError)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, Spacing.md)
+                                    .background(Color.appSurface)
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                            }
+                        }
+                    }
+                    .padding(Spacing.md)
+                }
+            }
+            .navigationTitle("Filter Sessions")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") {
+                        showFilters = false
+                    }
+                    .foregroundStyle(Color.appPrimary)
+                }
+            }
+        }
+        .presentationDetents([.medium, .large])
+        .presentationDragIndicator(.visible)
+    }
+
+    private func soundFilterChip(sound: Sound?, label: String) -> some View {
+        Button {
+            filterSoundId = sound?.id
+        } label: {
+            HStack(spacing: 4) {
+                if let sound = sound {
+                    Image(systemName: sound.icon)
+                        .font(.system(size: 11))
+                }
+                Text(label)
+                    .font(.appCaption)
+            }
+            .foregroundStyle(filterSoundId == sound?.id ? Color.appBackground : Color.appTextSecondary)
+            .padding(.horizontal, Spacing.sm)
+            .padding(.vertical, Spacing.xs)
+            .background(filterSoundId == sound?.id ? Color.appPrimary : Color.appSurfaceElevated)
+            .clipShape(Capsule())
+        }
+    }
+
+    private func partnerFilterChip(value: Bool?, label: String) -> some View {
+        Button {
+            filterHasPartner = value
+        } label: {
+            Text(label)
+                .font(.appCaption)
+                .foregroundStyle(filterHasPartner == value ? Color.appBackground : Color.appTextSecondary)
+                .padding(.horizontal, Spacing.sm)
+                .padding(.vertical, Spacing.xs)
+                .background(filterHasPartner == value ? Color.appPrimary : Color.appSurfaceElevated)
+                .clipShape(Capsule())
+        }
     }
 
     // MARK: - Computed
 
+    private var hasActiveFilters: Bool {
+        filterMinScore > 0 || filterSoundId != nil || filterHasPartner != nil
+    }
+
+    private func clearFilters() {
+        filterMinScore = 0
+        filterSoundId = nil
+        filterHasPartner = nil
+        searchText = ""
+    }
+
     private var filteredSessions: [Session] {
-        let cutoff = Calendar.current.date(byAdding: .day, value: -selectedPeriod.days, to: Date()) ?? Date()
-        return sessions.filter { $0.completedAt >= cutoff }
+        sessions.filter { session in
+            // Score filter
+            if session.focusScore < filterMinScore { return false }
+            // Sound filter
+            if let soundId = filterSoundId, !session.soundIds.contains(soundId) { return false }
+            // Partner filter
+            if let hasPartner = filterHasPartner {
+                if hasPartner && session.partnerId == nil { return false }
+                if !hasPartner && session.partnerId != nil { return false }
+            }
+            return true
+        }
     }
 
     private var totalHours: Double {
@@ -263,15 +708,10 @@ struct FocusHistoryView: View {
         return Double(totalSeconds) / Double(filteredSessions.count) / 60.0
     }
 
-    private var bestDay: String {
-        let dayTotals = Dictionary(grouping: filteredSessions) {
-            Calendar.current.component(.weekday, from: $0.completedAt)
-        }
-        let best = dayTotals.max { $0.value.count < $1.value.count }
-        if let best = best, let day = Weekday(rawValue: best.key) {
-            return day.shortName
-        }
-        return "-"
+    private var averageFocusScore: Double {
+        guard !filteredSessions.isEmpty else { return 0 }
+        let total: Int = filteredSessions.reduce(0) { $0 + $1.focusScore }
+        return Double(total) / Double(filteredSessions.count)
     }
 
     private var dailyTotals: [DayTotal] {
@@ -290,34 +730,24 @@ struct FocusHistoryView: View {
         return result.reversed()
     }
 
-    private func dayLabel(_ date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "E"
-        return formatter.string(from: date)
-    }
+    // MARK: - Data Loading
 
     private func loadSessions() async {
-        // Load from FocusService
-        try? await Task.sleep(nanoseconds: 300_000_000)
         await MainActor.run {
-            sessions = []
-            isLoading = false
+            isLoading = true
+            errorMessage = nil
         }
-    }
-}
 
-enum Weekday: Int {
-    case sunday = 1, monday, tuesday, wednesday, thursday, friday, saturday
+        do {
+            let allSessions = await DatabaseService.shared.loadSessions()
+            let allNotes = await DatabaseService.shared.loadAllSessionNotes()
+            let notesMap = Dictionary(uniqueKeysWithValues: allNotes.map { ($0.sessionId, $0) })
 
-    var shortName: String {
-        switch self {
-        case .sunday: return "Sun"
-        case .monday: return "Mon"
-        case .tuesday: return "Tue"
-        case .wednesday: return "Wed"
-        case .thursday: return "Thu"
-        case .friday: return "Fri"
-        case .saturday: return "Sat"
+            await MainActor.run {
+                sessions = allSessions
+                sessionNotes = notesMap
+                isLoading = false
+            }
         }
     }
 }

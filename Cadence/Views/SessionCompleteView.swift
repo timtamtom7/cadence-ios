@@ -11,6 +11,8 @@ struct SessionCompleteView: View {
     @State private var animateStreak = false
     @State private var animateStats = false
     @State private var showConfetti = false
+    @State private var showNoteSheet = false
+    @State private var hasAddedNote = false
 
     var body: some View {
         ZStack {
@@ -85,6 +87,18 @@ struct SessionCompleteView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
 
+                    // Add Details button
+                    Button {
+                        showNoteSheet = true
+                    } label: {
+                        HStack {
+                            Image(systemName: hasAddedNote ? "checkmark.circle.fill" : "pencil.line")
+                            Text(hasAddedNote ? "Details Saved" : "Add Details")
+                        }
+                        .font(.appBody)
+                        .foregroundStyle(hasAddedNote ? Color.appSuccess : Color.appTextSecondary)
+                    }
+
                     Button {
                         // Share functionality placeholder
                         onDismiss()
@@ -109,6 +123,19 @@ struct SessionCompleteView: View {
             // Small delay before confetti for dramatic effect
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 showConfetti = true
+            }
+            // Check if note already exists
+            Task {
+                if let _ = await DatabaseService.shared.loadSessionNote(for: session.id) {
+                    await MainActor.run {
+                        hasAddedNote = true
+                    }
+                }
+            }
+        }
+        .sheet(isPresented: $showNoteSheet) {
+            SessionNoteSheet(session: session) {
+                hasAddedNote = true
             }
         }
         .presentationDetents([.large])
