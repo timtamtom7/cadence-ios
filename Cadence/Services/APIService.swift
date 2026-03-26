@@ -13,6 +13,14 @@ actor APIService {
         encoder.dateEncodingStrategy = .iso8601
     }
     
+    /// Build a URL safely, throwing if the string is malformed (should never happen with constant baseURL)
+    private func apiURL(_ path: String) throws -> URL {
+        guard let url = URL(string: path) else {
+            throw APIError.invalidURL
+        }
+        return url
+    }
+    
     // MARK: - Session Endpoints
     
     struct SessionResponse: Codable {
@@ -23,7 +31,7 @@ actor APIService {
     }
     
     func fetchSessions(token: String, limit: Int = 50) async throws -> [SessionResponse] {
-        let url = URL(string: "\(baseURL)/sessions?limit=\(limit)")!
+        let url = try apiURL("\(baseURL)/sessions?limit=\(limit)")
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -39,7 +47,7 @@ actor APIService {
     }
     
     func postSession(_ session: Session, token: String) async throws -> SessionResponse {
-        let url = URL(string: "\(baseURL)/sessions")!
+        let url = try apiURL("\(baseURL)/sessions")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
@@ -69,7 +77,7 @@ actor APIService {
     }
     
     func fetchAnalytics(token: String) async throws -> AnalyticsResponse {
-        let url = URL(string: "\(baseURL)/analytics")!
+        let url = try apiURL("\(baseURL)/analytics")
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
@@ -110,7 +118,7 @@ actor APIService {
     }
     
     func getTaskManagerConnections(token: String) async throws -> [TaskManagerConnection] {
-        let url = URL(string: "\(baseURL)/integrations")!
+        let url = try apiURL("\(baseURL)/integrations")
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
@@ -131,6 +139,7 @@ enum APIError: Error, LocalizedError {
     case unauthorized
     case serverError
     case decodingFailed
+    case invalidURL
     
     var errorDescription: String? {
         switch self {
@@ -138,6 +147,7 @@ enum APIError: Error, LocalizedError {
         case .unauthorized: return "Session expired. Please log in again."
         case .serverError: return "Server error. Please try again later."
         case .decodingFailed: return "Failed to process server response."
+        case .invalidURL: return "Invalid URL."
         }
     }
 }
