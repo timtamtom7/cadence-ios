@@ -36,8 +36,9 @@ class FocusPredictionService: ObservableObject {
         
         let confidence = min(0.9, Double(sessions.count) / 50.0)
         
+        let nextSuggestedTime = suggestedTime > now ? suggestedTime : (calendar.date(byAdding: .day, value: 1, to: suggestedTime) ?? suggestedTime)
         return FocusPrediction(
-            suggestedTime: suggestedTime > now ? suggestedTime : calendar.date(byAdding: .day, value: 1, to: suggestedTime)!,
+            suggestedTime: nextSuggestedTime,
             suggestedDuration: suggestedDuration,
             confidence: confidence,
             reason: "Based on your \(sessions.count) past sessions"

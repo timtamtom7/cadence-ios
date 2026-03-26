@@ -24,6 +24,10 @@
 	<string>Cadence uses the microphone for focus detection features.</string>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>Cadence sends notifications when your focus session ends.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Cadence reads heart rate and HRV data to detect your flow state during focus sessions.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Cadence saves focus session data to Apple Health to track your wellness metrics.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

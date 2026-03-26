@@ -21,6 +21,7 @@ class SoundService {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             // Audio setup failed — sounds won't play but app continues
+            print("Audio session setup failed: \(error.localizedDescription)")
         }
     }
 

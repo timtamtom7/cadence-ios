@@ -48,3 +48,10 @@ targets:
           UISceneConfigurations: {}
         NSMicrophoneUsageDescription: "Cadence uses the microphone for focus detection features."
         NSUserNotificationsUsageDescription: "Cadence sends notifications when your focus session ends."
+        NSHealthShareUsageDescription: "Cadence reads heart rate and HRV data to detect your flow state during focus sessions."
+        NSHealthUpdateUsageDescription: "Cadence saves focus session data to Apple Health to track your wellness metrics."
+    entitlements:
+      path: Cadence/Cadence.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []

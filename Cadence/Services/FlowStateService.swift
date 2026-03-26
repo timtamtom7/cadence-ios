@@ -117,7 +117,7 @@ class BiometricFeedbackService: @unchecked Sendable {
     func fetchCurrentHeartRate() async -> Double? {
         guard HKHealthStore.isHealthDataAvailable() else { return nil }
         
-        let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
+        guard let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate) else { return nil }
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
         
         return await withCheckedContinuation { continuation in

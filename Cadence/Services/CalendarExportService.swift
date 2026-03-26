@@ -13,7 +13,7 @@ class CalendarExportService {
 
     private init() {
         authorizationStatus = EKEventStore.authorizationStatus(for: .event)
-        hasCalendarAccess = authorizationStatus == .fullAccess || authorizationStatus == .authorized
+        hasCalendarAccess = authorizationStatus == .fullAccess || authorizationStatus == .writeOnly
     }
 
     // MARK: - Authorization
@@ -88,7 +88,7 @@ class CalendarExportService {
 
     private func nextDate(for weekday: Int, hour: Int, minute: Int, weeksFromNow: Int, calendar: Calendar) -> Date? {
         var components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())
-        components.weekOfYear! += weeksFromNow
+        components.weekOfYear = (components.weekOfYear ?? 1) + weeksFromNow
         components.weekday = weekday
         components.hour = hour
         components.minute = minute
@@ -131,7 +131,6 @@ class CalendarExportService {
     ) -> Int {
         guard hasCalendarAccess else { return 0 }
 
-        let today = Date()
         guard let startDate = nextDate(for: weekday, hour: startHour, minute: 0, weeksFromNow: 0, calendar: Calendar.current) else { return 0 }
 
         var count = 0

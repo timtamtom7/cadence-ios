@@ -3,7 +3,7 @@ import Foundation
 /// R9: Freemium subscription management
 @Observable
 final class FreemiumService: @unchecked Sendable {
-    nonisolated(unsafe) static let shared: FreemiumService = {
+    static let shared: FreemiumService = {
         MainActor.assumeIsolated { FreemiumService() }
     }()
 

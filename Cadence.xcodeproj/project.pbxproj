@@ -16,6 +16,7 @@
 		2531905D75109FA9AFFA6A3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDA70A9F1D94A5499A54A2 /* Session.swift */; };
 		2E9373E3977B08A6820B3A41 /* R14-Cadence2.md in Resources */ = {isa = PBXBuildFile; fileRef = 5EAE64F69CB0C0B0A6C325DD /* R14-Cadence2.md */; };
 		2F4FBDE851D54B016CEF3F69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A749C288E5597F383050F5CC /* Assets.xcassets */; };
+		31619F94FD7B9CCA5316A011 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 388D30C32C6462DA9D934BD1 /* PrivacyInfo.xcprivacy */; };
 		39A0E690B3832A0A05E29A5D /* SessionCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */; };
 		3D1AFBC31D3B8FB5A2B94AE7 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18804812E1DAC9B4A7B9874 /* ShareSheet.swift */; };
 		4345C269F3075A7544400356 /* MatchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F9CD103209F4F098ED75D0 /* MatchingService.swift */; };
@@ -86,10 +87,12 @@
 		25114F977ECCC2FA78D13AC8 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		2747B5C0BD75EFECA1D2569B /* Cadence.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Cadence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28BDA70A9F1D94A5499A54A2 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		2D05198AB1A24815EC49E523 /* Cadence.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cadence.entitlements; sourceTree = "<group>"; };
 		2E9C7980B969F8161B46666B /* FocusHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusHistoryView.swift; sourceTree = "<group>"; };
 		30897791A03E694FDF3957C6 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		32E8A99283BFDACB9706B773 /* BreathingOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingOrb.swift; sourceTree = "<group>"; };
 		357F0A8B0CBBE46F30B28767 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
+		388D30C32C6462DA9D934BD1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		422BDC31B910E2025F25D72E /* InvestorPitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestorPitch.swift; sourceTree = "<group>"; };
 		434E0678479ECD514DBABEE4 /* R19-TeamCompany2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R19-TeamCompany2.md"; sourceTree = "<group>"; };
 		4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
@@ -274,7 +277,9 @@
 		FD48710B608BE6A57DA448D7 /* Cadence */ = {
 			isa = PBXGroup;
 			children = (
+				2D05198AB1A24815EC49E523 /* Cadence.entitlements */,
 				C7C2C883C88ABF623FF04084 /* Info.plist */,
+				388D30C32C6462DA9D934BD1 /* PrivacyInfo.xcprivacy */,
 				78D2D1E4520BA69AC30BB1CB /* App */,
 				AF84D73FDD2A67E851600BA6 /* Iterations */,
 				5875D9DE20878243E04EB85B /* Models */,
@@ -343,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F4FBDE851D54B016CEF3F69 /* Assets.xcassets in Resources */,
+				31619F94FD7B9CCA5316A011 /* PrivacyInfo.xcprivacy in Resources */,
 				879654BFBF2C3D928E2DEF00 /* R13-PlatformExpansion.md in Resources */,
 				2E9373E3977B08A6820B3A41 /* R14-Cadence2.md in Resources */,
 				61A18B7E639B52BB6EDA19A3 /* R15-AwardsBrand.md in Resources */,
@@ -425,6 +431,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CODE_SIGN_ENTITLEMENTS = Cadence/Cadence.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Cadence/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -445,6 +452,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CODE_SIGN_ENTITLEMENTS = Cadence/Cadence.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Cadence/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

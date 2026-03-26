@@ -25,7 +25,7 @@ struct TeamView: View {
                 teamName: $newTeamName,
                 onCreate: {
                     Task {
-                        let team = await teamService.createTeam(name: newTeamName)
+                        _ = await teamService.createTeam(name: newTeamName)
                         newTeamName = ""
                         showCreateTeam = false
                     }
