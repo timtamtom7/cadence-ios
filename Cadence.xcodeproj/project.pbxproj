@@ -36,6 +36,7 @@
 		901FB8ACE24C40798A2EC712 /* FocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24101AFF949184E310E897 /* FocusTimerView.swift */; };
 		9E442462AF8CA0BEE4292A51 /* SoundPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738321572C2A1E4AD9CCDDB7 /* SoundPickerView.swift */; };
 		A8BC55F7D407CA6CB1311DC8 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0795D8736740466B086C019C /* SessionViewModel.swift */; };
+		ACE44B72C1621DB738186A84 /* R16-PlatformAPI.md in Resources */ = {isa = PBXBuildFile; fileRef = 001BF8924534C853AC1796EB /* R16-PlatformAPI.md */; };
 		B2FF3E0D966C96A0D5D31014 /* FreemiumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF272DA402225DB5CC06CF0E /* FreemiumService.swift */; };
 		B66191184DD7F7E38B37FE54 /* AICoachingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8309BBA6DE3C3718E98D8DE8 /* AICoachingService.swift */; };
 		B943E5650BCB3982EBA683F4 /* FocusPredictionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */; };
@@ -50,6 +51,7 @@
 		D8481EDD501245EDFCFB1079 /* CalendarExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC025F6F9E48A8570D46389B /* CalendarExportService.swift */; };
 		DA189F865D0B707FF2EE1542 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */; };
 		DFADA680A13DB9CC0E66FD40 /* CadenceR12Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5788B280667C7975DD5AD97B /* CadenceR12Service.swift */; };
+		E306BA0709E933B0990EA908 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB477ECF3777E8EE358944C /* APIService.swift */; };
 		E6F5D98EB3506E42BEC1A623 /* GlassTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */; };
 		E7642295774AEE2028A39983 /* AICoachService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C53B2C50C68ED43B334D44 /* AICoachService.swift */; };
 		E81C9767423FECC20D8C2C89 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F4D7573D17F9FD72B70FC /* TeamService.swift */; };
@@ -61,11 +63,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		001BF8924534C853AC1796EB /* R16-PlatformAPI.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R16-PlatformAPI.md"; sourceTree = "<group>"; };
 		03CE6D5572221722DDAD9C69 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		0795D8736740466B086C019C /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
 		0A8421A7059AA3EFE5CD607D /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		0ABCCA99066E21571EF867D4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0E947B22D92237B927C9DE0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0EB477ECF3777E8EE358944C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0FEBDF4E374322EFC76636B9 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassTabBar.swift; sourceTree = "<group>"; };
 		1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPredictionService.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */,
 				5EAE64F69CB0C0B0A6C325DD /* R14-Cadence2.md */,
 				639971444B6088AE6B77316E /* R15-AwardsBrand.md */,
+				001BF8924534C853AC1796EB /* R16-PlatformAPI.md */,
 			);
 			path = Iterations;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 			children = (
 				8309BBA6DE3C3718E98D8DE8 /* AICoachingService.swift */,
 				A2C53B2C50C68ED43B334D44 /* AICoachService.swift */,
+				0EB477ECF3777E8EE358944C /* APIService.swift */,
 				E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */,
 				5788B280667C7975DD5AD97B /* CadenceR12Service.swift */,
 				AC025F6F9E48A8570D46389B /* CalendarExportService.swift */,
@@ -316,6 +322,7 @@
 				879654BFBF2C3D928E2DEF00 /* R13-PlatformExpansion.md in Resources */,
 				2E9373E3977B08A6820B3A41 /* R14-Cadence2.md in Resources */,
 				61A18B7E639B52BB6EDA19A3 /* R15-AwardsBrand.md in Resources */,
+				ACE44B72C1621DB738186A84 /* R16-PlatformAPI.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +335,7 @@
 			files = (
 				E7642295774AEE2028A39983 /* AICoachService.swift in Sources */,
 				B66191184DD7F7E38B37FE54 /* AICoachingService.swift in Sources */,
+				E306BA0709E933B0990EA908 /* APIService.swift in Sources */,
 				8260D565CB71FD9834EF7BDC /* Achievement.swift in Sources */,
 				21C2B619EFAD1E292B37B1E1 /* AchievementBadgeView.swift in Sources */,
 				5FA7800449463E49AB680A38 /* AchievementsView.swift in Sources */,
