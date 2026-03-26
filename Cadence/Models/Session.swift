@@ -7,6 +7,7 @@ struct Session: Identifiable, Codable, Equatable {
     let soundIds: [String]
     let partnerId: UUID?
     let focusScore: Int // 0-100
+    let platform: Platform
 
     init(
         id: UUID = UUID(),
@@ -14,7 +15,8 @@ struct Session: Identifiable, Codable, Equatable {
         completedAt: Date = Date(),
         soundIds: [String] = [],
         partnerId: UUID? = nil,
-        focusScore: Int
+        focusScore: Int,
+        platform: Platform = .ios
     ) {
         self.id = id
         self.duration = duration
@@ -22,6 +24,7 @@ struct Session: Identifiable, Codable, Equatable {
         self.soundIds = soundIds
         self.partnerId = partnerId
         self.focusScore = focusScore
+        self.platform = platform
     }
 
     var durationMinutes: Int {

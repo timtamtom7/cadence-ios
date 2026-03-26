@@ -24,10 +24,12 @@
 		5FA7800449463E49AB680A38 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25114F977ECCC2FA78D13AC8 /* AchievementsView.swift */; };
 		6161ABD89E18E81145999A1F /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3FD1926D9C8180108748D5 /* Statistics.swift */; };
 		61FE457E1D247EF024E7F614 /* PartnerRadarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D9EDD2B4231A57E1A2FB48 /* PartnerRadarView.swift */; };
+		63B95BC44662F7121D852122 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8421A7059AA3EFE5CD607D /* Subscription.swift */; };
 		71056E7658FBB916B14BA805 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30897791A03E694FDF3957C6 /* TeamView.swift */; };
 		71E98F985B9580BBB46A94D0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCCA99066E21571EF867D4 /* SettingsView.swift */; };
 		8260D565CB71FD9834EF7BDC /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23317AB3E4C7A5BCFFABB6BC /* Achievement.swift */; };
 		8516642D98476148868431F1 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D729698A6C2028BC8E6B5 /* Partner.swift */; };
+		879654BFBF2C3D928E2DEF00 /* R13-PlatformExpansion.md in Resources */ = {isa = PBXBuildFile; fileRef = 53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */; };
 		901FB8ACE24C40798A2EC712 /* FocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24101AFF949184E310E897 /* FocusTimerView.swift */; };
 		9E442462AF8CA0BEE4292A51 /* SoundPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738321572C2A1E4AD9CCDDB7 /* SoundPickerView.swift */; };
 		A8BC55F7D407CA6CB1311DC8 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0795D8736740466B086C019C /* SessionViewModel.swift */; };
@@ -57,6 +59,7 @@
 /* Begin PBXFileReference section */
 		03CE6D5572221722DDAD9C69 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		0795D8736740466B086C019C /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		0A8421A7059AA3EFE5CD607D /* Subscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		0ABCCA99066E21571EF867D4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0E947B22D92237B927C9DE0E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0FEBDF4E374322EFC76636B9 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
@@ -71,6 +74,7 @@
 		357F0A8B0CBBE46F30B28767 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		524713FDAB7AA90B60CF5C1E /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
+		53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R13-PlatformExpansion.md"; sourceTree = "<group>"; };
 		5788B280667C7975DD5AD97B /* CadenceR12Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR12Service.swift; sourceTree = "<group>"; };
 		5C7BDFC43E37BC31B7797443 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBadgeView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				28BDA70A9F1D94A5499A54A2 /* Session.swift */,
 				0FEBDF4E374322EFC76636B9 /* Sound.swift */,
 				FE3FD1926D9C8180108748D5 /* Statistics.swift */,
+				0A8421A7059AA3EFE5CD607D /* Subscription.swift */,
 				5C7BDFC43E37BC31B7797443 /* Team.swift */,
 			);
 			path = Models;
@@ -164,6 +169,14 @@
 				FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		AF84D73FDD2A67E851600BA6 /* Iterations */ = {
+			isa = PBXGroup;
+			children = (
+				53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */,
+			);
+			path = Iterations;
 			sourceTree = "<group>";
 		};
 		B503AFF52A56DB4D78ECDCD4 /* Resources */ = {
@@ -221,6 +234,7 @@
 			children = (
 				C7C2C883C88ABF623FF04084 /* Info.plist */,
 				78D2D1E4520BA69AC30BB1CB /* App */,
+				AF84D73FDD2A67E851600BA6 /* Iterations */,
 				5875D9DE20878243E04EB85B /* Models */,
 				B503AFF52A56DB4D78ECDCD4 /* Resources */,
 				C44473C867EA22AD5CDA9820 /* Services */,
@@ -287,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F4FBDE851D54B016CEF3F69 /* Assets.xcassets in Resources */,
+				879654BFBF2C3D928E2DEF00 /* R13-PlatformExpansion.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +350,7 @@
 				BDBD112585DBC411560D1689 /* SoundService.swift in Sources */,
 				6161ABD89E18E81145999A1F /* Statistics.swift in Sources */,
 				EAB6A785DE824953EBF7F4EF /* StatisticsService.swift in Sources */,
+				63B95BC44662F7121D852122 /* Subscription.swift in Sources */,
 				DA189F865D0B707FF2EE1542 /* SubscriptionService.swift in Sources */,
 				590A1E1EF1FC17FB39FAE8D0 /* Team.swift in Sources */,
 				E81C9767423FECC20D8C2C89 /* TeamService.swift in Sources */,
