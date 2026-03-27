@@ -84,7 +84,8 @@ struct BreathingOrb: View {
 
                     if isPaused {
                         Text("PAUSED")
-                            .font(.system(size: 10, weight: .semibold))
+                            .font(.appCaption2)
+                            .fontWeight(.semibold)
                             .foregroundStyle(Color.appBackground.opacity(0.7))
                     }
                 }

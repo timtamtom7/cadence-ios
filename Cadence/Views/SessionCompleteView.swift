@@ -76,19 +76,16 @@ struct SessionCompleteView: View {
                 // Actions
                 VStack(spacing: Spacing.sm) {
                     Button {
+                        Theme.hapticMedium()
                         onDismiss()
                     } label: {
                         Text("Done")
-                            .font(.appHeading2)
-                            .foregroundStyle(Color.appBackground)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, Spacing.md)
-                            .background(Color.appPrimary)
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
+                    .buttonStyle(AxiomPrimaryButtonStyle())
 
                     // Add Details button
                     Button {
+                        Theme.haptic(.light)
                         showNoteSheet = true
                     } label: {
                         HStack {
@@ -100,6 +97,7 @@ struct SessionCompleteView: View {
                     }
 
                     Button {
+                        Theme.haptic(.light)
                         // Share functionality placeholder
                         onDismiss()
                     } label: {

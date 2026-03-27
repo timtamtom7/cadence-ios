@@ -63,7 +63,7 @@ struct AchievementsView: View {
                 }
 
                 Divider()
-                    .background(Color.appSurfaceElevated)
+                    .background(Color.separator)
                     .frame(height: 40)
 
                 VStack(spacing: Spacing.xs) {
@@ -76,7 +76,7 @@ struct AchievementsView: View {
                 }
 
                 Divider()
-                    .background(Color.appSurfaceElevated)
+                    .background(Color.separator)
                     .frame(height: 40)
 
                 VStack(spacing: Spacing.xs) {
@@ -91,7 +91,7 @@ struct AchievementsView: View {
         }
         .padding(Spacing.lg)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
     }
 
     private var badgeShowcaseSection: some View {
@@ -104,7 +104,7 @@ struct AchievementsView: View {
                         VStack(spacing: Spacing.xxs) {
                             AchievementBadgeView(achievement: achievement, size: 64)
                             Text(achievement.title)
-                                .font(.system(size: 10))
+                                .font(.appCaption2)
                                 .foregroundStyle(achievement.isEarned ? Color.appTextPrimary : Color.appTextTertiary)
                                 .lineLimit(1)
                         }
@@ -114,7 +114,7 @@ struct AchievementsView: View {
             }
             .padding(Spacing.md)
             .background(Color.appSurface)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
 
             // Detail cards
             ForEach(achievements) { achievement in
@@ -187,10 +187,10 @@ struct AchievementsView: View {
 
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: 2)
+                        RoundedRectangle(cornerRadius: CornerRadius.small)
                             .fill(Color.appSurface)
                             .frame(height: 4)
-                        RoundedRectangle(cornerRadius: 2)
+                        RoundedRectangle(cornerRadius: CornerRadius.small)
                             .fill(Color(hex: color))
                             .frame(width: geo.size.width * progress, height: 4)
                     }
@@ -205,7 +205,7 @@ struct AchievementsView: View {
         }
         .padding(Spacing.sm)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
     }
 
     private func loadData() async {

@@ -10,6 +10,7 @@
 		04A43A9B3FA477C3DDB1D518 /* WeeklyGoalRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */; };
 		0513F9D8AFF926CF04577E2F /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A493BC4DD0AB0E31197AA85F /* ExportService.swift */; };
 		0C8113642F7748D3B1935B14 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8675E2CF325F9739D0160 /* Brand.swift */; };
+		TH3M31C12D3456789ABCDEF1 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = TH3M31C02D3456789ABCDEF0 /* Theme.swift */; };
 		134C6922F42442B5253E1085 /* FlowStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1687A6046E9653C8578F80 /* FlowStateService.swift */; };
 		1CBCF49235138427F6B7F392 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E947B22D92237B927C9DE0E /* ContentView.swift */; };
 		21C2B619EFAD1E292B37B1E1 /* AchievementBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */; };
@@ -135,6 +136,7 @@
 		D633C2E4B1DB7B270822CCD7 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		E2C27A4A486ED3067DF1769C /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
 		E6E8675E2CF325F9739D0160 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		TH3M31C02D3456789ABCDEF0 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR11Service.swift; sourceTree = "<group>"; };
 		F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCompleteView.swift; sourceTree = "<group>"; };
 		N0T1F1C570B8E8D7E9F2A3B14 /* SessionNoteSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionNoteSheet.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			children = (
 				A749C288E5597F383050F5CC /* Assets.xcassets */,
 				E6E8675E2CF325F9739D0160 /* Brand.swift */,
+				TH3M31C02D3456789ABCDEF0 /* Theme.swift */,
 				80531CF916E0193ACFBCDD7C /* Company.swift */,
 				422BDC31B910E2025F25D72E /* InvestorPitch.swift */,
 				D633C2E4B1DB7B270822CCD7 /* Mission.swift */,
@@ -380,6 +383,7 @@
 				21C2B619EFAD1E292B37B1E1 /* AchievementBadgeView.swift in Sources */,
 				5FA7800449463E49AB680A38 /* AchievementsView.swift in Sources */,
 				0C8113642F7748D3B1935B14 /* Brand.swift in Sources */,
+				TH3M31C12D3456789ABCDEF1 /* Theme.swift in Sources */,
 				55B1A4D3609414BB0F9C452C /* BreathingOrb.swift in Sources */,
 				43A6653D967FC59ABC91624E /* CadenceApp.swift in Sources */,
 				532FD20CEF843D4C29E46532 /* CadenceR11Service.swift in Sources */,

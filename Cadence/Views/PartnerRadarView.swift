@@ -29,6 +29,7 @@ struct PartnerRadarView: View {
 
                 // Action button
                 Button {
+                    Theme.hapticMedium()
                     isSearching = true
                     simulateSearch()
                 } label: {
@@ -36,13 +37,8 @@ struct PartnerRadarView: View {
                         Image(systemName: "antenna.radiowaves.left.and.right")
                         Text(partners.isEmpty ? "Find Focus Partners" : "Search for More")
                     }
-                    .font(.headline)
-                    .foregroundColor(.appBackground)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(Color.appPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
+                .buttonStyle(AxiomPrimaryButtonStyle())
                 .padding(.horizontal, 24)
                 .disabled(isSearching)
             }
@@ -229,9 +225,12 @@ struct PartnerRow: View {
 
             Spacer()
 
-            Button(action: onFocusWith) {
+            Button {
+                Theme.hapticMedium()
+                onFocusWith()
+            } label: {
                 Text("Focus")
-                    .font(.caption)
+                    .font(.appCaption)
                     .fontWeight(.semibold)
                     .foregroundColor(Color.appPrimary)
                     .padding(.horizontal, 16)
@@ -271,22 +270,18 @@ struct InvitePartnerSheet: View {
 
                     TextField("Enter invite code", text: $inviteCode)
                         .textFieldStyle(.plain)
-                        .font(.body)
+                        .font(.appBody)
                         .padding(16)
                         .background(Color.appSurface)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
 
                     Button {
+                        Theme.hapticMedium()
                         dismiss()
                     } label: {
                         Text("Connect")
-                            .font(.headline)
-                            .foregroundColor(Color.appBackground)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(inviteCode.isEmpty ? Color.appTextTertiary : Color.appPrimary)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
+                    .buttonStyle(AxiomPrimaryButtonStyle())
                     .disabled(inviteCode.isEmpty)
 
                     Spacer()
@@ -297,7 +292,12 @@ struct InvitePartnerSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { dismiss() }
+                    Button {
+                        Theme.haptic(.light)
+                        dismiss()
+                    } label: {
+                        Text("Done")
+                    }
                         .foregroundColor(Color.appPrimary)
                 }
             }

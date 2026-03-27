@@ -82,38 +82,26 @@ struct TeamView: View {
 
             VStack(spacing: Spacing.sm) {
                 Button {
+                    Theme.hapticMedium()
                     showJoinTeam = true
                 } label: {
                     HStack {
                         Image(systemName: "link")
                         Text("Join with Code")
                     }
-                    .font(.appHeading2)
-                    .foregroundStyle(Color.appBackground)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, Spacing.md)
-                    .background(Color.appPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
+                .buttonStyle(AxiomPrimaryButtonStyle())
 
                 Button {
+                    Theme.haptic(.light)
                     showCreateTeam = true
                 } label: {
                     HStack {
                         Image(systemName: "plus.circle")
                         Text("Create Team")
                     }
-                    .font(.appHeading2)
-                    .foregroundStyle(Color.appPrimary)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, Spacing.md)
-                    .background(Color.appSurface)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.appPrimary.opacity(0.3), lineWidth: 1)
-                    )
                 }
+                .buttonStyle(AxiomSecondaryButtonStyle())
             }
             .padding(.horizontal, Spacing.md)
             .padding(.bottom, Spacing.xl)
@@ -201,11 +189,11 @@ struct TeamView: View {
 
                 GeometryReader { geometry in
                     ZStack(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: 4)
+                        RoundedRectangle(cornerRadius: CornerRadius.small)
                             .fill(Color.appSurface)
                             .frame(height: 8)
 
-                        RoundedRectangle(cornerRadius: 4)
+                        RoundedRectangle(cornerRadius: CornerRadius.small)
                             .fill(Color.appPrimary)
                             .frame(width: geometry.size.width * team.weeklyProgress, height: 8)
                     }
@@ -214,7 +202,7 @@ struct TeamView: View {
             }
             .padding(Spacing.md)
             .background(Color.appSurface)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
 
             // Stats grid
             HStack(spacing: Spacing.sm) {
@@ -234,13 +222,13 @@ struct TeamView: View {
                 .font(.appHeading2)
                 .foregroundStyle(Color.appTextPrimary)
             Text(label)
-                .font(.system(size: 10))
+                .font(.appCaption2)
                 .foregroundStyle(Color.appTextTertiary)
         }
         .frame(maxWidth: .infinity)
         .padding(Spacing.sm)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
     }
 
     private func membersSection(_ team: Team) -> some View {
@@ -276,6 +264,7 @@ struct TeamView: View {
                     .multilineTextAlignment(.center)
 
                 Button {
+                    Theme.hapticMedium()
                     teamService.startTeamSession(durationMinutes: 25, ambientSound: "rain")
                     showTeamSession = true
                 } label: {
@@ -283,13 +272,8 @@ struct TeamView: View {
                         Image(systemName: "play.fill")
                         Text("Start Team Session")
                     }
-                    .font(.appHeading2)
-                    .foregroundStyle(Color.appBackground)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, Spacing.md)
-                    .background(Color.appPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
+                .buttonStyle(AxiomPrimaryButtonStyle())
             }
             .padding(Spacing.lg)
             .background(Color.appSurface)
@@ -312,6 +296,7 @@ struct TeamView: View {
                 Spacer()
 
                 Button {
+                    Theme.haptic(.light)
                     showChallenges = true
                 } label: {
                     Image(systemName: "plus.circle")
@@ -385,9 +370,9 @@ struct TeamView: View {
                         if entry.streak > 0 {
                             HStack(spacing: 2) {
                                 Image(systemName: "flame.fill")
-                                    .font(.system(size: 10))
+                                    .font(.appCaption2)
                                 Text("\(entry.streak) day streak")
-                                    .font(.system(size: 10))
+                                    .font(.appCaption2)
                             }
                             .foregroundStyle(Color.appWarning)
                         }
@@ -408,6 +393,7 @@ struct TeamView: View {
 
     private var leaveTeamButton: some View {
         Button {
+            Theme.hapticNotification(.warning)
             teamService.leaveTeam()
         } label: {
             Text("Leave Team")
@@ -441,7 +427,7 @@ struct TeamMemberRow: View {
                         .foregroundStyle(Color.appTextPrimary)
                     if member.role == .admin {
                         Text("Admin")
-                            .font(.system(size: 10))
+                            .font(.appCaption2)
                             .foregroundStyle(Color.appPrimary)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
@@ -453,9 +439,9 @@ struct TeamMemberRow: View {
                     if member.streak > 0 {
                         HStack(spacing: 2) {
                             Image(systemName: "flame.fill")
-                                .font(.system(size: 10))
+                                .font(.appCaption2)
                             Text("\(member.streak) day")
-                                .font(.system(size: 11))
+                                .font(.appCaption2)
                         }
                         .foregroundStyle(Color.appWarning)
                     }
@@ -469,13 +455,13 @@ struct TeamMemberRow: View {
                     .font(.appHeading2)
                     .foregroundStyle(Color.appTextPrimary)
                 Text("this week")
-                    .font(.system(size: 10))
+                    .font(.appCaption2)
                     .foregroundStyle(Color.appTextTertiary)
             }
         }
         .padding(Spacing.sm)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
     }
 }
 
@@ -497,19 +483,15 @@ struct CreateTeamSheet: View {
                 .font(.appBody)
                 .padding(Spacing.md)
                 .background(Color.appSurface)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
 
             Button {
+                Theme.hapticMedium()
                 onCreate()
             } label: {
                 Text("Create")
-                    .font(.appHeading2)
-                    .foregroundStyle(Color.appBackground)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, Spacing.md)
-                    .background(teamName.isEmpty ? Color.appTextTertiary : Color.appPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
             }
+            .buttonStyle(AxiomPrimaryButtonStyle())
             .disabled(teamName.isEmpty)
 
             Spacer()
@@ -540,19 +522,15 @@ struct JoinTeamSheet: View {
                 .multilineTextAlignment(.center)
                 .padding(Spacing.md)
                 .background(Color.appSurface)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
 
             Button {
+                Theme.hapticMedium()
                 onJoin()
             } label: {
                 Text("Join")
-                    .font(.appHeading2)
-                    .foregroundStyle(Color.appBackground)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, Spacing.md)
-                    .background(teamCode.isEmpty ? Color.appTextTertiary : Color.appPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
             }
+            .buttonStyle(AxiomPrimaryButtonStyle())
             .disabled(teamCode.isEmpty)
 
             Spacer()

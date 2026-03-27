@@ -63,7 +63,7 @@ struct SessionNoteSheet: View {
                         .font(.appHeading2)
                         .foregroundStyle(Color.appPrimary)
                     Text("min")
-                        .font(.system(size: 10))
+                        .font(.appCaption2)
                         .foregroundStyle(Color.appPrimary)
                 }
             }
@@ -89,15 +89,15 @@ struct SessionNoteSheet: View {
         }
         .padding(Spacing.md)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
     }
 
     private var scoreBadge: some View {
         HStack(spacing: 2) {
             Image(systemName: "star.fill")
-                .font(.system(size: 10))
+                .font(.appCaption2)
             Text("\(session.focusScore)")
-                .font(.system(size: 11))
+                .font(.appCaption)
         }
         .foregroundStyle(scoreColor)
         .padding(.horizontal, 6)
@@ -111,15 +111,15 @@ struct SessionNoteSheet: View {
             if let firstSound = session.soundIds.first,
                let sound = Sound.allSounds.first(where: { $0.id == firstSound }) {
                 Image(systemName: sound.icon)
-                    .font(.system(size: 10))
+                    .font(.appCaption2)
                 Text(sound.name)
-                    .font(.system(size: 11))
+                    .font(.appCaption)
             }
         }
         .foregroundStyle(Color.appTextSecondary)
         .padding(.horizontal, 6)
         .padding(.vertical, 3)
-        .background(Color.appSurfaceElevated)
+        .background(Color.backgroundElevated2)
         .clipShape(Capsule())
     }
 
@@ -146,7 +146,7 @@ struct SessionNoteSheet: View {
                 .frame(minHeight: 120)
                 .padding(Spacing.sm)
                 .background(Color.appSurface)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
                 .overlay(
                     Group {
                         if notes.isEmpty {
@@ -164,7 +164,7 @@ struct SessionNoteSheet: View {
                 .accessibilityHint("Describe what you worked on during this focus session")
 
             Text("\(notes.count) characters")
-                .font(.system(size: 11))
+                .font(.appCaption)
                 .foregroundStyle(Color.appTextTertiary)
         }
     }
@@ -192,6 +192,7 @@ struct SessionNoteSheet: View {
     private func tagChip(_ tag: SessionTag) -> some View {
         let isSelected = selectedTags.contains(tag.rawValue)
         return Button {
+            Theme.hapticSelection()
             withAnimation(.spring(response: 0.2, dampingFraction: 0.8)) {
                 if isSelected {
                     selectedTags.remove(tag.rawValue)
@@ -202,7 +203,7 @@ struct SessionNoteSheet: View {
         } label: {
             HStack(spacing: Spacing.xxs) {
                 Image(systemName: tag.icon)
-                    .font(.system(size: 11))
+                    .font(.appCaption)
                 Text(tag.rawValue)
                     .font(.appCaption)
             }
@@ -213,7 +214,7 @@ struct SessionNoteSheet: View {
             .clipShape(Capsule())
             .overlay(
                 Capsule()
-                    .stroke(isSelected ? Color.clear : Color.appSurfaceElevated, lineWidth: 1)
+                    .stroke(isSelected ? Color.clear : Color.backgroundElevated2, lineWidth: 1)
             )
         }
         .accessibilityLabel("\(tag.rawValue), \(isSelected ? "selected" : "not selected")")
@@ -223,6 +224,7 @@ struct SessionNoteSheet: View {
 
     private var saveButton: some View {
         Button {
+            Theme.hapticMedium()
             saveNote()
         } label: {
             HStack {
@@ -240,7 +242,7 @@ struct SessionNoteSheet: View {
             .frame(maxWidth: .infinity)
             .padding(.vertical, Spacing.md)
             .background(hasSaved ? Color.appSuccess : Color.appPrimary)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
         }
         .disabled(isSaving || hasSaved)
     }

@@ -52,6 +52,7 @@ struct FocusHistoryView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    Theme.haptic(.light)
                     showFilters.toggle()
                 } label: {
                     Image(systemName: hasActiveFilters ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
@@ -158,7 +159,7 @@ struct FocusHistoryView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(Spacing.md)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
     }
 
     // MARK: - Weekly Chart
@@ -220,7 +221,7 @@ struct FocusHistoryView: View {
         }
         .padding(Spacing.md)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
     }
 
     // MARK: - Active Filters Bar
@@ -246,13 +247,14 @@ struct FocusHistoryView: View {
                     }
                 }
                 Button {
+                    Theme.haptic(.light)
                     filterMinScore = 0
                     filterSoundId = nil
                     filterHasPartner = nil
                     searchText = ""
                 } label: {
                     Text("Clear All")
-                        .font(.system(size: 11))
+                        .font(.appCaption)
                         .foregroundStyle(Color.appError)
                 }
             }
@@ -262,8 +264,11 @@ struct FocusHistoryView: View {
     private func filterChip(label: String, active: Bool, onRemove: @escaping () -> Void) -> some View {
         HStack(spacing: 4) {
             Text(label)
-                .font(.system(size: 11))
-            Button(action: onRemove) {
+                .font(.appCaption)
+            Button {
+                Theme.haptic(.light)
+                onRemove()
+            } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 8))
             }
@@ -336,9 +341,9 @@ struct FocusHistoryView: View {
                                let sound = Sound.allSounds.first(where: { $0.id == firstSound }) {
                                 HStack(spacing: 2) {
                                     Image(systemName: sound.icon)
-                                        .font(.system(size: 9))
+                                        .font(.appCaption2)
                                     Text(sound.name)
-                                        .font(.system(size: 10))
+                                        .font(.appCaption2)
                                 }
                                 .foregroundStyle(Color.appTextTertiary)
                             }
@@ -348,9 +353,9 @@ struct FocusHistoryView: View {
                         if session.partnerId != nil {
                             HStack(spacing: 2) {
                                 Image(systemName: "person.2.fill")
-                                    .font(.system(size: 9))
+                                    .font(.appCaption2)
                                 Text("Partner")
-                                    .font(.system(size: 10))
+                                    .font(.appCaption2)
                             }
                             .foregroundStyle(Color.appAccent)
                         }
@@ -417,7 +422,7 @@ struct FocusHistoryView: View {
         }
         .padding(Spacing.sm)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
         .accessibilityElement(children: .combine)
         .accessibilityLabel(accessibilityLabel(for: session, note: note))
     }
@@ -481,16 +486,12 @@ struct FocusHistoryView: View {
                         .multilineTextAlignment(.center)
 
                     Button {
+                        Theme.hapticMedium()
                         clearFilters()
                     } label: {
                         Text("Clear Filters")
-                            .font(.appHeading2)
-                            .foregroundStyle(Color.appBackground)
-                            .padding(.horizontal, Spacing.lg)
-                            .padding(.vertical, Spacing.sm)
-                            .background(Color.appPrimary)
-                            .clipShape(Capsule())
                     }
+                    .buttonStyle(AxiomPrimaryButtonStyle())
                 } else {
                     Text("Complete your first focus session to see your history here.")
                         .font(.appCaption)
@@ -518,16 +519,12 @@ struct FocusHistoryView: View {
                 .font(.appCaption)
                 .foregroundStyle(Color.appTextSecondary)
             Button {
+                Theme.hapticMedium()
                 Task { await loadSessions() }
             } label: {
                 Text("Try Again")
-                    .font(.appHeading2)
-                    .foregroundStyle(Color.appBackground)
-                    .padding(.horizontal, Spacing.lg)
-                    .padding(.vertical, Spacing.sm)
-                    .background(Color.appPrimary)
-                    .clipShape(Capsule())
             }
+            .buttonStyle(AxiomPrimaryButtonStyle())
             Spacer()
         }
     }
@@ -565,7 +562,7 @@ struct FocusHistoryView: View {
                         }
                         .padding(Spacing.md)
                         .background(Color.appSurface)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
 
                         // Sound filter
                         VStack(alignment: .leading, spacing: Spacing.sm) {
@@ -584,7 +581,7 @@ struct FocusHistoryView: View {
                         }
                         .padding(Spacing.md)
                         .background(Color.appSurface)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
 
                         // Partner filter
                         VStack(alignment: .leading, spacing: Spacing.sm) {
@@ -600,11 +597,12 @@ struct FocusHistoryView: View {
                         }
                         .padding(Spacing.md)
                         .background(Color.appSurface)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
 
                         // Clear filters
                         if hasActiveFilters {
                             Button {
+                                Theme.hapticNotification(.warning)
                                 clearFilters()
                             } label: {
                                 Text("Clear All Filters")
@@ -613,7 +611,7 @@ struct FocusHistoryView: View {
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, Spacing.md)
                                     .background(Color.appSurface)
-                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                    .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
                             }
                         }
                     }
@@ -624,10 +622,13 @@ struct FocusHistoryView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") {
+                    Button {
+                        Theme.haptic(.light)
                         showFilters = false
+                    } label: {
+                        Text("Done")
+                            .foregroundStyle(Color.appPrimary)
                     }
-                    .foregroundStyle(Color.appPrimary)
                 }
             }
         }
@@ -637,12 +638,13 @@ struct FocusHistoryView: View {
 
     private func soundFilterChip(sound: Sound?, label: String) -> some View {
         Button {
+            Theme.hapticSelection()
             filterSoundId = sound?.id
         } label: {
             HStack(spacing: 4) {
                 if let sound = sound {
                     Image(systemName: sound.icon)
-                        .font(.system(size: 11))
+                        .font(.appCaption)
                 }
                 Text(label)
                     .font(.appCaption)
@@ -650,13 +652,14 @@ struct FocusHistoryView: View {
             .foregroundStyle(filterSoundId == sound?.id ? Color.appBackground : Color.appTextSecondary)
             .padding(.horizontal, Spacing.sm)
             .padding(.vertical, Spacing.xs)
-            .background(filterSoundId == sound?.id ? Color.appPrimary : Color.appSurfaceElevated)
+            .background(filterSoundId == sound?.id ? Color.appPrimary : Color.backgroundElevated2)
             .clipShape(Capsule())
         }
     }
 
     private func partnerFilterChip(value: Bool?, label: String) -> some View {
         Button {
+            Theme.hapticSelection()
             filterHasPartner = value
         } label: {
             Text(label)
@@ -664,7 +667,7 @@ struct FocusHistoryView: View {
                 .foregroundStyle(filterHasPartner == value ? Color.appBackground : Color.appTextSecondary)
                 .padding(.horizontal, Spacing.sm)
                 .padding(.vertical, Spacing.xs)
-                .background(filterHasPartner == value ? Color.appPrimary : Color.appSurfaceElevated)
+                .background(filterHasPartner == value ? Color.appPrimary : Color.backgroundElevated2)
                 .clipShape(Capsule())
         }
     }

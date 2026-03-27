@@ -47,6 +47,7 @@ struct LeaderboardView: View {
             HStack(spacing: 0) {
                 ForEach(LeaderboardTab.allCases, id: \.self) { tab in
                     Button {
+                        Theme.hapticSelection()
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             selectedTab = tab
                         }
@@ -133,9 +134,9 @@ struct LeaderboardView: View {
         }
         .padding(Spacing.md)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: CornerRadius.large)
                 .stroke(Color.appPrimary.opacity(0.2), lineWidth: 1)
         )
     }
@@ -149,7 +150,7 @@ struct LeaderboardView: View {
                 .font(.appHeading2)
                 .foregroundStyle(Color.appTextPrimary)
             Text(label)
-                .font(.system(size: 10))
+                .font(.appCaption2)
                 .foregroundStyle(Color.appTextTertiary)
         }
         .frame(maxWidth: .infinity)
@@ -188,7 +189,8 @@ struct LeaderboardView: View {
                 .lineLimit(1)
 
             Text("\(entry.weeklyMinutes)m")
-                .font(.system(size: 11, weight: .medium))
+                .font(.appCaption)
+                .fontWeight(.medium)
                 .foregroundStyle(Color.appTextSecondary)
 
             RoundedRectangle(cornerRadius: 4)
@@ -236,9 +238,9 @@ struct LeaderboardRow: View {
                 if entry.streak > 0 {
                     HStack(spacing: 2) {
                         Image(systemName: "flame.fill")
-                            .font(.system(size: 10))
+                            .font(.appCaption2)
                         Text("\(entry.streak)")
-                            .font(.system(size: 10))
+                            .font(.appCaption2)
                     }
                     .foregroundStyle(Color.appWarning)
                 }
@@ -258,9 +260,9 @@ struct LeaderboardRow: View {
         }
         .padding(Spacing.sm)
         .background(entry.isCurrentUser ? Color.appPrimary.opacity(0.08) : Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
         .overlay(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: CornerRadius.medium)
                 .stroke(entry.isCurrentUser ? Color.appPrimary.opacity(0.3) : Color.clear, lineWidth: 1)
         )
     }

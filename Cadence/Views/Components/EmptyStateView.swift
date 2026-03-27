@@ -36,7 +36,10 @@ struct EmptyStateView: View {
             }
 
             if let actionTitle = actionTitle, let action = action {
-                Button(action: action) {
+                Button {
+                    Theme.hapticMedium()
+                    action()
+                } label: {
                     Text(actionTitle)
                         .font(.appHeading2)
                         .foregroundStyle(Color.appBackground)

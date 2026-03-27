@@ -72,20 +72,21 @@ struct MatchFoundSheet: View {
 
             // Actions
             VStack(spacing: Spacing.sm) {
-                Button(action: onConfirm) {
+                Button {
+                    Theme.hapticMedium()
+                    onConfirm()
+                } label: {
                     HStack {
                         Image(systemName: "play.fill")
                         Text("Start Together")
                     }
-                    .font(.appHeading2)
-                    .foregroundStyle(Color.appBackground)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, Spacing.md)
-                    .background(Color.appPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
+                .buttonStyle(AxiomPrimaryButtonStyle())
 
-                Button(action: onCancel) {
+                Button {
+                    Theme.haptic(.light)
+                    onCancel()
+                } label: {
                     Text("Find Someone Else")
                         .font(.appBody)
                         .foregroundStyle(Color.appTextSecondary)
@@ -155,7 +156,10 @@ struct MatchQueueView: View {
                 }
             }
 
-            Button(action: onCancel) {
+            Button {
+                Theme.haptic(.light)
+                onCancel()
+            } label: {
                 Text("Cancel")
                     .font(.appBody)
                     .foregroundStyle(Color.appError)

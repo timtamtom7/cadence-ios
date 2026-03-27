@@ -63,6 +63,7 @@ struct UpgradeSheet: View {
 
                         // CTA Button
                         Button {
+                            Theme.hapticMedium()
                             purchaseSelectedTier()
                         } label: {
                             HStack {
@@ -76,12 +77,8 @@ struct UpgradeSheet: View {
                                         .fontWeight(.regular)
                                 }
                             }
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.appPrimary)
-                            .foregroundStyle(Color.appBackground)
-                            .cornerRadius(16)
                         }
+                        .buttonStyle(AxiomPrimaryButtonStyle())
                         .disabled(isLoading)
                         .padding(.horizontal)
 
@@ -139,7 +136,7 @@ struct TierCard: View {
                                 .padding(.vertical, 2)
                                 .background(Color.appAccent.opacity(0.2))
                                 .foregroundStyle(Color.appAccent)
-                                .cornerRadius(4)
+                                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.small))
                         }
                     }
 
@@ -157,10 +154,10 @@ struct TierCard: View {
             .padding()
             .background(isSelected ? Color.appPrimary.opacity(0.1) : Color.appSurface)
             .overlay(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: CornerRadius.large)
                     .stroke(isSelected ? Color.appPrimary : Color.clear, lineWidth: 2)
             )
-            .cornerRadius(16)
+            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
         }
         .buttonStyle(.plain)
     }

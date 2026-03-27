@@ -65,7 +65,7 @@ struct ChallengesView: View {
             .frame(maxWidth: .infinity)
 
             Divider()
-                .background(Color.appSurfaceElevated)
+                .background(Color.separator)
                 .frame(height: 40)
 
             VStack(spacing: Spacing.xs) {
@@ -80,7 +80,7 @@ struct ChallengesView: View {
         }
         .padding(Spacing.lg)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
     }
 
     private var activeChallengesSection: some View {
@@ -141,9 +141,9 @@ struct ChallengeCard: View {
 
                         HStack(spacing: 2) {
                             Image(systemName: "star.fill")
-                                .font(.system(size: 10))
+                                .font(.appCaption2)
                             Text("\(challenge.rewardXP) XP")
-                                .font(.system(size: 11))
+                                .font(.appCaption)
                         }
                         .foregroundStyle(Color.appAccent)
                     }
@@ -158,11 +158,11 @@ struct ChallengeCard: View {
             VStack(alignment: .leading, spacing: Spacing.xxs) {
                 GeometryReader { geo in
                     ZStack(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.appSurfaceElevated)
+                        RoundedRectangle(cornerRadius: CornerRadius.small)
+                            .fill(Color.separator)
                             .frame(height: 8)
 
-                        RoundedRectangle(cornerRadius: 4)
+                        RoundedRectangle(cornerRadius: CornerRadius.small)
                             .fill(challenge.isCompleted ? Color.appSuccess : Color.appPrimary)
                             .frame(width: geo.size.width * challenge.progress, height: 8)
                     }
@@ -171,7 +171,7 @@ struct ChallengeCard: View {
 
                 HStack {
                     Text(challenge.progressText)
-                        .font(.system(size: 11))
+                        .font(.appCaption)
                         .foregroundStyle(Color.appTextSecondary)
 
                     Spacer()
@@ -179,14 +179,14 @@ struct ChallengeCard: View {
                     if challenge.isCompleted {
                         HStack(spacing: 2) {
                             Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 11))
+                                .font(.appCaption)
                             Text("Completed")
-                                .font(.system(size: 11))
+                                .font(.appCaption)
                         }
                         .foregroundStyle(Color.appSuccess)
                     } else {
                         Text("\(Int(challenge.progress * 100))%")
-                            .font(.system(size: 11))
+                            .font(.appCaption)
                             .foregroundStyle(Color.appPrimary)
                     }
                 }
@@ -194,9 +194,9 @@ struct ChallengeCard: View {
         }
         .padding(Spacing.md)
         .background(challenge.isCompleted ? Color.appSuccess.opacity(0.05) : Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: CornerRadius.large)
                 .stroke(challenge.isCompleted ? Color.appSuccess.opacity(0.2) : Color.appPrimary.opacity(0.1), lineWidth: 1)
         )
     }

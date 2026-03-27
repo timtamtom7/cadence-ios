@@ -101,7 +101,7 @@ struct AchievementDetailCard: View {
 
                 if let earnedAt = achievement.earnedAt, achievement.isEarned {
                     Text("Earned \(earnedAt.formatted(.relative(presentation: .named)))")
-                        .font(.system(size: 10))
+                        .font(.appCaption2)
                         .foregroundStyle(Color.appPrimary)
                 }
             }
@@ -115,7 +115,7 @@ struct AchievementDetailCard: View {
         }
         .padding(Spacing.md)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
     }
 }
 

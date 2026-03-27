@@ -74,7 +74,7 @@ struct SettingsView: View {
             }
             .padding(Spacing.md)
             .background(Color.appSurface)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
         }
     }
 
@@ -99,7 +99,7 @@ struct SettingsView: View {
                 .padding(Spacing.md)
 
                 Divider()
-                    .background(Color.appSurfaceElevated)
+                    .background(Color.separator)
 
                 HStack {
                     Image(systemName: "bell.fill")
@@ -118,13 +118,13 @@ struct SettingsView: View {
 
                 if profile.notificationsEnabled {
                     Divider()
-                        .background(Color.appSurfaceElevated)
+                        .background(Color.separator)
 
                     weeklyDigestRow
                 }
             }
             .background(Color.appSurface)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
         }
     }
 
@@ -157,6 +157,7 @@ struct SettingsView: View {
             if profile.weeklyDigestEnabled {
                 // Day selector
                 Button {
+                    Theme.haptic(.light)
                     showDigestDayPicker = true
                 } label: {
                     HStack {
@@ -171,7 +172,7 @@ struct SettingsView: View {
                             .font(.appCaption)
                             .foregroundStyle(Color.appPrimary)
                         Image(systemName: "chevron.right")
-                            .font(.system(size: 11))
+                            .font(.appCaption2)
                             .foregroundStyle(Color.appTextTertiary)
                     }
                     .padding(.horizontal, Spacing.md)
@@ -181,6 +182,7 @@ struct SettingsView: View {
 
                 // Time selector
                 Button {
+                    Theme.haptic(.light)
                     showDigestTimePicker = true
                 } label: {
                     HStack {
@@ -195,7 +197,7 @@ struct SettingsView: View {
                             .font(.appCaption)
                             .foregroundStyle(Color.appPrimary)
                         Image(systemName: "chevron.right")
-                            .font(.system(size: 11))
+                            .font(.appCaption2)
                             .foregroundStyle(Color.appTextTertiary)
                     }
                     .padding(.horizontal, Spacing.md)
@@ -226,6 +228,7 @@ struct SettingsView: View {
                     ForEach(1...7, id: \.self) { day in
                         let dayName = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][day]
                         Button {
+                            Theme.hapticSelection()
                             profile.weeklyDigestWeekday = day
                             saveProfile()
                             showDigestDayPicker = false
@@ -242,7 +245,7 @@ struct SettingsView: View {
                             }
                             .padding(Spacing.md)
                             .background(Color.appSurface)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
                         }
                         .buttonStyle(.plain)
                     }
@@ -254,8 +257,13 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { showDigestDayPicker = false }
-                        .foregroundStyle(Color.appPrimary)
+                    Button {
+                        Theme.haptic(.light)
+                        showDigestDayPicker = false
+                    } label: {
+                        Text("Done")
+                            .foregroundStyle(Color.appPrimary)
+                    }
                 }
             }
         }
@@ -304,8 +312,13 @@ struct SettingsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { showDigestTimePicker = false }
-                        .foregroundStyle(Color.appPrimary)
+                    Button {
+                        Theme.haptic(.light)
+                        showDigestTimePicker = false
+                    } label: {
+                        Text("Done")
+                            .foregroundStyle(Color.appPrimary)
+                    }
                 }
             }
         }
@@ -335,11 +348,11 @@ struct SettingsView: View {
 
             VStack(spacing: 0) {
                 aboutRow(icon: "info.circle", label: "Version", value: "1.0.0")
-                Divider().background(Color.appSurfaceElevated)
+                Divider().background(Color.separator)
                 aboutRow(icon: "heart.fill", label: "Made with", value: "SwiftUI")
             }
             .background(Color.appSurface)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
         }
     }
 
@@ -350,6 +363,7 @@ struct SettingsView: View {
             sectionHeader("Data")
 
             Button {
+                Theme.hapticNotification(.warning)
                 showResetConfirmation = true
             } label: {
                 HStack {
@@ -362,7 +376,7 @@ struct SettingsView: View {
                 }
                 .padding(Spacing.md)
                 .background(Color.appSurface)
-                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
             }
         }
     }
@@ -438,7 +452,7 @@ struct AchievementRow: View {
         }
         .padding(Spacing.sm)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
     }
 }
 

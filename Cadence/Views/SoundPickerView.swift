@@ -97,6 +97,7 @@ struct SoundPickerView: View {
                 .foregroundStyle(Color.appTextPrimary)
 
             Button {
+                Theme.hapticMedium()
                 soundService.deactivateAll()
             } label: {
                 HStack(spacing: Spacing.md) {
@@ -127,9 +128,9 @@ struct SoundPickerView: View {
                 }
                 .padding(Spacing.sm)
                 .background(Color.appSurface)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: CornerRadius.medium)
                         .stroke(soundService.activeSoundCount == 0 ? Color.appPrimary.opacity(0.5) : Color.clear, lineWidth: 1)
                 )
             }
@@ -204,7 +205,10 @@ struct ActiveSoundCard: View {
                 }
             }
 
-            Button(action: onRemove) {
+            Button {
+                Theme.haptic(.light)
+                onRemove()
+            } label: {
                 Image(systemName: "xmark.circle.fill")
                     .font(.title3)
                     .foregroundStyle(Color.appTextTertiary)
@@ -212,9 +216,9 @@ struct ActiveSoundCard: View {
         }
         .padding(Spacing.sm)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
         .overlay(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: CornerRadius.medium)
                 .stroke(Color.appPrimary.opacity(0.3), lineWidth: 1)
         )
         .onAppear {
@@ -276,9 +280,9 @@ struct TimerBellToggle: View {
         }
         .padding(Spacing.sm)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
         .overlay(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: CornerRadius.medium)
                 .stroke(Color.appPrimary.opacity(0.3), lineWidth: 1)
         )
     }
@@ -290,10 +294,13 @@ struct SoundTile: View {
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        Button {
+            Theme.hapticSelection()
+            onTap()
+        } label: {
             VStack(spacing: Spacing.sm) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: CornerRadius.medium)
                         .fill(isActive ? Color.appPrimary.opacity(0.15) : Color.appSurface)
                         .frame(height: 80)
 
@@ -304,7 +311,8 @@ struct SoundTile: View {
 
                         if isActive {
                             Text("ON")
-                                .font(.system(size: 10, weight: .bold))
+                                .font(.appCaption2)
+                                .fontWeight(.bold)
                                 .foregroundStyle(Color.appPrimary)
                         }
                     }
@@ -316,7 +324,7 @@ struct SoundTile: View {
             }
         }
         .overlay(
-            RoundedRectangle(cornerRadius: 12)
+            RoundedRectangle(cornerRadius: CornerRadius.medium)
                 .stroke(isActive ? Color.appPrimary.opacity(0.5) : Color.clear, lineWidth: 1)
         )
     }

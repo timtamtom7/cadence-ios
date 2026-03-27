@@ -47,6 +47,8 @@ extension Color {
     static let appTextPrimary = Color(hex: "E8F7F3")
     static let appTextSecondary = Color(hex: "7AAEAA")
     static let appTextTertiary = Color(hex: "4A7A78")
+    /// Quaternary text — disabled, placeholder states (WCAG compliant minimum)
+    static let appTextQuaternary = Color(hex: "2A5A58")
     static let appError = Color(hex: "FF6B6B")
     static let appSuccess = Color(hex: "00D4AA")
     static let appWarning = Color(hex: "FFD93D")
@@ -100,6 +102,8 @@ extension Font {
     static let appHeading2 = Font.system(size: 20, weight: .medium, design: .default)
     static let appBody = Font.system(size: 17, weight: .regular, design: .default)
     static let appCaption = Font.system(size: 13, weight: .regular, design: .default)
+    /// Caption 2 — 11pt Regular (WCAG AA minimum for any text)
+    static let appCaption2 = Font.system(size: 11, weight: .regular, design: .default)
     static let appMono = Font.system(size: 15, weight: .regular, design: .monospaced)
 }
 

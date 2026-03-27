@@ -101,7 +101,7 @@ struct FocusTimerView: View {
         }
         .padding(Spacing.sm)
         .background(Color.appAccent.opacity(0.08))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.small))
     }
 
     private func statPill(icon: String, value: String, label: String) -> some View {
@@ -164,6 +164,7 @@ struct FocusTimerView: View {
     private func durationButton(_ duration: Int) -> some View {
         let isSelected = viewModel.selectedDuration == duration
         return Button {
+            Theme.hapticSelection()
             viewModel.selectedDuration = duration
         } label: {
             Text("\(duration)")
@@ -172,7 +173,7 @@ struct FocusTimerView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, Spacing.sm)
                 .background(isSelected ? Color.appPrimary : Color.appSurface)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
         }
     }
 
@@ -281,6 +282,7 @@ struct FocusTimerView: View {
             Spacer()
 
             Button {
+                Theme.haptic(.light)
                 viewModel.matchingService.stopSearching()
             } label: {
                 Text("Cancel")
@@ -290,7 +292,7 @@ struct FocusTimerView: View {
         }
         .padding(Spacing.md)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
     }
 
     // MARK: - Start Button
@@ -298,6 +300,7 @@ struct FocusTimerView: View {
     private var startButton: some View {
         VStack(spacing: Spacing.sm) {
             Button {
+                Theme.hapticMedium()
                 Task {
                     await viewModel.startMatchingSession()
                 }
@@ -306,13 +309,8 @@ struct FocusTimerView: View {
                     Image(systemName: "play.fill")
                     Text("Start Focus")
                 }
-                .font(.appHeading2)
-                .foregroundStyle(Color.appBackground)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, Spacing.md)
-                .background(Color.appPrimary)
-                .clipShape(RoundedRectangle(cornerRadius: 16))
             }
+            .buttonStyle(AxiomPrimaryButtonStyle())
             .disabled(viewModel.matchingService.isSearching)
 
             if let partner = viewModel.selectedPartner {
@@ -358,6 +356,7 @@ struct FocusTimerView: View {
 
             HStack(spacing: Spacing.xl) {
                 Button {
+                    Theme.hapticMedium()
                     viewModel.showCancelConfirmation = true
                 } label: {
                     Image(systemName: "xmark")
@@ -369,6 +368,7 @@ struct FocusTimerView: View {
                 }
 
                 Button {
+                    Theme.hapticSoft()
                     if viewModel.focusService.isPaused {
                         viewModel.resumeSession()
                     } else {
@@ -420,7 +420,10 @@ struct FocusModeCard: View {
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        Button {
+            Theme.hapticSelection()
+            onTap()
+        } label: {
             VStack(alignment: .leading, spacing: Spacing.xs) {
                 Image(systemName: mode.icon)
                     .font(.title2)
@@ -431,15 +434,15 @@ struct FocusModeCard: View {
                     .foregroundStyle(isSelected ? Color.appTextPrimary : Color.appTextSecondary)
 
                 Text(mode.description)
-                    .font(.system(size: 11))
+                    .font(.appCaption2)
                     .foregroundStyle(Color.appTextTertiary)
             }
             .frame(width: 100)
             .padding(Spacing.sm)
             .background(isSelected ? Color.appPrimary.opacity(0.1) : Color.appSurface)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
             .overlay(
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: CornerRadius.medium)
                     .stroke(isSelected ? Color.appPrimary.opacity(0.5) : Color.clear, lineWidth: 1)
             )
         }
@@ -483,6 +486,7 @@ struct PartnerDisconnectedSheet: View {
 
             VStack(spacing: Spacing.sm) {
                 Button {
+                    Theme.hapticMedium()
                     dismiss()
                     onReMatch()
                 } label: {
@@ -490,15 +494,11 @@ struct PartnerDisconnectedSheet: View {
                         Image(systemName: "arrow.triangle.2.circlepath")
                         Text("Find New Partner")
                     }
-                    .font(.appHeading2)
-                    .foregroundStyle(Color.appBackground)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, Spacing.md)
-                    .background(Color.appPrimary)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
+                .buttonStyle(AxiomPrimaryButtonStyle())
 
                 Button {
+                    Theme.haptic(.light)
                     dismiss()
                     onContinueSolo()
                 } label: {
@@ -524,7 +524,10 @@ struct SoundChip: View {
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        Button {
+            Theme.hapticSelection()
+            onTap()
+        } label: {
             HStack(spacing: Spacing.xs) {
                 Image(systemName: sound.icon)
                 Text(sound.name)
@@ -553,7 +556,10 @@ struct PartnerChip: View {
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        Button {
+            Theme.hapticSelection()
+            onTap()
+        } label: {
             VStack(spacing: Spacing.xs) {
                 ZStack {
                     Circle()
@@ -573,12 +579,12 @@ struct PartnerChip: View {
                     .foregroundStyle(Color.appTextPrimary)
 
                 Text(partner.status.displayText)
-                    .font(.system(size: 10))
+                    .font(.appCaption2)
                     .foregroundStyle(Color(hex: partner.status.color))
             }
             .padding(Spacing.sm)
             .background(isSelected ? Color.appSurfaceElevated : Color.appSurface)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
         }
     }
 }

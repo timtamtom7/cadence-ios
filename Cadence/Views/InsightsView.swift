@@ -86,7 +86,7 @@ struct InsightsView: View {
                 }
                 .padding()
                 .background(Color.appSurface)
-                .cornerRadius(16)
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
                 .padding(.horizontal)
 
                 // Goal progress
@@ -103,11 +103,11 @@ struct InsightsView: View {
 
                     GeometryReader { geometry in
                         ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.appSurfaceElevated)
+                            RoundedRectangle(cornerRadius: CornerRadius.small)
+                                .fill(Color.separator)
                                 .frame(height: 12)
 
-                            RoundedRectangle(cornerRadius: 8)
+                            RoundedRectangle(cornerRadius: CornerRadius.small)
                                 .fill(Color.appPrimary)
                                 .frame(width: geometry.size.width * stats.goalProgress, height: 12)
                         }
@@ -120,7 +120,7 @@ struct InsightsView: View {
                 }
                 .padding()
                 .background(Color.appSurface)
-                .cornerRadius(16)
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
                 .padding(.horizontal)
 
                 // Other stats
@@ -186,7 +186,7 @@ struct InsightsView: View {
                 }
                 .padding()
                 .background(Color.appSurface)
-                .cornerRadius(16)
+                .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
                 .padding(.horizontal)
 
                 // Streak info
@@ -236,7 +236,7 @@ struct InsightsView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.appSurfaceElevated)
-                    .cornerRadius(12)
+                    .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
 
                     VStack(spacing: 8) {
                         Image(systemName: "repeat")
@@ -252,7 +252,7 @@ struct InsightsView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.appSurfaceElevated)
-                    .cornerRadius(12)
+                    .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
                 }
             } else {
                 Text("Complete 5+ sessions to discover your pattern")
@@ -263,7 +263,7 @@ struct InsightsView: View {
         }
         .padding()
         .background(Color.appSurface)
-        .cornerRadius(16)
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
         .padding(.horizontal)
     }
 
@@ -288,7 +288,7 @@ struct InsightsView: View {
         }
         .padding()
         .background(Color.appSurface)
-        .cornerRadius(16)
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
         .padding(.horizontal)
     }
 
@@ -335,7 +335,7 @@ struct StatCard: View {
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.appSurface)
-        .cornerRadius(16)
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
     }
 }
 
@@ -359,7 +359,7 @@ struct SmallStatCard: View {
         .frame(maxWidth: .infinity)
         .padding(.vertical, 12)
         .background(Color.appSurface)
-        .cornerRadius(12)
+        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.medium))
     }
 }
 

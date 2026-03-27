@@ -36,7 +36,7 @@ struct GlassTabBar: View {
                     .foregroundStyle(isSelected ? Color.appPrimary : Color.appTextSecondary)
 
                 Text(tab.rawValue)
-                    .font(.system(size: 10, weight: .medium))
+                    .font(.appCaption2)
                     .foregroundStyle(isSelected ? Color.appPrimary : Color.appTextSecondary)
             }
             .frame(maxWidth: .infinity)
