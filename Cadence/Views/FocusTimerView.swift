@@ -315,8 +315,8 @@ struct FocusTimerView: View {
             }
             .disabled(viewModel.matchingService.isSearching)
 
-            if viewModel.selectedPartner != nil {
-                Text("You'll focus with \(viewModel.selectedPartner!.name)")
+            if let partner = viewModel.selectedPartner {
+                Text("You'll focus with \(partner.name)")
                     .font(.appCaption)
                     .foregroundStyle(Color.appTextSecondary)
             } else if viewModel.selectedSounds.isEmpty {
