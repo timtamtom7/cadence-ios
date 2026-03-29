@@ -28,6 +28,7 @@
 		8C612A9DFDFC13DDB1100E3A /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA48CDFD2E71C4D84D2ECF7A /* ExportService.swift */; };
 		90620FEFFCAB174F5246E4E6 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046453314A4BE458E2536EF5 /* Partner.swift */; };
 		A29091D0C9AFF2CA36343393 /* MacTeamFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9558923D41F02A3F5E0F41 /* MacTeamFocusView.swift */; };
+		BAE570A74D6546E3074CDF7E /* AIFocusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57C694EA837324908EFFDF5 /* AIFocusService.swift */; };
 		C16FCA85EE9B6E49776F0C4A /* MacNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D62104E2491D45A26CB37 /* MacNotificationService.swift */; };
 		CC497F263BA7992614DFEF60 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25048110D1E7BD5E32DE73 /* Achievement.swift */; };
 		CDB1C29F3D74F59AF0310928 /* CadenceMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55359F88EF94E02D5AB27C25 /* CadenceMenuBar.swift */; };
@@ -63,6 +64,7 @@
 		93FC4368F1B659AF2238C9AF /* FocusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusService.swift; sourceTree = "<group>"; };
 		99A397293D017952991C21B4 /* FocusPartnerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPartnerService.swift; sourceTree = "<group>"; };
 		9AFEA84D1CC557518EEFEE50 /* BreathingOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingOrb.swift; sourceTree = "<group>"; };
+		A57C694EA837324908EFFDF5 /* AIFocusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFocusService.swift; sourceTree = "<group>"; };
 		A94674F96B78E768E001D54B /* MacContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacContentView.swift; sourceTree = "<group>"; };
 		AA48CDFD2E71C4D84D2ECF7A /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
 		C86D62104E2491D45A26CB37 /* MacNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNotificationService.swift; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		02CFE3D7F20FB5A0B068D098 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A57C694EA837324908EFFDF5 /* AIFocusService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		1B7EBBC6DE381A0FA3B262BB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +139,7 @@
 				55359F88EF94E02D5AB27C25 /* CadenceMenuBar.swift */,
 				39B18DA106ED82F2E4D92549 /* MacFocusTogetherView.swift */,
 				C86D62104E2491D45A26CB37 /* MacNotificationService.swift */,
+				02CFE3D7F20FB5A0B068D098 /* Services */,
 				2A1B89CB9B995B001035218C /* Views */,
 			);
 			path = Sources;
@@ -243,6 +254,7 @@
 			files = (
 				1EBE21368AE29C5BA03D5B79 /* AICoachService.swift in Sources */,
 				5FCF4276CFE95D9437E2D2EB /* AICoachingService.swift in Sources */,
+				BAE570A74D6546E3074CDF7E /* AIFocusService.swift in Sources */,
 				D5761066A8C4C44946E03718 /* APIService.swift in Sources */,
 				CC497F263BA7992614DFEF60 /* Achievement.swift in Sources */,
 				11C7CEC3A8677E48879CAF02 /* AchievementBadgeView.swift in Sources */,
