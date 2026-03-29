@@ -26,7 +26,6 @@ targets:
       - path: ../Cadence/Services
         excludes:
           - "CadenceR11Service.swift"
-          - "CadenceR12Service.swift"
           - "FlowStateService.swift"
           - "NotificationService.swift"
           - "MatchingService.swift"

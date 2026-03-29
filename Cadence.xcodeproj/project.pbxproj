@@ -28,6 +28,7 @@
 		532FD20CEF843D4C29E46532 /* CadenceR11Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */; };
 		55B1A4D3609414BB0F9C452C /* BreathingOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E8A99283BFDACB9706B773 /* BreathingOrb.swift */; };
 		590A1E1EF1FC17FB39FAE8D0 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7BDFC43E37BC31B7797443 /* Team.swift */; };
+		5C0122FEA8764DA7959F2295 /* FocusPartnerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C2A95B7ECBAAAC03C528A /* FocusPartnerService.swift */; };
 		5FA7800449463E49AB680A38 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25114F977ECCC2FA78D13AC8 /* AchievementsView.swift */; };
 		6161ABD89E18E81145999A1F /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3FD1926D9C8180108748D5 /* Statistics.swift */; };
 		61A18B7E639B52BB6EDA19A3 /* R15-AwardsBrand.md in Resources */ = {isa = PBXBuildFile; fileRef = 639971444B6088AE6B77316E /* R15-AwardsBrand.md */; };
@@ -145,6 +146,7 @@
 		F58E67D00C1A2A6A28B08A48 /* R17-TeamCompany.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R17-TeamCompany.md"; sourceTree = "<group>"; };
 		FE3FD1926D9C8180108748D5 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyGoalRing.swift; sourceTree = "<group>"; };
+		FF7C2A95B7ECBAAAC03C528A /* FocusPartnerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPartnerService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -273,6 +275,7 @@
 				7E9EC46DECF522B5AB09EC1C /* DatabaseService.swift */,
 				A493BC4DD0AB0E31197AA85F /* ExportService.swift */,
 				4A1687A6046E9653C8578F80 /* FlowStateService.swift */,
+				FF7C2A95B7ECBAAAC03C528A /* FocusPartnerService.swift */,
 				1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */,
 				928F1A36CE16D746D07C6C18 /* FocusService.swift */,
 				CF272DA402225DB5CC06CF0E /* FreemiumService.swift */,
@@ -401,6 +404,7 @@
 				0513F9D8AFF926CF04577E2F /* ExportService.swift in Sources */,
 				134C6922F42442B5253E1085 /* FlowStateService.swift in Sources */,
 				CD725A8CB422AAE6091CA9BA /* FocusHistoryView.swift in Sources */,
+				5C0122FEA8764DA7959F2295 /* FocusPartnerService.swift in Sources */,
 				B943E5650BCB3982EBA683F4 /* FocusPredictionService.swift in Sources */,
 				BF6BF2876A996492DA97B8D4 /* FocusService.swift in Sources */,
 				901FB8ACE24C40798A2EC712 /* FocusTimerView.swift in Sources */,
