@@ -11,14 +11,21 @@
 		0513F9D8AFF926CF04577E2F /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A493BC4DD0AB0E31197AA85F /* ExportService.swift */; };
 		0C8113642F7748D3B1935B14 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6E8675E2CF325F9739D0160 /* Brand.swift */; };
 		134C6922F42442B5253E1085 /* FlowStateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1687A6046E9653C8578F80 /* FlowStateService.swift */; };
+		163B48EFABE1FDCB83F50CBC /* MacTeamFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F871AB7528DE4F6B3D2328D4 /* MacTeamFocusView.swift */; };
+		1C5F1214288CE104BB66E684 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB2169020A6900762AFE8A2 /* Theme.swift */; };
 		1CBCF49235138427F6B7F392 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E947B22D92237B927C9DE0E /* ContentView.swift */; };
+		1F40C697A05381B438F0C767 /* MacFocusSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B0EBE9C53EFDFA9170BFCB /* MacFocusSessionView.swift */; };
 		21C2B619EFAD1E292B37B1E1 /* AchievementBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */; };
 		2234EE549DBB586FEFC23700 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDA70A9F1D94A5499A54A2 /* Session.swift */; };
+		2315F20310A9561EE5D97B97 /* LAUNCH_CHECKLIST.md in Resources */ = {isa = PBXBuildFile; fileRef = 4D8ADE0B9F2B62DEBD78B1CB /* LAUNCH_CHECKLIST.md */; };
 		2454CFE177927E1CF41E3770 /* CadenceMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3961E6166E8EF9D1248CA71A /* CadenceMacApp.swift */; };
 		2531905D75109FA9AFFA6A3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BDA70A9F1D94A5499A54A2 /* Session.swift */; };
+		269CE342FCA8934C8097A72D /* APPSTORE.md in Resources */ = {isa = PBXBuildFile; fileRef = B3D3346D53C8C2251926F417 /* APPSTORE.md */; };
 		2E9373E3977B08A6820B3A41 /* R14-Cadence2.md in Resources */ = {isa = PBXBuildFile; fileRef = 5EAE64F69CB0C0B0A6C325DD /* R14-Cadence2.md */; };
+		2F390F77D22580A933785268 /* CadenceMac.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 8ADEED4D3016D1A425D631E1 /* CadenceMac.xcodeproj */; };
 		2F4FBDE851D54B016CEF3F69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A749C288E5597F383050F5CC /* Assets.xcassets */; };
 		31619F94FD7B9CCA5316A011 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 388D30C32C6462DA9D934BD1 /* PrivacyInfo.xcprivacy */; };
+		3507A947C841D763AB6A99BE /* CadenceMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A366F76F633ED068682BD52 /* CadenceMenuBar.swift */; };
 		39A0E690B3832A0A05E29A5D /* SessionCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */; };
 		3D1AFBC31D3B8FB5A2B94AE7 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18804812E1DAC9B4A7B9874 /* ShareSheet.swift */; };
 		3DD42B6A893679010016A6DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422C370C102B9B73A26F7B4A /* ContentView.swift */; };
@@ -28,11 +35,13 @@
 		44D7117816EA76D2A02467B0 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3FD1926D9C8180108748D5 /* Statistics.swift */; };
 		466B24088CFE595005797700 /* InvestorPitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422BDC31B910E2025F25D72E /* InvestorPitch.swift */; };
 		46E21F35E8100D960EFBED05 /* R18-Cadence3Vision.md in Resources */ = {isa = PBXBuildFile; fileRef = 803DACA001826D29F9317C24 /* R18-Cadence3Vision.md */; };
+		49EB9F0B05C6FF89D96ED9D8 /* MacFocusTogetherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEBDF22A4C4F5ADBB2754EC /* MacFocusTogetherView.swift */; };
 		4A91EFAE9BA7B330DEBA8173 /* UpgradeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2C9F59EED4A440D8E182B4 /* UpgradeSheet.swift */; };
 		528E0AAC5C60C9D43FBEF94A /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D729698A6C2028BC8E6B5 /* Partner.swift */; };
 		532FD20CEF843D4C29E46532 /* CadenceR11Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */; };
 		55B1A4D3609414BB0F9C452C /* BreathingOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E8A99283BFDACB9706B773 /* BreathingOrb.swift */; };
 		590A1E1EF1FC17FB39FAE8D0 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7BDFC43E37BC31B7797443 /* Team.swift */; };
+		5C0122FEA8764DA7959F2295 /* FocusPartnerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C2A95B7ECBAAAC03C528A /* FocusPartnerService.swift */; };
 		5D7011995CCA72707CDF21BA /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7BDFC43E37BC31B7797443 /* Team.swift */; };
 		5FA7800449463E49AB680A38 /* AchievementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25114F977ECCC2FA78D13AC8 /* AchievementsView.swift */; };
 		6161ABD89E18E81145999A1F /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3FD1926D9C8180108748D5 /* Statistics.swift */; };
@@ -44,10 +53,12 @@
 		71056E7658FBB916B14BA805 /* TeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30897791A03E694FDF3957C6 /* TeamView.swift */; };
 		71E98F985B9580BBB46A94D0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABCCA99066E21571EF867D4 /* SettingsView.swift */; };
 		74931245AD1508086A920593 /* R17-TeamCompany.md in Resources */ = {isa = PBXBuildFile; fileRef = F58E67D00C1A2A6A28B08A48 /* R17-TeamCompany.md */; };
+		77102D11C414D7012FE6E9C5 /* MacContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696A801DA32EAD7514973B5E /* MacContentView.swift */; };
 		8260D565CB71FD9834EF7BDC /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23317AB3E4C7A5BCFFABB6BC /* Achievement.swift */; };
 		8516642D98476148868431F1 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D729698A6C2028BC8E6B5 /* Partner.swift */; };
 		8734F8BE3719308176D329D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC7C6C423BC1820F72B286B5 /* Assets.xcassets */; };
 		879654BFBF2C3D928E2DEF00 /* R13-PlatformExpansion.md in Resources */ = {isa = PBXBuildFile; fileRef = 53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */; };
+		894AAF14D911CBBB42F56C51 /* CadenceShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D75EC838053AEC05C0B1C31F /* CadenceShared.swift */; };
 		89E8617C43FFA6EEE2986132 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80531CF916E0193ACFBCDD7C /* Company.swift */; };
 		901FB8ACE24C40798A2EC712 /* FocusTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24101AFF949184E310E897 /* FocusTimerView.swift */; };
 		905F26F3A31FBD01C3E2D108 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D633C2E4B1DB7B270822CCD7 /* Mission.swift */; };
@@ -64,18 +75,24 @@
 		B6D3E96282948EC9F5F1C186 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE6D5572221722DDAD9C69 /* Challenge.swift */; };
 		B943E5650BCB3982EBA683F4 /* FocusPredictionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */; };
 		BA92974BC1060FB3BD32D761 /* ChallengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C412B9F287112D8AF9892E /* ChallengesView.swift */; };
+		BBFE725D0A751BF4CB132B20 /* project.yml in Resources */ = {isa = PBXBuildFile; fileRef = 376819E5340FA6B69D7EA541 /* project.yml */; };
 		BDBD112585DBC411560D1689 /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357F0A8B0CBBE46F30B28767 /* SoundService.swift */; };
 		BF6BF2876A996492DA97B8D4 /* FocusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928F1A36CE16D746D07C6C18 /* FocusService.swift */; };
+		C01D644FA70516A4B0B9196F /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D7A548D4D8BE123655E1C4 /* MacSettingsView.swift */; };
 		C07F566ADDC4957211F8E460 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB244049E748E4E07F03FB11 /* LeaderboardView.swift */; };
 		C411DBBE95882F37AB19A20C /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A855007C4C872B40A6999994 /* EmptyStateView.swift */; };
+		C48BFF166503325A5A638178 /* MacStreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803128BE9EA8324C70D70FCC /* MacStreakView.swift */; };
 		CD725A8CB422AAE6091CA9BA /* FocusHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9C7980B969F8161B46666B /* FocusHistoryView.swift */; };
 		CDA2835CA8B4D7809B545ABC /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE6D5572221722DDAD9C69 /* Challenge.swift */; };
 		D0196625CAF59E8B1385DDB9 /* MatchFoundSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D095021B189952B26E14A784 /* MatchFoundSheet.swift */; };
+		D135A837C553057ACC9C17E6 /* FocusPartnerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7C2A95B7ECBAAAC03C528A /* FocusPartnerService.swift */; };
 		D8481EDD501245EDFCFB1079 /* CalendarExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC025F6F9E48A8570D46389B /* CalendarExportService.swift */; };
 		D8D977D917C2649538F00298 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC9461449E356EBAA95526 /* NotificationService.swift */; };
 		DA189F865D0B707FF2EE1542 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */; };
+		DAA2BE57C48A3653AB6D0C00 /* CadenceMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B36B3EA60270603C4D04D /* CadenceMacApp.swift */; };
 		DFADA680A13DB9CC0E66FD40 /* CadenceR12Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5788B280667C7975DD5AD97B /* CadenceR12Service.swift */; };
 		E306BA0709E933B0990EA908 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB477ECF3777E8EE358944C /* APIService.swift */; };
+		E3D04C52A6E342023C5F2962 /* MacNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210AB468B8DEEA7B78A892ED /* MacNotificationService.swift */; };
 		E6F5D98EB3506E42BEC1A623 /* GlassTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */; };
 		E7642295774AEE2028A39983 /* AICoachService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C53B2C50C68ED43B334D44 /* AICoachService.swift */; };
 		E81C9767423FECC20D8C2C89 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7F4D7573D17F9FD72B70FC /* TeamService.swift */; };
@@ -101,8 +118,10 @@
 		0EB477ECF3777E8EE358944C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0FEBDF4E374322EFC76636B9 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		149651A051C25858CDD683B0 /* R20-Legacy.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R20-Legacy.md"; sourceTree = "<group>"; };
+		1A366F76F633ED068682BD52 /* CadenceMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceMenuBar.swift; sourceTree = "<group>"; };
 		1AE9357B3F0F4F631DB0C3A1 /* GlassTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassTabBar.swift; sourceTree = "<group>"; };
 		1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPredictionService.swift; sourceTree = "<group>"; };
+		210AB468B8DEEA7B78A892ED /* MacNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNotificationService.swift; sourceTree = "<group>"; };
 		23317AB3E4C7A5BCFFABB6BC /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		25114F977ECCC2FA78D13AC8 /* AchievementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsView.swift; sourceTree = "<group>"; };
 		2747B5C0BD75EFECA1D2569B /* Cadence.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Cadence.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +131,7 @@
 		30897791A03E694FDF3957C6 /* TeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamView.swift; sourceTree = "<group>"; };
 		32E8A99283BFDACB9706B773 /* BreathingOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingOrb.swift; sourceTree = "<group>"; };
 		357F0A8B0CBBE46F30B28767 /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
+		376819E5340FA6B69D7EA541 /* project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = project.yml; sourceTree = "<group>"; };
 		388D30C32C6462DA9D934BD1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3961E6166E8EF9D1248CA71A /* CadenceMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceMacApp.swift; sourceTree = "<group>"; };
 		422BDC31B910E2025F25D72E /* InvestorPitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestorPitch.swift; sourceTree = "<group>"; };
@@ -119,6 +139,7 @@
 		434E0678479ECD514DBABEE4 /* R19-TeamCompany2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R19-TeamCompany2.md"; sourceTree = "<group>"; };
 		4598D404AEA996B6F1EF4E4C /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		4A1687A6046E9653C8578F80 /* FlowStateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowStateService.swift; sourceTree = "<group>"; };
+		4D8ADE0B9F2B62DEBD78B1CB /* LAUNCH_CHECKLIST.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LAUNCH_CHECKLIST.md; sourceTree = "<group>"; };
 		524713FDAB7AA90B60CF5C1E /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
 		53355D93DBF1EA76B174AFDC /* R13-PlatformExpansion.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R13-PlatformExpansion.md"; sourceTree = "<group>"; };
 		5788B280667C7975DD5AD97B /* CadenceR12Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR12Service.swift; sourceTree = "<group>"; };
@@ -126,17 +147,22 @@
 		5DBC9461449E356EBAA95526 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		5EAE64F69CB0C0B0A6C325DD /* R14-Cadence2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R14-Cadence2.md"; sourceTree = "<group>"; };
 		639971444B6088AE6B77316E /* R15-AwardsBrand.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R15-AwardsBrand.md"; sourceTree = "<group>"; };
+		66D7A548D4D8BE123655E1C4 /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
 		6768B68B4CCE6512D602A519 /* AchievementBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementBadgeView.swift; sourceTree = "<group>"; };
 		67D9EDD2B4231A57E1A2FB48 /* PartnerRadarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerRadarView.swift; sourceTree = "<group>"; };
+		696A801DA32EAD7514973B5E /* MacContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacContentView.swift; sourceTree = "<group>"; };
 		6F2C9F59EED4A440D8E182B4 /* UpgradeSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeSheet.swift; sourceTree = "<group>"; };
 		7148D903EA1D5F7499DED75F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		738321572C2A1E4AD9CCDDB7 /* SoundPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPickerView.swift; sourceTree = "<group>"; };
 		79F9CD103209F4F098ED75D0 /* MatchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingService.swift; sourceTree = "<group>"; };
 		7E9EC46DECF522B5AB09EC1C /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		803128BE9EA8324C70D70FCC /* MacStreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacStreakView.swift; sourceTree = "<group>"; };
 		803DACA001826D29F9317C24 /* R18-Cadence3Vision.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R18-Cadence3Vision.md"; sourceTree = "<group>"; };
 		80531CF916E0193ACFBCDD7C /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		8309BBA6DE3C3718E98D8DE8 /* AICoachingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICoachingService.swift; sourceTree = "<group>"; };
+		83B0EBE9C53EFDFA9170BFCB /* MacFocusSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFocusSessionView.swift; sourceTree = "<group>"; };
 		88C412B9F287112D8AF9892E /* ChallengesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesView.swift; sourceTree = "<group>"; };
+		8ADEED4D3016D1A425D631E1 /* CadenceMac.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CadenceMac.xcodeproj; sourceTree = "<group>"; };
 		920D729698A6C2028BC8E6B5 /* Partner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		928F1A36CE16D746D07C6C18 /* FocusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusService.swift; sourceTree = "<group>"; };
 		99E52A7C38C17FA5CFFEF5C1 /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
@@ -148,25 +174,56 @@
 		AB7F4D7573D17F9FD72B70FC /* TeamService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamService.swift; sourceTree = "<group>"; };
 		AC025F6F9E48A8570D46389B /* CalendarExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExportService.swift; sourceTree = "<group>"; };
 		B18804812E1DAC9B4A7B9874 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		B3D3346D53C8C2251926F417 /* APPSTORE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = APPSTORE.md; sourceTree = "<group>"; };
 		BB244049E748E4E07F03FB11 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
+		C56B36B3EA60270603C4D04D /* CadenceMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceMacApp.swift; sourceTree = "<group>"; };
 		C7C2C883C88ABF623FF04084 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CAEBDF22A4C4F5ADBB2754EC /* MacFocusTogetherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFocusTogetherView.swift; sourceTree = "<group>"; };
+		CBB2169020A6900762AFE8A2 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		CBFB23D715C3E615B138960E /* StatisticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsService.swift; sourceTree = "<group>"; };
 		CC7C6C423BC1820F72B286B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCD2468FAE7A89F2B18DEDAF /* CadenceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceApp.swift; sourceTree = "<group>"; };
 		CF272DA402225DB5CC06CF0E /* FreemiumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreemiumService.swift; sourceTree = "<group>"; };
 		D095021B189952B26E14A784 /* MatchFoundSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchFoundSheet.swift; sourceTree = "<group>"; };
 		D633C2E4B1DB7B270822CCD7 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		D75EC838053AEC05C0B1C31F /* CadenceShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceShared.swift; sourceTree = "<group>"; };
 		E2C27A4A486ED3067DF1769C /* InsightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsView.swift; sourceTree = "<group>"; };
 		E6E8675E2CF325F9739D0160 /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
 		E7BC3D1C8AD3ED42D12FB090 /* CadenceR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR11Service.swift; sourceTree = "<group>"; };
 		E838F69CC5D72C9CAF1BF94A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F127899DBA05418DB4AD7BCB /* SessionCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCompleteView.swift; sourceTree = "<group>"; };
 		F58E67D00C1A2A6A28B08A48 /* R17-TeamCompany.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "R17-TeamCompany.md"; sourceTree = "<group>"; };
+		F871AB7528DE4F6B3D2328D4 /* MacTeamFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacTeamFocusView.swift; sourceTree = "<group>"; };
 		FE3FD1926D9C8180108748D5 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		FEC762258E6149D81BB91166 /* WeeklyGoalRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyGoalRing.swift; sourceTree = "<group>"; };
+		FF7C2A95B7ECBAAAC03C528A /* FocusPartnerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPartnerService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0909DA10A181C5A22F4CE8A5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				696A801DA32EAD7514973B5E /* MacContentView.swift */,
+				83B0EBE9C53EFDFA9170BFCB /* MacFocusSessionView.swift */,
+				66D7A548D4D8BE123655E1C4 /* MacSettingsView.swift */,
+				803128BE9EA8324C70D70FCC /* MacStreakView.swift */,
+				F871AB7528DE4F6B3D2328D4 /* MacTeamFocusView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		093F2489BC1915B9D9E125EC /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				C56B36B3EA60270603C4D04D /* CadenceMacApp.swift */,
+				1A366F76F633ED068682BD52 /* CadenceMenuBar.swift */,
+				CAEBDF22A4C4F5ADBB2754EC /* MacFocusTogetherView.swift */,
+				210AB468B8DEEA7B78A892ED /* MacNotificationService.swift */,
+				0909DA10A181C5A22F4CE8A5 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
 		38668F2B6833978E10997367 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,9 +325,11 @@
 			children = (
 				A749C288E5597F383050F5CC /* Assets.xcassets */,
 				E6E8675E2CF325F9739D0160 /* Brand.swift */,
+				D75EC838053AEC05C0B1C31F /* CadenceShared.swift */,
 				80531CF916E0193ACFBCDD7C /* Company.swift */,
 				422BDC31B910E2025F25D72E /* InvestorPitch.swift */,
 				D633C2E4B1DB7B270822CCD7 /* Mission.swift */,
+				CBB2169020A6900762AFE8A2 /* Theme.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -324,6 +383,7 @@
 				7E9EC46DECF522B5AB09EC1C /* DatabaseService.swift */,
 				A493BC4DD0AB0E31197AA85F /* ExportService.swift */,
 				4A1687A6046E9653C8578F80 /* FlowStateService.swift */,
+				FF7C2A95B7ECBAAAC03C528A /* FocusPartnerService.swift */,
 				1C55EF103A0E6A83EF09FAA1 /* FocusPredictionService.swift */,
 				928F1A36CE16D746D07C6C18 /* FocusService.swift */,
 				CF272DA402225DB5CC06CF0E /* FreemiumService.swift */,
@@ -341,14 +401,27 @@
 			isa = PBXGroup;
 			children = (
 				E838F69CC5D72C9CAF1BF94A /* AppDelegate.swift */,
+				8ADEED4D3016D1A425D631E1 /* CadenceMac.xcodeproj */,
 				99E52A7C38C17FA5CFFEF5C1 /* DesignSystem.swift */,
 				7148D903EA1D5F7499DED75F /* Info.plist */,
+				4D8ADE0B9F2B62DEBD78B1CB /* LAUNCH_CHECKLIST.md */,
+				376819E5340FA6B69D7EA541 /* project.yml */,
 				BACEE59C7B3AD720D3BD0A78 /* App */,
+				F9A594B4114837D9E0C12E38 /* Marketing */,
 				B6652BAB321FF254BDE03819 /* Resources */,
+				093F2489BC1915B9D9E125EC /* Sources */,
 				85D49A8C4C614B4129785EC2 /* ViewModels */,
 				38668F2B6833978E10997367 /* Views */,
 			);
 			path = CadenceMac;
+			sourceTree = "<group>";
+		};
+		F9A594B4114837D9E0C12E38 /* Marketing */ = {
+			isa = PBXGroup;
+			children = (
+				B3D3346D53C8C2251926F417 /* APPSTORE.md */,
+			);
+			path = Marketing;
 			sourceTree = "<group>";
 		};
 		FD48710B608BE6A57DA448D7 /* Cadence */ = {
@@ -445,7 +518,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				269CE342FCA8934C8097A72D /* APPSTORE.md in Resources */,
 				8734F8BE3719308176D329D1 /* Assets.xcassets in Resources */,
+				2F390F77D22580A933785268 /* CadenceMac.xcodeproj in Resources */,
+				2315F20310A9561EE5D97B97 /* LAUNCH_CHECKLIST.md in Resources */,
+				BBFE725D0A751BF4CB132B20 /* project.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +561,7 @@
 				43A6653D967FC59ABC91624E /* CadenceApp.swift in Sources */,
 				532FD20CEF843D4C29E46532 /* CadenceR11Service.swift in Sources */,
 				DFADA680A13DB9CC0E66FD40 /* CadenceR12Service.swift in Sources */,
+				894AAF14D911CBBB42F56C51 /* CadenceShared.swift in Sources */,
 				D8481EDD501245EDFCFB1079 /* CalendarExportService.swift in Sources */,
 				CDA2835CA8B4D7809B545ABC /* Challenge.swift in Sources */,
 				BA92974BC1060FB3BD32D761 /* ChallengesView.swift in Sources */,
@@ -494,6 +572,7 @@
 				0513F9D8AFF926CF04577E2F /* ExportService.swift in Sources */,
 				134C6922F42442B5253E1085 /* FlowStateService.swift in Sources */,
 				CD725A8CB422AAE6091CA9BA /* FocusHistoryView.swift in Sources */,
+				5C0122FEA8764DA7959F2295 /* FocusPartnerService.swift in Sources */,
 				B943E5650BCB3982EBA683F4 /* FocusPredictionService.swift in Sources */,
 				BF6BF2876A996492DA97B8D4 /* FocusService.swift in Sources */,
 				901FB8ACE24C40798A2EC712 /* FocusTimerView.swift in Sources */,
@@ -525,6 +604,7 @@
 				590A1E1EF1FC17FB39FAE8D0 /* Team.swift in Sources */,
 				E81C9767423FECC20D8C2C89 /* TeamService.swift in Sources */,
 				71056E7658FBB916B14BA805 /* TeamView.swift in Sources */,
+				1C5F1214288CE104BB66E684 /* Theme.swift in Sources */,
 				4A91EFAE9BA7B330DEBA8173 /* UpgradeSheet.swift in Sources */,
 				04A43A9B3FA477C3DDB1D518 /* WeeklyGoalRing.swift in Sources */,
 			);
@@ -537,11 +617,21 @@
 				E9FAF2EA1D3BD3ACA31FD4D3 /* Achievement.swift in Sources */,
 				937BE93EF2AEF4CA2EF32892 /* AppDelegate.swift in Sources */,
 				2454CFE177927E1CF41E3770 /* CadenceMacApp.swift in Sources */,
+				DAA2BE57C48A3653AB6D0C00 /* CadenceMacApp.swift in Sources */,
+				3507A947C841D763AB6A99BE /* CadenceMenuBar.swift in Sources */,
 				B6D3E96282948EC9F5F1C186 /* Challenge.swift in Sources */,
 				3DD42B6A893679010016A6DB /* ContentView.swift in Sources */,
 				431FE1F494A0CA46C0441377 /* DatabaseService.swift in Sources */,
 				A4686154A2899D27AD3D80E0 /* DesignSystem.swift in Sources */,
+				D135A837C553057ACC9C17E6 /* FocusPartnerService.swift in Sources */,
+				77102D11C414D7012FE6E9C5 /* MacContentView.swift in Sources */,
+				1F40C697A05381B438F0C767 /* MacFocusSessionView.swift in Sources */,
+				49EB9F0B05C6FF89D96ED9D8 /* MacFocusTogetherView.swift in Sources */,
+				E3D04C52A6E342023C5F2962 /* MacNotificationService.swift in Sources */,
 				9ADF0B63ECE7EC3FC46CBA49 /* MacSessionViewModel.swift in Sources */,
+				C01D644FA70516A4B0B9196F /* MacSettingsView.swift in Sources */,
+				C48BFF166503325A5A638178 /* MacStreakView.swift in Sources */,
+				163B48EFABE1FDCB83F50CBC /* MacTeamFocusView.swift in Sources */,
 				528E0AAC5C60C9D43FBEF94A /* Partner.swift in Sources */,
 				2234EE549DBB586FEFC23700 /* Session.swift in Sources */,
 				6872B818DFCC2735CD5C2C75 /* Sound.swift in Sources */,
