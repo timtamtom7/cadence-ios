@@ -78,7 +78,7 @@ enum SessionTag: String, CaseIterable, Identifiable {
     }
 }
 
-struct UserProfile: Codable {
+struct UserProfile: Codable, Equatable {
     var username: String
     var dailyGoalMinutes: Int
     var notificationsEnabled: Bool

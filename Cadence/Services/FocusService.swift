@@ -1,6 +1,11 @@
 import Foundation
 import AVFoundation
+#if os(macOS)
+import AppKit
+#else
 import UIKit
+import AudioToolbox
+#endif
 
 @MainActor
 @Observable
@@ -159,13 +164,18 @@ class FocusService {
         }
 
         // Haptic feedback
+        #if !os(macOS)
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
+        #endif
     }
 
     private func playSystemBell() {
-        // System tink sound as fallback
+        #if os(macOS)
+        NSSound.beep()
+        #else
         AudioServicesPlaySystemSound(1007)
+        #endif
     }
 
     private func calculateFocusScore() -> Int {

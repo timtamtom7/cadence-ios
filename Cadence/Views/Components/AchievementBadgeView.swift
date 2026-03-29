@@ -115,7 +115,7 @@ struct AchievementDetailCard: View {
         }
         .padding(Spacing.md)
         .background(Color.appSurface)
-        .clipShape(RoundedRectangle(cornerRadius: CornerRadius.large))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }
 

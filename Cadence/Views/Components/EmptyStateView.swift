@@ -37,7 +37,9 @@ struct EmptyStateView: View {
 
             if let actionTitle = actionTitle, let action = action {
                 Button {
+                    #if !os(macOS)
                     Theme.hapticMedium()
+                    #endif
                     action()
                 } label: {
                     Text(actionTitle)
