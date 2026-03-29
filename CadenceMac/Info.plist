@@ -7,9 +7,9 @@
 	<key>CFBundleDisplayName</key>
 	<string>Cadence</string>
 	<key>CFBundleExecutable</key>
-	<string>CadenceMac</string>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.cadence.macos</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -20,12 +20,8 @@
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>15.0</string>
-	<key>NSHighResolutionCapable</key>
-	<true/>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>
