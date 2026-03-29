@@ -118,6 +118,8 @@ struct MacFocusSessionView: View {
                 .cornerRadius(12)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel("Start Focus Session")
+            .accessibilityHint("Begin a \(selectedDuration) minute focus session")
 
             Spacer()
         }
@@ -186,6 +188,8 @@ struct MacFocusSessionView: View {
                             .cornerRadius(8)
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Resume session")
+                    .accessibilityHint("Continue your focus session")
                 } else {
                     Button {
                         focusService.pause()
@@ -199,6 +203,8 @@ struct MacFocusSessionView: View {
                             .cornerRadius(8)
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Pause session")
+                    .accessibilityHint("Pause your focus session")
                 }
 
                 Button {
@@ -213,6 +219,8 @@ struct MacFocusSessionView: View {
                         .cornerRadius(8)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("End session")
+                .accessibilityHint("Stop and end your focus session")
             }
 
             Spacer()
@@ -247,6 +255,8 @@ struct DurationButton: View {
             .cornerRadius(10)
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("\(minutes) minutes")
+        .accessibilityHint("Select \(minutes) minute session duration")
     }
 }
 
@@ -404,6 +414,8 @@ struct MacSessionCompleteView: View {
                     .cornerRadius(10)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel("Done")
+            .accessibilityHint("Close the session complete view")
         }
         .padding(Spacing.xl)
         .frame(width: 360, height: 400)

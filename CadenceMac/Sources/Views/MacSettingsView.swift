@@ -132,6 +132,8 @@ struct MacSettingsView: View {
                                         .cornerRadius(6)
                                 }
                                 .buttonStyle(.plain)
+                                .accessibilityLabel("Export data")
+                                .accessibilityHint("Export your focus session data as JSON")
                             }
 
                             SettingsDivider()
