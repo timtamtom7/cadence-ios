@@ -3,7 +3,6 @@ options:
   bundleIdPrefix: com.cadence
   deploymentTarget:
     iOS: "26.0"
-    macOS: "15.0"
   xcodeVersion: "16.0"
   generateEmptyDirectories: true
 
@@ -56,55 +55,3 @@ targets:
       properties:
         com.apple.developer.healthkit: true
         com.apple.developer.healthkit.access: []
-
-  CadenceMac:
-    type: application
-    platform: macOS
-    sources:
-      - path: CadenceMac
-        type: group
-      - path: Cadence/Models
-        type: group
-        excludes:
-          - "*.entitlements"
-      - path: Cadence/Services
-        type: group
-        excludes:
-          - "*.entitlements"
-          - "CadenceR11Service.swift"
-          - "CadenceR12Service.swift"
-          - "FocusService.swift"
-          - "SoundService.swift"
-          - "NotificationService.swift"
-          - "MatchingService.swift"
-          - "AICoachService.swift"
-          - "AICoachingService.swift"
-          - "FlowStateService.swift"
-          - "CalendarExportService.swift"
-          - "StatisticsService.swift"
-          - "TeamService.swift"
-          - "ExportService.swift"
-          - "FreemiumService.swift"
-          - "SubscriptionService.swift"
-          - "APIService.swift"
-          - "FocusPredictionService.swift"
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.cadence.mac
-        PRODUCT_NAME: CadenceMac
-        INFOPLIST_FILE: CadenceMac/Info.plist
-        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-        TARGETED_DEVICE_FAMILY: "2"
-        SWIFT_EMIT_LOC_STRINGS: true
-        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
-        COMBINE_HIDPI_IMAGES: true
-    info:
-      path: CadenceMac/Info.plist
-      properties:
-        CFBundleDisplayName: Cadence
-        CFBundleName: CadenceMac
-        CFBundleShortVersionString: "1.0.0"
-        CFBundleVersion: "1"
-        LSMinimumSystemVersion: "15.0"
-        NSPrincipalClass: NSApplication
