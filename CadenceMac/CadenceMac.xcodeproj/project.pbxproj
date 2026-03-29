@@ -13,6 +13,7 @@
 		1E4C8A0C6E3B94D6528902B1 /* BreathingOrb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AFEA84D1CC557518EEFEE50 /* BreathingOrb.swift */; };
 		1EBE21368AE29C5BA03D5B79 /* AICoachService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5DE1F8B2CE9A7C38680FAB /* AICoachService.swift */; };
 		276D304578BA622AA1246809 /* FocusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FC4368F1B659AF2238C9AF /* FocusService.swift */; };
+		32B3875970680824BAC88FDC /* MacFocusTogetherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B18DA106ED82F2E4D92549 /* MacFocusTogetherView.swift */; };
 		4D5B1590D46C692DB54F7BEF /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687796B9D10ADFD0AE69015F /* MacSettingsView.swift */; };
 		5039FFD2A35A687858124AB7 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E19B1E349188D261E21AAA /* Statistics.swift */; };
 		55D310ABAA6EB7F58253C97D /* CadenceMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F5753D46F5ED383DE11EFA /* CadenceMacApp.swift */; };
@@ -26,8 +27,12 @@
 		8236B59D88E7C54171BB0DA4 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E5A23840552E156F789B9E /* Brand.swift */; };
 		8C612A9DFDFC13DDB1100E3A /* ExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA48CDFD2E71C4D84D2ECF7A /* ExportService.swift */; };
 		90620FEFFCAB174F5246E4E6 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046453314A4BE458E2536EF5 /* Partner.swift */; };
+		A29091D0C9AFF2CA36343393 /* MacTeamFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9558923D41F02A3F5E0F41 /* MacTeamFocusView.swift */; };
+		C16FCA85EE9B6E49776F0C4A /* MacNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D62104E2491D45A26CB37 /* MacNotificationService.swift */; };
 		CC497F263BA7992614DFEF60 /* Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25048110D1E7BD5E32DE73 /* Achievement.swift */; };
 		CDB1C29F3D74F59AF0310928 /* CadenceMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55359F88EF94E02D5AB27C25 /* CadenceMenuBar.swift */; };
+		CDE3C49A6D7875A0793A2DF8 /* CadenceR12Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73CB988696C299D10FA9FD /* CadenceR12Service.swift */; };
+		CF7F420F0E1369EAF481DACE /* FocusPartnerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A397293D017952991C21B4 /* FocusPartnerService.swift */; };
 		D08F19AE2EB8D3270B1BA507 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBE98C61B1C99BF17E73F4D /* Challenge.swift */; };
 		D5761066A8C4C44946E03718 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E8949C3929A2ED30CB09F /* APIService.swift */; };
 		DA9261ACF9F130E5D4182598 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A936BA4B6AF3E53CD22A6F2 /* Team.swift */; };
@@ -39,7 +44,10 @@
 /* Begin PBXFileReference section */
 		046453314A4BE458E2536EF5 /* Partner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		08A049E77F57C840CA466331 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		39B18DA106ED82F2E4D92549 /* MacFocusTogetherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacFocusTogetherView.swift; sourceTree = "<group>"; };
 		3A936BA4B6AF3E53CD22A6F2 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		3D73CB988696C299D10FA9FD /* CadenceR12Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceR12Service.swift; sourceTree = "<group>"; };
+		3E9558923D41F02A3F5E0F41 /* MacTeamFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacTeamFocusView.swift; sourceTree = "<group>"; };
 		3FCC093ADF357039CA56420F /* CadenceMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CadenceMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		485A160DF1A46BB37B341F39 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		55359F88EF94E02D5AB27C25 /* CadenceMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CadenceMenuBar.swift; sourceTree = "<group>"; };
@@ -53,9 +61,11 @@
 		82E19B1E349188D261E21AAA /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		85D115037777B4162D8BA31E /* FocusPredictionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPredictionService.swift; sourceTree = "<group>"; };
 		93FC4368F1B659AF2238C9AF /* FocusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusService.swift; sourceTree = "<group>"; };
+		99A397293D017952991C21B4 /* FocusPartnerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPartnerService.swift; sourceTree = "<group>"; };
 		9AFEA84D1CC557518EEFEE50 /* BreathingOrb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingOrb.swift; sourceTree = "<group>"; };
 		A94674F96B78E768E001D54B /* MacContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacContentView.swift; sourceTree = "<group>"; };
 		AA48CDFD2E71C4D84D2ECF7A /* ExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportService.swift; sourceTree = "<group>"; };
+		C86D62104E2491D45A26CB37 /* MacNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNotificationService.swift; sourceTree = "<group>"; };
 		CA25048110D1E7BD5E32DE73 /* Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Achievement.swift; sourceTree = "<group>"; };
 		CF75AAEFA41658BB4F4BA7F6 /* AICoachingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICoachingService.swift; sourceTree = "<group>"; };
 		D6E5A23840552E156F789B9E /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
@@ -83,6 +93,7 @@
 				5DD8C19AACDB9E795555DD5C /* MacFocusSessionView.swift */,
 				687796B9D10ADFD0AE69015F /* MacSettingsView.swift */,
 				E3BBAEE085705A0498B8FAAF /* MacStreakView.swift */,
+				3E9558923D41F02A3F5E0F41 /* MacTeamFocusView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,6 +127,8 @@
 			children = (
 				63F5753D46F5ED383DE11EFA /* CadenceMacApp.swift */,
 				55359F88EF94E02D5AB27C25 /* CadenceMenuBar.swift */,
+				39B18DA106ED82F2E4D92549 /* MacFocusTogetherView.swift */,
+				C86D62104E2491D45A26CB37 /* MacNotificationService.swift */,
 				2A1B89CB9B995B001035218C /* Views */,
 			);
 			path = Sources;
@@ -148,8 +161,10 @@
 				CF75AAEFA41658BB4F4BA7F6 /* AICoachingService.swift */,
 				DA5DE1F8B2CE9A7C38680FAB /* AICoachService.swift */,
 				E06E8949C3929A2ED30CB09F /* APIService.swift */,
+				3D73CB988696C299D10FA9FD /* CadenceR12Service.swift */,
 				FFAAE933FD29E9A606E699DA /* DatabaseService.swift */,
 				AA48CDFD2E71C4D84D2ECF7A /* ExportService.swift */,
+				99A397293D017952991C21B4 /* FocusPartnerService.swift */,
 				85D115037777B4162D8BA31E /* FocusPredictionService.swift */,
 				93FC4368F1B659AF2238C9AF /* FocusService.swift */,
 				8243F2831B8B6EBBF1E6B2C6 /* StatisticsService.swift */,
@@ -235,17 +250,22 @@
 				1E4C8A0C6E3B94D6528902B1 /* BreathingOrb.swift in Sources */,
 				55D310ABAA6EB7F58253C97D /* CadenceMacApp.swift in Sources */,
 				CDB1C29F3D74F59AF0310928 /* CadenceMenuBar.swift in Sources */,
+				CDE3C49A6D7875A0793A2DF8 /* CadenceR12Service.swift in Sources */,
 				5B7EB9B28F858DEE437F4FEF /* CadenceShared.swift in Sources */,
 				D08F19AE2EB8D3270B1BA507 /* Challenge.swift in Sources */,
 				F42E9B47D35F8E06F507F33D /* DatabaseService.swift in Sources */,
 				DC6FA49026C284089602AAAF /* EmptyStateView.swift in Sources */,
 				8C612A9DFDFC13DDB1100E3A /* ExportService.swift in Sources */,
+				CF7F420F0E1369EAF481DACE /* FocusPartnerService.swift in Sources */,
 				1019ED1E8EAFC37557485326 /* FocusPredictionService.swift in Sources */,
 				276D304578BA622AA1246809 /* FocusService.swift in Sources */,
 				042B38FFA567D29EDF2A8D3E /* MacContentView.swift in Sources */,
 				5A91C1CA05913EB3E5733493 /* MacFocusSessionView.swift in Sources */,
+				32B3875970680824BAC88FDC /* MacFocusTogetherView.swift in Sources */,
+				C16FCA85EE9B6E49776F0C4A /* MacNotificationService.swift in Sources */,
 				4D5B1590D46C692DB54F7BEF /* MacSettingsView.swift in Sources */,
 				77C75701B5B4D9DE1C8C356F /* MacStreakView.swift in Sources */,
+				A29091D0C9AFF2CA36343393 /* MacTeamFocusView.swift in Sources */,
 				90620FEFFCAB174F5246E4E6 /* Partner.swift in Sources */,
 				E6C56A1456924F8A1EB586D6 /* Session.swift in Sources */,
 				76BC27B78B9E805082266762 /* Sound.swift in Sources */,

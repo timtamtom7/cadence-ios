@@ -89,6 +89,25 @@ struct MacSettingsView: View {
                                 Toggle("", isOn: $notificationsEnabled)
                                     .toggleStyle(.switch)
                                     .tint(Color.appPrimary)
+                                    .onChange(of: notificationsEnabled) { _, newValue in
+                                        if newValue {
+                                            Task {
+                                                await MacNotificationService.shared.requestAuthorization()
+                                            }
+                                        } else {
+                                            MacNotificationService.shared.cancelAllSessionReminders()
+                                            MacNotificationService.shared.cancelStreakReminder()
+                                        }
+                                    }
+                            }
+
+                            if !notificationsEnabled {
+                                SettingsRow {
+                                    Text("Enable to receive focus session reminders")
+                                        .font(.appCaption)
+                                        .foregroundStyle(Color.appTextTertiary)
+                                    Spacer()
+                                }
                             }
                         }
                     }

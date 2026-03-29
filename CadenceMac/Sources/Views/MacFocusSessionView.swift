@@ -229,6 +229,13 @@ struct MacFocusSessionView: View {
         .onChange(of: focusService.isCompleted) { _, completed in
             if completed {
                 showSessionComplete = true
+                // Cancel streak reminder since user completed a session
+                MacNotificationService.shared.cancelStreakReminder()
+                // Schedule next streak reminder for tomorrow if needed
+                Task {
+                    let profile = await DatabaseService.shared.loadUserProfile()
+                    await MacNotificationService.shared.scheduleStreakReminderIfNeeded(username: profile.username)
+                }
             }
         }
     }
